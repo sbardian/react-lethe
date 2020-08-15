@@ -24,7 +24,7 @@ const Header = () => {
         grid-template-columns: 1fr;
         grid-template-rows: 100px 100px;
         @media (min-width: 800px) {
-          grid-template-columns: 1fr 5fr;
+          grid-template-columns: 190px 5fr;
           grid-template-rows: unset;
         }
       `}
@@ -32,8 +32,9 @@ const Header = () => {
       <div
         css={css`
           display: grid;
-          grid-template-columns: 1fr 5fr;
+          grid-template-rows: auto auto;
           align-content: start;
+          justify-content: center;
         `}
       >
         <img
@@ -43,11 +44,13 @@ const Header = () => {
             align-self: center;
             height: 75px;
             width: 125px;
+            padding-top: 10px;
           `}
         />
         <span
           css={css`
             align-self: center;
+            justify-self: center;
             font-size: 2rem;
           `}
         >
