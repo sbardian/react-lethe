@@ -31,16 +31,18 @@ const SideBar = () => {
           }
         `}
       >
-        <li
+        <Link
           css={css`
-            display: flex;
+            text-decoration: none;
+            color: white;
+            padding: 7px;
           `}
+          to="/lists"
         >
-          <Link
+          <li
             css={css`
-              text-decoration: none;
+              display: flex;
             `}
-            to="/lists"
           >
             <AiOutlineUnorderedList
               css={css`
@@ -48,18 +50,20 @@ const SideBar = () => {
               `}
             />
             Lists
-          </Link>
-        </li>
-        <li
+          </li>
+        </Link>
+        <Link
           css={css`
-            display: flex;
+            text-decoration: none;
+            color: white;
+            padding: 7px;
           `}
+          to="/profile"
         >
-          <Link
+          <li
             css={css`
-              text-decoration: none;
+              display: flex;
             `}
-            to="/profile"
           >
             <AiOutlineProfile
               css={css`
@@ -67,18 +71,20 @@ const SideBar = () => {
               `}
             />
             Profile
-          </Link>
-        </li>
-        <li
+          </li>
+        </Link>
+        <Link
           css={css`
-            display: flex;
+            text-decoration: none;
+            color: white;
+            padding: 7px;
           `}
+          to="/settings"
         >
-          <Link
+          <li
             css={css`
-              text-decoration: none;
+              display: flex;
             `}
-            to="/settings"
           >
             <AiOutlineSetting
               css={css`
@@ -86,8 +92,8 @@ const SideBar = () => {
               `}
             />
             Settings
-          </Link>
-        </li>
+          </li>
+        </Link>
       </ul>
     </div>
   ) : (

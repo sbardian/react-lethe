@@ -86,6 +86,7 @@ const Header = () => {
                 border-radius: 5px;
                 background-color: #666;
                 font-size: 1.1rem;
+                color: white;
               `}
               onClick={() => logout()}
             >

@@ -66,11 +66,19 @@ const Lists = () => {
             >
               {list.title}
             </span>
-            <div>
-              <GiSettingsKnobs color="tomato" />
+            <div type="button" onClick={() => console.log('delete')}>
+              <GiSettingsKnobs
+                css={css`
+                  color: #666;
+                `}
+              />
             </div>
             <div type="button" onClick={() => console.log('delete')}>
-              <FiDelete />
+              <FiDelete
+                css={css`
+                  color: #666;
+                `}
+              />
             </div>
           </li>
         ))}
