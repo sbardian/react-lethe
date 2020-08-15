@@ -53,8 +53,8 @@ const LoginForm = () => {
         grid-template-columns: 1fr;
         justify-content: center;
         justify-items: center;
-        margin-top: 100px;
         @media (min-width: 762px) {
+          margin-top: 100px;
           grid-template-columns: 600px;
         }
       `}
@@ -71,7 +71,6 @@ const LoginForm = () => {
           box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
           background-color: #e1e1e1;
           width: 100%;
-          padding: 20px;
         `}
       >
         <div>
@@ -90,7 +89,6 @@ const LoginForm = () => {
             gap: 20px;
             grid-template-columns: 1fr;
             font-size: 2rem;
-            width: 100%;
           `}
         >
           <label
@@ -106,7 +104,7 @@ const LoginForm = () => {
             css={css`
               color: #666;
               border-radius: 5px;
-              font-size: 2rem;
+              font-size: 1.5rem;
             `}
             type="text"
             id="username"
@@ -126,7 +124,7 @@ const LoginForm = () => {
             css={css`
               color: #666;
               border-radius: 5px;
-              font-size: 2rem;
+              font-size: 1.5rem;
             `}
             type="password"
             id="password"
