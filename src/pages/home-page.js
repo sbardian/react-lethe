@@ -11,6 +11,7 @@ const HomePage = () => {
           background-color: #e1e1e1;
           color: #666;
           margin: 20px;
+          padding: 20px;
         `}
       >
         Home page content
