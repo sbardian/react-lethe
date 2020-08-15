@@ -2,10 +2,20 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
+import { useNavigate } from '@reach/router'
+import { TokenContext } from '../components/token-context'
 import MenuButton from './menu-button'
 import logo from '../brain.png'
 
 const Header = () => {
+  const { removeToken } = React.useContext(TokenContext)
+  const navigate = useNavigate()
+
+  const logout = () => {
+    removeToken()
+    navigate('/')
+  }
+
   return (
     <div
       css={css`
@@ -58,7 +68,25 @@ const Header = () => {
           `}
         >
           <MenuButton />
-          <div>other content</div>
+          <div
+            css={css`
+              justify-self: end;
+              padding-top: 20px;
+              padding-right: 20px;
+            `}
+          >
+            <buttom
+              css={css`
+                border: 1px solid #666;
+                cursor: pointer;
+                padding: 10px;
+                border-radius: 5px;
+              `}
+              onClick={() => logout()}
+            >
+              Logout
+            </buttom>
+          </div>
         </div>
       </div>
     </div>

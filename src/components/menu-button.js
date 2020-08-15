@@ -6,7 +6,6 @@ import { MenuContext } from './menu-context'
 
 const MenuButton = () => {
   const { isOpen, setIsOpen } = React.useContext(MenuContext)
-  console.log('isOpen: ', isOpen)
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen)

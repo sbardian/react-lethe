@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import PageLayout from '../components/page-layout'
+import Lists from '../components/lists'
 
 const ListsPage = () => {
   return (
@@ -15,7 +16,7 @@ const ListsPage = () => {
           padding: 20px;
         `}
       >
-        lists
+        <Lists />
       </div>
     </PageLayout>
   )

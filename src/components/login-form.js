@@ -10,7 +10,7 @@ const LoginForm = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const { token, setToken } = React.useContext(TokenContext)
+  const { setToken } = React.useContext(TokenContext)
 
   const handleChange = (event, type) => {
     switch (type) {
@@ -35,15 +35,15 @@ const LoginForm = () => {
 
   const [userLogin, { data }] = useMutation(LOGIN)
 
+  React.useEffect(() => {
+    if (data?.login?.token) {
+      setToken(data.login.token)
+    }
+  }, [data])
+
   const login = () => {
     userLogin({ variables: { username, password } })
   }
-
-  React.useEffect(() => {
-    if (data?.login?.token) {
-      setToken(data)
-    }
-  }, [data])
 
   return (
     <div
