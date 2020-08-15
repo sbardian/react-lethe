@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
@@ -8,6 +9,7 @@ import logo from '../brain.png'
 const LoginForm = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
+
   const { token, setToken } = React.useContext(TokenContext)
 
   const handleChange = (event, type) => {
