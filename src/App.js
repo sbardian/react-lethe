@@ -4,6 +4,7 @@ import { jsx } from '@emotion/core'
 import { Router } from '@reach/router'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { TokenProvider } from './components/token-context'
+import { MenuProvider } from './components/menu-context'
 import LoginPage from './pages/login-page'
 import HomePage from './pages/home-page'
 import './App.css'
@@ -17,12 +18,14 @@ const App = () => {
   return (
     <div className="App">
       <TokenProvider>
-        <ApolloProvider client={client}>
-          <Router>
-            <LoginPage path="/" />
-            <HomePage path="/home" />
-          </Router>
-        </ApolloProvider>
+        <MenuProvider>
+          <ApolloProvider client={client}>
+            <Router>
+              <LoginPage path="/" />
+              <HomePage path="/home" />
+            </Router>
+          </ApolloProvider>
+        </MenuProvider>
       </TokenProvider>
     </div>
   )

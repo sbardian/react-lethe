@@ -2,60 +2,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
-import logo from '../brain.png'
+import Header from './header'
+import SideBar from './sidebar'
 
 const PageLayout = ({ children }) => {
   return (
     <div
+      className="pagelayout-container"
       css={css`
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-rows: 200px 1fr;
         gap: 20px;
         width: 100%;
         height: 100vh;
         @media (min-width: 800px) {
-          grid-template-columns: 1fr 4fr;
           grid-template-rows: 100px 1fr;
+          grid-template-columns: unset;
         }
       `}
     >
+      <Header />
       <div
         css={css`
           display: grid;
-          grid-template-columns: 1fr 2fr;
-          color: white;
-        `}
-      >
-        <img
-          src={logo}
-          alt="logo"
-          css={css`
-            align-self: center;
-            height: 75px;
-            width: 125px;
-          `}
-        />
-        <span
-          css={css`
-            align-self: center;
-            font-size: 2rem;
-          `}
-        >
-          Lethe
-        </span>
-      </div>
-      <div>header</div>
-      <div
-        css={css`
-          display: none;
+          grid-template-rows: auto 1fr;
           @media (min-width: 800px) {
-            display: grid;
+            grid-template-rows: unset;
+            grid-template-columns: auto 5fr;
           }
         `}
       >
-        sidebar
+        <SideBar />
+        {children}
       </div>
-      {children}
     </div>
   )
 }
