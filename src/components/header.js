@@ -33,7 +33,7 @@ const Header = () => {
         css={css`
           display: grid;
           grid-template-columns: 1fr 5fr;
-          justify-content: center;
+          align-content: start;
         `}
       >
         <img
