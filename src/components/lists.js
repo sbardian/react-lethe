@@ -66,7 +66,7 @@ const Lists = () => {
             >
               {list.title}
             </span>
-            <div type="button" onClick={() => console.log('delete')}>
+            <div type="button" onClick={() => console.log('settings')}>
               <GiSettingsKnobs
                 css={css`
                   color: #666;
