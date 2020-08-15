@@ -3,7 +3,7 @@ import React from 'react'
 import { jsx, css } from '@emotion/core'
 import PageLayout from '../components/page-layout'
 
-const HomePage = () => {
+const ListsPage = () => {
   return (
     <PageLayout>
       <div
@@ -14,10 +14,10 @@ const HomePage = () => {
           padding: 20px;
         `}
       >
-        Home page content
+        lists
       </div>
     </PageLayout>
   )
 }
 
-export default HomePage
+export default ListsPage

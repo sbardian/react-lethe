@@ -10,7 +10,7 @@ const LoginPage = ({ navigation }) => {
   const navigate = useNavigate()
 
   if (token) {
-    navigate('/home')
+    navigate('/lists')
   }
 
   return <LoginForm />
