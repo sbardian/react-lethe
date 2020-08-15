@@ -75,17 +75,19 @@ const Header = () => {
               padding-right: 20px;
             `}
           >
-            <buttom
+            <button
               css={css`
                 border: 1px solid #666;
                 cursor: pointer;
                 padding: 10px;
                 border-radius: 5px;
+                background-color: #666;
+                font-size: 1.1rem;
               `}
               onClick={() => logout()}
             >
               Logout
-            </buttom>
+            </button>
           </div>
         </div>
       </div>
