@@ -20,7 +20,16 @@ const Lists = () => {
 
   const { data, loading, error } = useQuery(GET_MY_LISTS)
 
-  if (loading) return <p>Loading...</p>
+  if (loading)
+    return (
+      <p
+        css={css`
+          color: #666;
+        `}
+      >
+        Loading...
+      </p>
+    )
   if (error) return <p>{`ERROR: ${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
 
@@ -40,6 +49,7 @@ const Lists = () => {
             css={css`
               border: 1px solid #666;
               padding: 5px;
+              color: #666;
             `}
           >
             {list.title}
