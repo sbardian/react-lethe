@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useQuery } from '@apollo/client'
+import { Link } from '@reach/router'
 import { GiSettingsKnobs } from 'react-icons/gi'
 import { FiDelete } from 'react-icons/fi'
 
@@ -59,13 +60,21 @@ const Lists = () => {
               color: #666;
             `}
           >
-            <span
+            <Link
+              to="/list"
+              state={{ listId: list.id }}
               css={css`
-                color: #666;
+                text-decoration: none;
               `}
             >
-              {list.title}
-            </span>
+              <span
+                css={css`
+                  color: #666;
+                `}
+              >
+                {list.title}
+              </span>
+            </Link>
             <div type="button" onClick={() => console.log('settings')}>
               <GiSettingsKnobs
                 css={css`
