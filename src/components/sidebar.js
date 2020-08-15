@@ -1,6 +1,11 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
+import {
+  AiOutlineUnorderedList,
+  AiOutlineProfile,
+  AiOutlineSetting,
+} from 'react-icons/ai'
 import { MenuContext } from './menu-context'
 
 const SideBar = () => {
@@ -25,12 +30,42 @@ const SideBar = () => {
           }
         `}
       >
-        <li>sidebar</li>
-        <li>sidebar</li>
-        <li>sidebar</li>
-        <li>sidebar</li>
-        <li>sidebar</li>
-        <li>sidebar</li>
+        <li
+          css={css`
+            display: flex;
+          `}
+        >
+          <AiOutlineUnorderedList
+            css={css`
+              padding-right: 10px;
+            `}
+          />
+          Lists
+        </li>
+        <li
+          css={css`
+            display: flex;
+          `}
+        >
+          <AiOutlineProfile
+            css={css`
+              padding-right: 10px;
+            `}
+          />
+          Profile
+        </li>
+        <li
+          css={css`
+            display: flex;
+          `}
+        >
+          <AiOutlineSetting
+            css={css`
+              padding-right: 10px;
+            `}
+          />
+          Settings
+        </li>
       </ul>
     </div>
   ) : (
