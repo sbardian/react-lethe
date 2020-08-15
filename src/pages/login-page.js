@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
 import { useNavigate } from '@reach/router'
 import { TokenContext } from '../components/token-context'
 import LoginForm from '../components/login-form'
