@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
 import MenuButton from './menu-button'
 import logo from '../brain.png'
