@@ -1,8 +1,29 @@
+/** @jsx jsx */
 import React from 'react'
+import { jsx } from '@emotion/core'
+import { Router } from '@reach/router'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { TokenProvider } from './components/token-context'
+import LoginPage from './pages/login-page'
 import './App.css'
 
-function App() {
-  return <div className="App"></div>
+const App = () => {
+  const client = new ApolloClient({
+    uri: process.env.REACT_APP_LETHE_API_URL,
+    cache: new InMemoryCache(),
+  })
+
+  return (
+    <div className="App">
+      <TokenProvider>
+        <ApolloProvider client={client}>
+          <Router>
+            <LoginPage path="/" />
+          </Router>
+        </ApolloProvider>
+      </TokenProvider>
+    </div>
+  )
 }
 
 export default App
