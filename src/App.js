@@ -7,6 +7,8 @@ import { TokenProvider } from './components/token-context'
 import { MenuProvider } from './components/menu-context'
 import LoginPage from './pages/login-page'
 import ListsPage from './pages/lists-page'
+import ProfilePage from './pages/profile-page'
+import SettingsPage from './pages/settings-page'
 import './App.css'
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
             <Router>
               <LoginPage path="/" />
               <ListsPage path="/lists" />
+              <ProfilePage path="/profile" />
+              <SettingsPage path="/settings" />
             </Router>
           </ApolloProvider>
         </MenuProvider>

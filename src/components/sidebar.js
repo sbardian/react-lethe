@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
+import { Link } from '@reach/router'
 import {
   AiOutlineUnorderedList,
   AiOutlineProfile,
@@ -35,36 +36,57 @@ const SideBar = () => {
             display: flex;
           `}
         >
-          <AiOutlineUnorderedList
+          <Link
             css={css`
-              padding-right: 10px;
+              text-decoration: none;
             `}
-          />
-          Lists
+            to="/lists"
+          >
+            <AiOutlineUnorderedList
+              css={css`
+                padding-right: 10px;
+              `}
+            />
+            Lists
+          </Link>
         </li>
         <li
           css={css`
             display: flex;
           `}
         >
-          <AiOutlineProfile
+          <Link
             css={css`
-              padding-right: 10px;
+              text-decoration: none;
             `}
-          />
-          Profile
+            to="/profile"
+          >
+            <AiOutlineProfile
+              css={css`
+                padding-right: 10px;
+              `}
+            />
+            Profile
+          </Link>
         </li>
         <li
           css={css`
             display: flex;
           `}
         >
-          <AiOutlineSetting
+          <Link
             css={css`
-              padding-right: 10px;
+              text-decoration: none;
             `}
-          />
-          Settings
+            to="/settings"
+          >
+            <AiOutlineSetting
+              css={css`
+                padding-right: 10px;
+              `}
+            />
+            Settings
+          </Link>
         </li>
       </ul>
     </div>
