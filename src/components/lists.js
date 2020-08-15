@@ -3,6 +3,8 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useQuery } from '@apollo/client'
+import { GiSettingsKnobs } from 'react-icons/gi'
+import { FiDelete } from 'react-icons/fi'
 
 const Lists = () => {
   const GET_MY_LISTS = gql`
@@ -47,12 +49,29 @@ const Lists = () => {
           <li
             key={list.id}
             css={css`
+              display: grid;
+              gap: 20px;
+              grid-template-columns: 1fr 20px 20px;
+              grid-template-rows: 40px;
+              align-items: center;
               border: 1px solid #666;
               padding: 5px;
               color: #666;
             `}
           >
-            {list.title}
+            <span
+              css={css`
+                color: #666;
+              `}
+            >
+              {list.title}
+            </span>
+            <div>
+              <GiSettingsKnobs color="tomato" />
+            </div>
+            <div type="button" onClick={() => console.log('delete')}>
+              <FiDelete />
+            </div>
           </li>
         ))}
       </ul>
