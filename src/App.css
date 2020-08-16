@@ -1,12 +1,12 @@
 html {
   color: white;
+  background-color: #282c34;
 }
 
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #282c34;
 }
 
 [aria-current='page'] {
