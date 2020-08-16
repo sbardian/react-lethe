@@ -11,7 +11,7 @@ const ProfilePage = () => {
         css={css`
           background-color: #e1e1e1;
           color: #666;
-          margin: 20px;
+          margin: 5px 20px 20px 20px;
           padding: 20px;
         `}
       >
