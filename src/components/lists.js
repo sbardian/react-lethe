@@ -36,8 +36,6 @@ const Lists = () => {
   if (error) return <p>{`ERROR: ${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
 
-  console.log('data: ', data)
-
   return (
     <div>
       <ul
@@ -61,7 +59,7 @@ const Lists = () => {
             `}
           >
             <Link
-              to="/list"
+              to={`/list/${list.id}`}
               state={{ listId: list.id }}
               css={css`
                 text-decoration: none;

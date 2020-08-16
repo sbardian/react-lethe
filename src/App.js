@@ -13,6 +13,7 @@ import { setContext } from '@apollo/client/link/context'
 import { MenuProvider } from './components/menu-context'
 import LoginPage from './pages/login-page'
 import ListsPage from './pages/lists-page'
+import ListPage from './pages/list-page'
 import ProfilePage from './pages/profile-page'
 import SettingsPage from './pages/settings-page'
 import { TokenContext } from './components/token-context'
@@ -52,9 +53,10 @@ const App = () => {
         <ApolloProvider client={client}>
           <Router>
             <LoginPage path="/" />
-            <ListsPage path="/lists" />
-            <ProfilePage path="/profile" />
-            <SettingsPage path="/settings" />
+            <ListsPage path="lists" />
+            <ProfilePage path="profile" />
+            <SettingsPage path="settings" />
+            <ListPage path="list/:listId" />
           </Router>
         </ApolloProvider>
       </MenuProvider>
