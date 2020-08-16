@@ -14,6 +14,7 @@ const TabMenu = () => {
         display: grid;
         grid-template-columns: 1fr;
         align-content: end;
+        margin: 0 20px 0 20px;
       `}
     >
       <ol
