@@ -3,7 +3,7 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useQuery } from '@apollo/client'
-import { Link } from '@reach/router'
+import { useNavigate } from '@reach/router'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
@@ -13,6 +13,8 @@ import { MenuContext } from './menu-context'
 const ListItems = ({ listId }) => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
   const [displayedItems, setDisplayedItems] = React.useState()
+
+  const navigate = useNavigate()
 
   const editItem = () => {
     console.log('EDIT ITEM')
@@ -144,7 +146,11 @@ const ListItems = ({ listId }) => {
                   <div
                     css={css`
                       align-self: end;
+                      cursor: pointer;
                     `}
+                    onClick={() => {
+                      navigate(`/editItem/${item.id}`)
+                    }}
                   >
                     <AiOutlineEdit size="30" />
                   </div>

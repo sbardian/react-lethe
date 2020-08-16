@@ -16,6 +16,7 @@ import ListsPage from './pages/lists-page'
 import ListItemsPage from './pages/list-items-page'
 import ProfilePage from './pages/profile-page'
 import SettingsPage from './pages/settings-page'
+import EditItemPage from './pages/edit-item-page'
 import { TokenContext } from './components/token-context'
 import './App.css'
 
@@ -57,6 +58,7 @@ const App = () => {
             <ProfilePage path="profile" />
             <SettingsPage path="settings" />
             <ListItemsPage path="list/:listId" />
+            <EditItemPage path="editItem/:itemId" />
           </Router>
         </ApolloProvider>
       </MenuProvider>
