@@ -10,10 +10,10 @@ const ListsPage = () => {
     <PageLayout>
       <div
         css={css`
-          background-color: #e1e1e1;
           color: #666;
-          margin: 5px 20px 20px 20px;
           padding: 20px;
+          display: grid;
+          grid-template-columns: 1fr;
         `}
       >
         <Lists />

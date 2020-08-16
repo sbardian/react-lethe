@@ -12,21 +12,9 @@ const MenuButton = () => {
   }
 
   return isSideBarOpen ? (
-    <AiOutlineMenuFold
-      size="30"
-      css={css`
-        padding: 10px;
-      `}
-      onClick={() => toggleSidebar()}
-    />
+    <AiOutlineMenuFold size="30" onClick={() => toggleSidebar()} />
   ) : (
-    <AiOutlineMenuUnfold
-      size="30"
-      css={css`
-        padding: 10px;
-      `}
-      onClick={() => toggleSidebar()}
-    />
+    <AiOutlineMenuUnfold size="30" onClick={() => toggleSidebar()} />
   )
 }
 

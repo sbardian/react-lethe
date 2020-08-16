@@ -75,69 +75,92 @@ const ListItems = ({ listId }) => {
   const [{ items }] = data?.getLists
 
   return (
-    <ul
+    <div
       css={css`
-        display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(auto-fill, 200px);
-        grid-template-rows: repeat(auto-fit, 100px);
-        list-style: none;
-        padding-left: 0;
+        background-color: #e1e1e1;
         margin: 0;
         height: 100%;
       `}
     >
-      {displayedItems &&
-        displayedItems.map((item) => (
-          <li
-            key={item.id}
-            css={css`
-              display: grid;
-              gap: 10px;
-              grid-template-columns: 1fr;
-              grid-template-rows: 1fr 1fr;
-              border: 1px solid #666;
-              padding: 10px;
-              background-color: #f1f1f1;
-              &:hover {
-                -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                background-color: #fff;
-              }
-            `}
-          >
-            <span>{item.title}</span>
-            <div
+      <ul
+        css={css`
+          display: grid;
+          gap: 10px;
+          grid-template-columns: repeat(auto-fill, 200px);
+          list-style: none;
+          padding: 10px 20px 20px 20px;
+        `}
+      >
+        {displayedItems &&
+          displayedItems.map((item) => (
+            <li
+              key={item.id}
               css={css`
-                display: grid;
-                grid-template-columns: repeat(3, 40px);
-                justify-content: end;
-                gap: 5px;
+                border: 1px solid #666;
+                background-color: #f1f1f1;
+                padding: 10px;
+                &:hover {
+                  -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
+                  -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
+                  box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
+                  background-color: #fff;
+                }
               `}
             >
-              <div>
-                {item.status ? (
-                  <BsCheckBox
-                    size="30"
+              <div
+                css={css`
+                  display: grid;
+                  grid-template-columns: 1fr;
+                  grid-template-rows: 1fr 1fr;
+                  height: 100%;
+                  width: 100%;
+                `}
+              >
+                <span>{item.title}</span>
+                <div
+                  css={css`
+                    display: grid;
+                    grid-template-columns: repeat(3, 40px);
+                    justify-content: end;
+                    gap: 5px;
+                  `}
+                >
+                  <div
                     css={css`
-                      color: ${item.status ? 'green' : '#666'};
+                      align-self: end;
                     `}
-                  />
-                ) : (
-                  <RiCheckboxBlankLine size="30" />
-                )}
+                  >
+                    {item.status ? (
+                      <BsCheckBox
+                        size="30"
+                        css={css`
+                          color: ${item.status ? 'green' : '#666'};
+                        `}
+                      />
+                    ) : (
+                      <RiCheckboxBlankLine size="30" />
+                    )}
+                  </div>
+                  <div
+                    css={css`
+                      align-self: end;
+                    `}
+                  >
+                    <AiOutlineEdit size="30" />
+                  </div>
+                  <div
+                    css={css`
+                      align-self: end;
+                    `}
+                  >
+                    <TiDeleteOutline size="30" />
+                  </div>
+                </div>
               </div>
-              <div>
-                <AiOutlineEdit size="30" />
-              </div>
-              <div>
-                <TiDeleteOutline size="30" />
-              </div>
-            </div>
-          </li>
-        ))}
-    </ul>
+            </li>
+          ))}
+      </ul>
+    </div>
   )
 }
 

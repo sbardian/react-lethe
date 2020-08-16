@@ -5,9 +5,12 @@ import { jsx, css } from '@emotion/core'
 import PageLayout from '../components/page-layout'
 import { MenuContext } from '../components/menu-context'
 import ListItems from '../components/list-items'
+import TabMenu from '../components/tab-menu'
 
 const ListItemsPage = ({ listId }) => {
-  const { setShowListItemTabs } = React.useContext(MenuContext)
+  const { showListItemTabs, setShowListItemTabs } = React.useContext(
+    MenuContext,
+  )
 
   React.useEffect(() => {
     setShowListItemTabs(true)
@@ -20,12 +23,13 @@ const ListItemsPage = ({ listId }) => {
     <PageLayout>
       <div
         css={css`
-          background-color: #e1e1e1;
           color: #666;
-          margin: 5px 20px 20px 20px;
           padding: 20px;
+          display: grid;
+          grid-template-rows: 40px 1fr;
         `}
       >
+        <div>{showListItemTabs && <TabMenu />}</div>
         <ListItems listId={listId} />
       </div>
     </PageLayout>

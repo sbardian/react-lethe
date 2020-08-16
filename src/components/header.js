@@ -4,14 +4,14 @@ import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { useNavigate } from '@reach/router'
 import { TokenContext } from '../components/token-context'
-import { MenuContext } from './menu-context'
+// import { MenuContext } from './menu-context'
 import MenuButton from './menu-button'
-import TabMenu from './tab-menu'
+// import TabMenu from './tab-menu'
 import logo from '../brain.png'
 
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)
-  const { showListItemTabs } = React.useContext(MenuContext)
+  // const { showListItemTabs } = React.useContext(MenuContext)
   const navigate = useNavigate()
 
   const logout = () => {
@@ -71,6 +71,8 @@ const Header = () => {
             display: grid;
             grid-template-columns: 1fr 5fr;
             align-items: center;
+            margin-left: 20px;
+            margin-right: 20px;
           `}
         >
           <MenuButton />
@@ -78,7 +80,6 @@ const Header = () => {
             css={css`
               justify-self: end;
               padding-top: 20px;
-              padding-right: 20px;
             `}
           >
             <button
@@ -97,7 +98,7 @@ const Header = () => {
             </button>
           </div>
         </div>
-        <div>{showListItemTabs && <TabMenu />}</div>
+        {/* <div>{showListItemTabs && <TabMenu />}</div> */}
       </div>
     </div>
   )

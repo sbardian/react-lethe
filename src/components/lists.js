@@ -37,7 +37,11 @@ const Lists = () => {
   if (!data) return <p>You currently have no lists. Create some!</p>
 
   return (
-    <div>
+    <div
+      css={css`
+        background-color: #e1e1e1;
+      `}
+    >
       <ul
         css={css`
           list-style: none;

@@ -31,6 +31,7 @@ const TabMenu = () => {
           css={css`
             background-color: #e1e1e1;
             border: 1px solid #666;
+            border-bottom: none;
             padding: 10px;
             color: ${!activeItemTab ? 'white' : '#666'};
             cursor: pointer;
@@ -44,6 +45,7 @@ const TabMenu = () => {
           css={css`
             background-color: #e1e1e1;
             border: 1px solid #666;
+            border-bottom: none;
             padding: 10px;
             color: ${activeItemTab ? 'white' : '#666'};
             cursor: pointer;
