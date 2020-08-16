@@ -56,6 +56,7 @@ const Lists = () => {
               border: 1px solid #666;
               padding: 5px;
               color: #666;
+              margin: 8px;
             `}
           >
             <Link
