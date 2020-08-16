@@ -4,12 +4,15 @@ import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useQuery } from '@apollo/client'
 import { Link } from '@reach/router'
-import { MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { BsCheckBox } from 'react-icons/bs'
-import { FiDelete } from 'react-icons/fi'
+import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
+import { MenuContext } from './menu-context'
 
 const ListItems = ({ listId }) => {
+  const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
+  const [displayedItems, setDisplayedItems] = React.useState()
+
   const editItem = () => {
     console.log('EDIT ITEM')
   }
@@ -35,6 +38,25 @@ const ListItems = ({ listId }) => {
       id_is: listId,
     },
   })
+
+  React.useEffect(() => {
+    if (data?.getLists[0]?.items) {
+      const displayItems = data.getLists[0].items.filter((item) => {
+        let result
+        if (!activeItemTab) {
+          if (!item.status) {
+            result = true
+          }
+        } else {
+          if (item.status) {
+            result = true
+          }
+        }
+        return result
+      })
+      setDisplayedItems(displayItems)
+    }
+  }, [data, activeItemTab])
 
   if (loading)
     return (
@@ -64,8 +86,8 @@ const ListItems = ({ listId }) => {
         height: 100%;
       `}
     >
-      {items &&
-        items.map((item) => (
+      {displayedItems &&
+        displayedItems.map((item) => (
           <li
             key={item.id}
             css={css`
@@ -74,13 +96,12 @@ const ListItems = ({ listId }) => {
               grid-template-columns: 1fr;
               grid-template-rows: 1fr 1fr;
               border: 1px solid #666;
-              padding: 20px;
+              padding: 10px;
               background-color: #f1f1f1;
               &:hover {
                 -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
                 -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
                 box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                cursor: pointer;
                 background-color: #fff;
               }
             `}
@@ -88,15 +109,21 @@ const ListItems = ({ listId }) => {
             <span>{item.title}</span>
             <div
               css={css`
-                color: #666;
+                display: grid;
+                grid-template-columns: repeat(3, 40px);
+                justify-content: end;
+                gap: 5px;
               `}
             >
-              {item.status === true ? (
-                <BsCheckBox />
-              ) : (
-                <MdCheckBoxOutlineBlank />
-              )}
-              <TiDeleteOutline />
+              <div>
+                <BsCheckBox size="30" />
+              </div>
+              <div>
+                <AiOutlineEdit size="30" />
+              </div>
+              <div>
+                <TiDeleteOutline size="30" />
+              </div>
             </div>
           </li>
         ))}

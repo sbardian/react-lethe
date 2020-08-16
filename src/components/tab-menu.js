@@ -2,8 +2,11 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
+import { MenuContext } from './menu-context'
 
 const TabMenu = () => {
+  const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
+
   return (
     <nav
       css={css`
@@ -28,8 +31,11 @@ const TabMenu = () => {
             background-color: #e1e1e1;
             border: 1px solid #666;
             padding: 10px;
-            color: #666;
+            color: ${!activeItemTab ? 'white' : '#666'};
+            cursor: pointer;
+            background-color: ${!activeItemTab ? '#4ababa' : '#e1e1e1'};
           `}
+          onClick={() => setActiveItemTab(false)}
         >
           Active
         </li>
@@ -38,8 +44,11 @@ const TabMenu = () => {
             background-color: #e1e1e1;
             border: 1px solid #666;
             padding: 10px;
-            color: #666;
+            color: ${activeItemTab ? 'white' : '#666'};
+            cursor: pointer;
+            background-color: ${activeItemTab ? '#4ababa' : '#e1e1e1'};
           `}
+          onClick={() => setActiveItemTab(true)}
         >
           Complete
         </li>
