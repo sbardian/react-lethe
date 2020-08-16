@@ -135,11 +135,13 @@ const LoginForm = () => {
         <div>
           <button
             css={css`
+              all: unset;
               padding: 10px;
               border-radius: 10px;
               font-size: 2rem;
               box-shadow: none;
-              background-color: rgb(171, 0, 219);
+              background-color: #4ababa;
+              color: white;
             `}
             onClick={() => {
               login()
