@@ -7,8 +7,6 @@ const LoginPage = ({ navigation }) => {
   const { token } = React.useContext(TokenContext)
   const navigate = useNavigate()
 
-  console.log('token in login page: ', token)
-
   if (token) {
     navigate('/lists')
   }
