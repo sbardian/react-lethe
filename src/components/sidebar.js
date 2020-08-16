@@ -10,9 +10,9 @@ import {
 import { MenuContext } from './menu-context'
 
 const SideBar = () => {
-  const { isOpen } = React.useContext(MenuContext)
+  const { isSideBarOpen } = React.useContext(MenuContext)
 
-  return isOpen ? (
+  return isSideBarOpen ? (
     <div
       css={css`
         padding: 20px;
@@ -38,6 +38,7 @@ const SideBar = () => {
             padding: 7px;
           `}
           to="/lists"
+          state={{ tab: null }}
         >
           <li
             css={css`

@@ -4,10 +4,18 @@ import PropTypes from 'prop-types'
 export const MenuContext = React.createContext()
 
 export const MenuProvider = ({ children }) => {
-  const [isOpen, setIsOpen] = React.useState(true)
+  const [isSideBarOpen, setIsSideBarOpen] = React.useState(true)
+  const [showListItemTabs, setShowListItemTabs] = React.useState(false)
 
   return (
-    <MenuContext.Provider value={{ isOpen, setIsOpen }}>
+    <MenuContext.Provider
+      value={{
+        isSideBarOpen,
+        setIsSideBarOpen,
+        showListItemTabs,
+        setShowListItemTabs,
+      }}
+    >
       {children}
     </MenuContext.Provider>
   )

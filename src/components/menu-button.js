@@ -5,13 +5,13 @@ import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 import { MenuContext } from './menu-context'
 
 const MenuButton = () => {
-  const { isOpen, setIsOpen } = React.useContext(MenuContext)
+  const { isSideBarOpen, setIsSideBarOpen } = React.useContext(MenuContext)
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen)
+    setIsSideBarOpen(!isSideBarOpen)
   }
 
-  return isOpen ? (
+  return isSideBarOpen ? (
     <AiOutlineMenuFold
       size="30"
       css={css`

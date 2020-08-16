@@ -4,8 +4,10 @@ import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useQuery } from '@apollo/client'
 import { Link } from '@reach/router'
-import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { MdCheckBoxOutlineBlank } from 'react-icons/md'
+import { BsCheckBox } from 'react-icons/bs'
 import { FiDelete } from 'react-icons/fi'
+import { TiDeleteOutline } from 'react-icons/ti'
 
 const ListItems = ({ listId }) => {
   const editItem = () => {
@@ -66,12 +68,11 @@ const ListItems = ({ listId }) => {
         items.map((item) => (
           <li
             key={item.id}
-            onClick={() => editItem()}
             css={css`
               display: grid;
               gap: 10px;
-              grid-template-columns: 1fr 20px;
-              grid-template-rows: 1fr;
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr 1fr;
               border: 1px solid #666;
               padding: 20px;
               background-color: #f1f1f1;
@@ -85,11 +86,18 @@ const ListItems = ({ listId }) => {
             `}
           >
             <span>{item.title}</span>
-            <IoMdCheckmarkCircleOutline
+            <div
               css={css`
-                color: ${item.status === true ? '#7ee064' : '#666'};
+                color: #666;
               `}
-            />
+            >
+              {item.status === true ? (
+                <BsCheckBox />
+              ) : (
+                <MdCheckBoxOutlineBlank />
+              )}
+              <TiDeleteOutline />
+            </div>
           </li>
         ))}
     </ul>

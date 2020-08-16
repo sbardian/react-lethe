@@ -3,16 +3,26 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import PageLayout from '../components/page-layout'
+import { MenuContext } from '../components/menu-context'
 import ListItems from '../components/list-items'
 
-const ListPage = ({ listId }) => {
+const ListItemsPage = ({ listId }) => {
+  const { setShowListItemTabs } = React.useContext(MenuContext)
+
+  React.useEffect(() => {
+    setShowListItemTabs(true)
+    return () => {
+      setShowListItemTabs(false)
+    }
+  }, [setShowListItemTabs])
+
   return (
     <PageLayout>
       <div
         css={css`
           background-color: #e1e1e1;
           color: #666;
-          margin: 20px;
+          margin: 5px 20px 20px 20px;
           padding: 20px;
         `}
       >
@@ -22,4 +32,4 @@ const ListPage = ({ listId }) => {
   )
 }
 
-export default ListPage
+export default ListItemsPage
