@@ -7,6 +7,7 @@ import { Link } from '@reach/router'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
+import { RiCheckboxBlankLine } from 'react-icons/ri'
 import { MenuContext } from './menu-context'
 
 const ListItems = ({ listId }) => {
@@ -116,7 +117,16 @@ const ListItems = ({ listId }) => {
               `}
             >
               <div>
-                <BsCheckBox size="30" />
+                {item.status ? (
+                  <BsCheckBox
+                    size="30"
+                    css={css`
+                      color: ${item.status ? 'green' : '#666'};
+                    `}
+                  />
+                ) : (
+                  <RiCheckboxBlankLine size="30" />
+                )}
               </div>
               <div>
                 <AiOutlineEdit size="30" />
