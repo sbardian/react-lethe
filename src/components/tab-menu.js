@@ -33,9 +33,9 @@ const TabMenu = () => {
             border: 1px solid #666;
             border-bottom: none;
             padding: 10px;
-            color: ${!activeItemTab ? 'white' : '#666'};
+            color: ${!activeItemTab ? '#666' : 'white'};
             cursor: pointer;
-            background-color: ${!activeItemTab ? '#4ababa' : '#e1e1e1'};
+            background-color: ${!activeItemTab ? '#e1e1e1' : '#4ababa'};
           `}
           onClick={() => setActiveItemTab(false)}
         >
@@ -47,9 +47,9 @@ const TabMenu = () => {
             border: 1px solid #666;
             border-bottom: none;
             padding: 10px;
-            color: ${activeItemTab ? 'white' : '#666'};
+            color: ${activeItemTab ? '#666' : 'white'};
             cursor: pointer;
-            background-color: ${activeItemTab ? '#4ababa' : '#e1e1e1'};
+            background-color: ${activeItemTab ? '#e1e1e1' : '#4ababa'};
           `}
           onClick={() => setActiveItemTab(true)}
         >
