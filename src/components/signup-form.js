@@ -7,43 +7,54 @@ import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../components/token-context'
 import logo from '../brain.png'
 
-const LoginForm = ({ flipCard }) => {
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
+const SignUpForm = ({ flipCard }) => {
+  const [signUpUsername, setSignUpUsername] = React.useState('')
+  const [signUpPassword, setSignUpPassword] = React.useState('')
+  const [confirmPassword, setConfirmPassword] = React.useState('')
+  const [email, setEmail] = React.useState('')
 
   const { setToken } = React.useContext(TokenContext)
 
-  const handleChange = (event, type) => {
+  const handleSignUpChange = (event, type) => {
     switch (type) {
       case 'username':
-        setUsername(event.target.value)
+        setSignUpUsername(event.target.value)
+        break
+      case 'email':
+        setEmail(event.target.value)
         break
       case 'password':
-        setPassword(event.target.value)
+        setSignUpPassword(event.target.value)
+        break
+      case 'confirmPassword':
+        setConfirmPassword(event.target.value)
         break
       default:
         break
     }
   }
 
-  const LOGIN = gql`
-    mutation userLogin($username: String!, $password: String!) {
-      login(loginInput: { username: $username, password: $password }) {
+  const SIGN_UP = gql`
+    mutation signUp($username: String!, $email: String!, $password: String!) {
+      signup(
+        signupInput: { username: $username, email: $email, password: $password }
+      ) {
         token
       }
     }
   `
 
-  const [userLogin, { data: loginData }] = useMutation(LOGIN)
+  const [userSignUp, { data: signUpData }] = useMutation(SIGN_UP)
 
-  React.useEffect(() => {
-    if (loginData?.login?.token) {
-      setToken(loginData.login.token)
-    }
-  }, [loginData])
+  const signup = () => {
+    userSignUp({
+      variables: { username: signUpUsername, email, password: signUpPassword },
+    })
+  }
 
-  const login = () => {
-    userLogin({ variables: { username, password } })
+  if (signUpData?.signup?.token) {
+    const { token } = signUpData.signup
+    setToken(token)
   }
 
   return (
@@ -55,22 +66,21 @@ const LoginForm = ({ flipCard }) => {
         justify-content: center;
         justify-items: center;
         @media (min-width: 762px) {
-          grid-template-columns: 600px;
           padding-top: 100px;
+          grid-template-columns: 600px;
         }
       `}
     >
       <div
         css={css`
           display: grid;
-          gap: 20px;
           grid-template-columns: 1fr;
-          grid-template-rows: 250px 300px 150px;
+          grid-template-rows: 250px 1fr 150px;
           justify-items: center;
           -webkit-box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
           -moz-box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
           box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          background-color: #e1e1e1;
+          background-color: #666;
           width: 100%;
         `}
       >
@@ -94,16 +104,14 @@ const LoginForm = ({ flipCard }) => {
           <h2
             css={css`
               justify-self: center;
-              color: #666;
             `}
           >
-            Login
+            Register
           </h2>
           <label
-            htmlFor="username"
+            htmlFor="signup-username"
             css={css`
-              color: #666;
-              align-self: end;
+              align-self: flex-end;
             `}
           >
             Username
@@ -116,15 +124,34 @@ const LoginForm = ({ flipCard }) => {
               height: 2rem;
             `}
             type="text"
-            id="username"
-            value={username}
-            onChange={(event) => handleChange(event, 'username')}
+            id="signup-username"
+            value={signUpUsername}
+            onChange={(event) => handleSignUpChange(event, 'username')}
           />
           <label
-            htmlFor="password"
+            htmlFor="email"
+            css={css`
+              align-self: flex-end;
+            `}
+          >
+            Email
+          </label>
+          <input
             css={css`
               color: #666;
-              align-self: end;
+              border-radius: 5px;
+              font-size: 1.5rem;
+              height: 2rem;
+            `}
+            type="text"
+            id="email"
+            value={email}
+            onChange={(event) => handleSignUpChange(event, 'email')}
+          />
+          <label
+            htmlFor="signup-password"
+            css={css`
+              align-self: flex-end;
             `}
           >
             Password
@@ -137,9 +164,29 @@ const LoginForm = ({ flipCard }) => {
               height: 2rem;
             `}
             type="password"
-            id="password"
-            alue={password}
-            onChange={(event) => handleChange(event, 'password')}
+            id="signup-password"
+            value={signUpPassword}
+            onChange={(event) => handleSignUpChange(event, 'password')}
+          />
+          <label
+            htmlFor="confirm-password"
+            css={css`
+              align-self: flex-end;
+            `}
+          >
+            Confirm Password
+          </label>
+          <input
+            css={css`
+              color: #666;
+              border-radius: 5px;
+              font-size: 1.5rem;
+              height: 2rem;
+            `}
+            type="password"
+            id="confirm-password"
+            value={confirmPassword}
+            onChange={(event) => handleSignUpChange(event, 'confirmPassword')}
           />
         </div>
         <div
@@ -148,6 +195,7 @@ const LoginForm = ({ flipCard }) => {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto;
             gap: 20px;
+            margin-top: 20px;
             align-content: start;
           `}
         >
@@ -158,17 +206,20 @@ const LoginForm = ({ flipCard }) => {
               border-radius: 10px;
               font-size: 2rem;
               box-shadow: none;
-              background-color: #4ababa;
+              background-color: ${signUpPassword !== confirmPassword
+                ? '#666'
+                : '#4ababa'};
               color: white;
               display: flex;
               justify-content: center;
               cursor: pointer;
             `}
+            disabled={signUpPassword !== confirmPassword ? true : false}
             onClick={() => {
-              login()
+              signup()
             }}
           >
-            Login
+            Register
           </button>
           <button
             css={css`
@@ -187,7 +238,7 @@ const LoginForm = ({ flipCard }) => {
               flipCard()
             }}
           >
-            Register
+            Login
           </button>
         </div>
       </div>
@@ -195,8 +246,8 @@ const LoginForm = ({ flipCard }) => {
   )
 }
 
-LoginForm.propTypes = {
+SignUpForm.propTypes = {
   flipCard: PropTypes.func.isRequired,
 }
 
-export default LoginForm
+export default SignUpForm

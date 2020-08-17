@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from '@reach/router'
 import { TokenContext } from '../components/token-context'
-import LoginForm from '../components/login-form'
+import LoginCard from '../components/login-card'
 
 const LoginPage = ({ navigation }) => {
   const { token } = React.useContext(TokenContext)
@@ -11,7 +11,7 @@ const LoginPage = ({ navigation }) => {
     navigate('/lists')
   }
 
-  return <LoginForm />
+  return <LoginCard />
 }
 
 export default LoginPage
