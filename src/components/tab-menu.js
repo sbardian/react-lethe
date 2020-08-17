@@ -14,6 +14,7 @@ const TabMenu = ({ listTitle }) => {
       css={css`
         height: 100%;
         display: grid;
+        gap: 10px;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         align-content: end;

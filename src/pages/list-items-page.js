@@ -35,7 +35,7 @@ const ListItemsPage = ({
           color: #666;
           padding: 20px;
           display: grid;
-          grid-template-rows: 65px 1fr;
+          grid-template-rows: 75px 1fr;
         `}
       >
         <div

@@ -99,8 +99,6 @@ const Header = () => {
             display: grid;
             grid-template-columns: 1fr 5fr;
             align-items: center;
-            margin-left: 20px;
-            margin-right: 20px;
           `}
         >
           <MenuButton />
@@ -128,7 +126,6 @@ const Header = () => {
         </div>
         <div
           css={css`
-            margin: 0 20px 0 20px;
             display: grid;
             align-content: end;
           `}
