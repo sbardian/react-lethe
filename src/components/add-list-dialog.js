@@ -93,6 +93,7 @@ const AddListDialog = ({ setShowDialog }) => {
             type="text"
             id="title"
             value={title}
+            autoFocus
             onChange={(event) => handleChange(event)}
           />
           <div
@@ -129,6 +130,26 @@ const AddListDialog = ({ setShowDialog }) => {
               }}
             >
               Submit
+            </button>
+            <button
+              type="submit"
+              css={css`
+                all: unset;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: 2rem;
+                box-shadow: none;
+                background-color: #4ababa;
+                color: white;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+              `}
+              onClick={() => {
+                setShowDialog(false)
+              }}
+            >
+              Cancel
             </button>
           </div>
         </div>
