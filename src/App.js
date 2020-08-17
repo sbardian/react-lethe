@@ -8,8 +8,12 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  split,
+  from,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import { WebSocketLink } from '@apollo/client/link/ws'
+import { getMainDefinition } from '@apollo/client/utilities'
 import { MenuProvider } from './components/menu-context'
 import LoginPage from './pages/login-page'
 import ListsPage from './pages/lists-page'
@@ -27,6 +31,25 @@ const App = () => {
     uri: process.env.REACT_APP_LETHE_API_URL,
   })
 
+  const wsLink = new WebSocketLink({
+    uri: process.env.REACT_APP_LETHE_WS_URL,
+    options: {
+      reconnect: true,
+      connectionParams: {
+        token,
+      },
+    },
+  })
+
+  const terminatingLink = split(
+    ({ query }) => {
+      const { kind, operation } = getMainDefinition(query)
+      return kind === 'OperationDefinition' && operation === 'subscription'
+    },
+    wsLink,
+    httpLink,
+  )
+
   const authLink = setContext((_, { headers }) => {
     if (token) {
       return {
@@ -43,8 +66,10 @@ const App = () => {
     }
   })
 
+  const link = from([authLink, terminatingLink])
+
   const client = new ApolloClient({
-    link: authLink.concat(httpLink),
+    link,
     cache: new InMemoryCache(),
   })
 

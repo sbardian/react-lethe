@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import { Link } from '@reach/router'
 import { GiSettingsKnobs } from 'react-icons/gi'
 import { FiDelete } from 'react-icons/fi'
@@ -21,7 +21,36 @@ const Lists = () => {
     }
   `
 
-  const { data, loading, error } = useQuery(GET_MY_LISTS)
+  const DELETE_LIST = gql`
+    mutation deleteList($listId: String!) {
+      deleteList(listId: $listId) {
+        id
+        title
+      }
+    }
+  `
+
+  const LIST_DELETED = gql`
+    subscription onListDeleted {
+      listDeleted {
+        id
+        title
+        owner
+      }
+    }
+  `
+
+  const { subscribeToMore, data: getListsData, loading, error } = useQuery(
+    GET_MY_LISTS,
+  )
+
+  const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST)
+
+  const handleDeleteList = (listId) => {
+    deleteList({ variables: { listId } })
+  }
+
+  console.log('deleted list: ', deleteListData)
 
   if (loading)
     return (
@@ -34,7 +63,29 @@ const Lists = () => {
       </p>
     )
   if (error) return <p>{`ERROR: ${error}`}</p>
-  if (!data) return <p>You currently have no lists. Create some!</p>
+  if (!getListsData) return <p>You currently have no lists. Create some!</p>
+
+  subscribeToMore({
+    document: LIST_DELETED,
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev
+      const { id } = subscriptionData.data.listDeleted
+      if (prev.getMyInfo.lists.some((list) => list.id === id)) {
+        const filteredLists = prev.getMyInfo.lists.filter(
+          (list) => list.id !== id,
+        )
+        const newLists = {
+          ...prev,
+          getMyInfo: {
+            ...prev.getMyInfo,
+            lists: [...filteredLists],
+          },
+        }
+        return newLists
+      }
+      return prev
+    },
+  })
 
   return (
     <div
@@ -48,7 +99,7 @@ const Lists = () => {
           padding-left: 0;
         `}
       >
-        {data.getMyInfo.lists.map((list) => (
+        {getListsData.getMyInfo.lists.map((list) => (
           <li
             key={list.id}
             css={css`
@@ -85,12 +136,15 @@ const Lists = () => {
                 `}
               />
             </div>
-            <div type="button" onClick={() => console.log('delete')}>
-              <FiDelete
-                css={css`
-                  color: #666;
-                `}
-              />
+            <div
+              type="button"
+              onClick={() => handleDeleteList(list.id)}
+              css={css`
+                color: #666;
+                cursor: pointer;
+              `}
+            >
+              <FiDelete />
             </div>
           </li>
         ))}
