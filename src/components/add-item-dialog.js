@@ -3,11 +3,8 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useMutation } from '@apollo/client'
-import { useNavigate } from '@reach/router'
-import { RiPlayListAddLine } from 'react-icons/ri'
 
 const AddItemDialog = ({ setShowDialog, listId }) => {
-  const navigate = useNavigate()
   const [title, setTitle] = React.useState('')
   const [createItemError, setCreateItemError] = React.useState()
 
