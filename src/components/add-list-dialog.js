@@ -4,7 +4,7 @@ import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useMutation } from '@apollo/client'
 
-const AddListDialog = ({ setShowDialog }) => {
+const AddListDialog = ({ setShowDialog, ...rest }) => {
   const [title, setTitle] = React.useState('')
   const [createItemError, setCreateItemError] = React.useState()
 
@@ -47,121 +47,108 @@ const AddListDialog = ({ setShowDialog }) => {
   return (
     <div
       css={css`
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        @media (min-width: 800px) {
-          width: 600px;
-        }
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+        border: 1px solid white;
+        background-color: #666;
+        margin: 20px;
+        padding: 20px;
       `}
     >
+      <h2>Add List Dialog</h2>
       <div
         css={css`
           display: grid;
-          gap: 20px;
           grid-template-columns: 1fr;
-          border: 1px solid white;
-          background-color: #666;
-          margin: 20px;
-          padding: 20px;
+          font-size: 1.5rem;
         `}
       >
-        <h2>Add List Dialog</h2>
+        <label
+          htmlFor="title"
+          css={css`
+            align-self: end;
+          `}
+        >
+          Title
+        </label>
+        <input
+          css={css`
+            color: #666;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            height: 2rem;
+            @media (min-width: 430px) {
+              font-size: 1.5rem;
+            }
+          `}
+          name="title"
+          type="text"
+          id="title"
+          value={title}
+          autoFocus
+          onChange={(event) => handleChange(event)}
+        />
         <div
           css={css`
             display: grid;
+            gap: 20px;
+            align-content: start;
+            margin-top: 20px;
             grid-template-columns: 1fr;
-            font-size: 1.5rem;
+            @media (min-width: 430px) {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+            }
           `}
         >
-          <label
-            htmlFor="title"
+          <button
+            type="submit"
             css={css`
-              align-self: end;
+              all: unset;
+              padding: 10px;
+              border-radius: 10px;
+              font-size: 2rem;
+              box-shadow: none;
+              background-color: #4ababa;
+              color: white;
+              display: flex;
+              justify-content: center;
+              cursor: pointer;
             `}
-          >
-            Title
-          </label>
-          <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 0.9rem;
-              height: 2rem;
-              @media (min-width: 430px) {
-                font-size: 1.5rem;
+            onClick={() => {
+              if (title) {
+                createNewList({
+                  variables: { title },
+                  refetchQueries: [{ query: GET_MY_LISTS }],
+                })
               }
-            `}
-            name="title"
-            type="text"
-            id="title"
-            value={title}
-            autoFocus
-            onChange={(event) => handleChange(event)}
-          />
-          <div
-            css={css`
-              display: grid;
-              gap: 20px;
-              align-content: start;
-              margin-top: 20px;
-              grid-template-columns: 1fr;
-              @media (min-width: 430px) {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
-              }
-            `}
+            }}
           >
-            <button
-              type="submit"
-              css={css`
-                all: unset;
-                padding: 10px;
-                border-radius: 10px;
-                font-size: 2rem;
-                box-shadow: none;
-                background-color: #4ababa;
-                color: white;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-              `}
-              onClick={() => {
-                if (title) {
-                  createNewList({
-                    variables: { title },
-                    refetchQueries: [{ query: GET_MY_LISTS }],
-                  })
-                }
-              }}
-            >
-              Submit
-            </button>
-            <button
-              type="submit"
-              css={css`
-                all: unset;
-                padding: 10px;
-                border-radius: 10px;
-                font-size: 2rem;
-                box-shadow: none;
-                color: white;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-              `}
-              onClick={() => {
-                setShowDialog(false)
-              }}
-            >
-              Cancel
-            </button>
-            {createItemError && (
-              <div>{`Error creating item: ${createItemError}`}</div>
-            )}
-          </div>
+            Submit
+          </button>
+          <button
+            type="submit"
+            css={css`
+              all: unset;
+              padding: 10px;
+              border-radius: 10px;
+              font-size: 2rem;
+              box-shadow: none;
+              color: white;
+              display: flex;
+              justify-content: center;
+              cursor: pointer;
+            `}
+            onClick={() => {
+              setShowDialog(false)
+            }}
+          >
+            Cancel
+          </button>
+          {createItemError && (
+            <div>{`Error creating item: ${createItemError}`}</div>
+          )}
         </div>
       </div>
     </div>

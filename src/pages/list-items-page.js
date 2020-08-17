@@ -7,10 +7,11 @@ import PageLayout from '../components/page-layout'
 import { MenuContext } from '../components/menu-context'
 import ListItems from '../components/list-items'
 import TabMenu from '../components/tab-menu'
+import Dialog, { useDialog } from '../components/dialog'
 import AddItemDialog from '../components/add-item-dialog'
 
 const ListItemsPage = ({ listId }) => {
-  const [showDialog, setShowDialog] = React.useState(false)
+  const { showDialog, setShowDialog } = useDialog()
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
   )
@@ -45,19 +46,20 @@ const ListItemsPage = ({ listId }) => {
               display: grid;
               color: #4ababa;
               justify-items: end;
+              cursor: pointer;
             `}
+            onClick={() => setShowDialog(!showDialog)}
           >
-            <MdPlaylistAdd
-              size="34"
-              onClick={() => setShowDialog(!showDialog)}
-            />
+            <MdPlaylistAdd size="34" />
           </div>
         </div>
         <ListItems listId={listId} />
       </div>
-      {showDialog && (
-        <AddItemDialog setShowDialog={setShowDialog} listId={listId} />
-      )}
+      <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
+        {({ setShowDialog }) => (
+          <AddItemDialog setShowDialog={setShowDialog} listId={listId} />
+        )}
+      </Dialog>
     </PageLayout>
   )
 }
