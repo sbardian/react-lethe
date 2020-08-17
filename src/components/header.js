@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
+import { gql, useQuery } from '@apollo/client'
 import { useNavigate } from '@reach/router'
 import { TokenContext } from '../components/token-context'
 import MenuButton from './menu-button'
@@ -15,6 +16,36 @@ const Header = () => {
     removeToken()
     navigate('/')
   }
+
+  const GET_MY_LISTS = gql`
+    {
+      getMyInfo {
+        id
+        username
+      }
+    }
+  `
+
+  const { data, loading, error } = useQuery(GET_MY_LISTS)
+
+  if (loading) {
+    return (
+      <p
+        css={css`
+          color: #666;
+          font-size: 2rem;
+        `}
+      >
+        Loading...
+      </p>
+    )
+  }
+  if (error) return <p>{`ERROR: ${error}`}</p>
+  if (!data) return <p>You currently have no lists. Create some!</p>
+
+  const { username } = data.getMyInfo
+  const letter = username[0].toUpperCase()
+  const restOfName = username.slice(1)
 
   return (
     <div
@@ -98,9 +129,11 @@ const Header = () => {
         <div
           css={css`
             margin: 0 20px 0 20px;
+            display: grid;
+            align-content: end;
           `}
         >
-          Breadcrumb here...
+          {`Welcome ${letter}${restOfName}!`}
         </div>
       </div>
     </div>
