@@ -10,7 +10,12 @@ import TabMenu from '../components/tab-menu'
 import Dialog, { useDialog } from '../components/dialog'
 import AddItemDialog from '../components/add-item-dialog'
 
-const ListItemsPage = ({ listId }) => {
+const ListItemsPage = ({
+  listId,
+  location: {
+    state: { listTitle },
+  },
+}) => {
   const { showDialog, setShowDialog } = useDialog()
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
@@ -40,7 +45,7 @@ const ListItemsPage = ({ listId }) => {
             grid-template-columns: 1fr 1fr;
           `}
         >
-          {showListItemTabs && <TabMenu />}
+          {showListItemTabs && <TabMenu listTitle={listTitle} />}
           <div
             css={css`
               display: grid;

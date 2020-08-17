@@ -4,8 +4,10 @@ import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { MenuContext } from './menu-context'
 
-const TabMenu = () => {
+const TabMenu = ({ listTitle }) => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
+
+  console.log('listTitle: ', listTitle)
 
   return (
     <nav
@@ -27,6 +29,20 @@ const TabMenu = () => {
           gap: 10px;
         `}
       >
+        <li
+          css={css`
+            padding: 10px 10px 10px 0;
+          `}
+        >
+          <span
+            css={css`
+              font-size: 1.2rem;
+              color: white;
+            `}
+          >
+            {listTitle}
+          </span>
+        </li>
         <li
           css={css`
             background-color: #e1e1e1;
