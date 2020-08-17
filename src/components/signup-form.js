@@ -228,7 +228,7 @@ const SignUpForm = ({ flipCard }) => {
               border-radius: 10px;
               font-size: 2rem;
               box-shadow: none;
-              background-color: #f75300;
+              background-color: none;
               color: white;
               display: flex;
               justify-content: center;

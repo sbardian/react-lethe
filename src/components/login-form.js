@@ -177,8 +177,8 @@ const LoginForm = ({ flipCard }) => {
               border-radius: 10px;
               font-size: 2rem;
               box-shadow: none;
-              background-color: #f75300;
-              color: white;
+              background-color: none;
+              color: #666;
               display: flex;
               justify-content: center;
               cursor: pointer;
