@@ -37,7 +37,7 @@
     "react-hook-form": "6.4.0",
     "react-icons": "3.10.0",
     "react-scripts": "3.4.3",
-    "subscriptions-transport-ws": "0.9.17"
+    "subscriptions-transport-ws": "0.9.18"
   },
   "devDependencies": {
     "prettier": "2.0.5",
