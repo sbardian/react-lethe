@@ -43,7 +43,7 @@ const ListItemsPage = ({ listId }) => {
           <div
             css={css`
               display: grid;
-              color: #fff;
+              color: #4ababa;
               justify-items: end;
             `}
           >

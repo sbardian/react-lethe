@@ -96,8 +96,11 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
             css={css`
               color: #666;
               border-radius: 5px;
-              font-size: 1.5rem;
+              font-size: 0.9rem;
               height: 2rem;
+              @media (min-width: 430px) {
+                font-size: 1.5rem;
+              }
             `}
             name="title"
             type="text"
@@ -109,11 +112,14 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
           <div
             css={css`
               display: grid;
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: auto;
               gap: 20px;
               align-content: start;
               margin-top: 20px;
+              grid-template-columns: 1fr;
+              @media (min-width: 430px) {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+              }
             `}
           >
             <button
@@ -156,7 +162,6 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
                 border-radius: 10px;
                 font-size: 2rem;
                 box-shadow: none;
-                background-color: #4ababa;
                 color: white;
                 display: flex;
                 justify-content: center;
