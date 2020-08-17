@@ -15,10 +15,18 @@ const TabMenu = ({ listTitle }) => {
         height: 100%;
         display: grid;
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
         align-content: end;
-        margin: 0 20px 0 20px;
       `}
     >
+      <span
+        css={css`
+          font-size: 1.2rem;
+          color: white;
+        `}
+      >
+        {listTitle}
+      </span>
       <ol
         css={css`
           display: flex;
@@ -31,22 +39,7 @@ const TabMenu = ({ listTitle }) => {
       >
         <li
           css={css`
-            padding: 10px 10px 10px 0;
-          `}
-        >
-          <span
-            css={css`
-              font-size: 1.2rem;
-              color: white;
-            `}
-          >
-            {listTitle}
-          </span>
-        </li>
-        <li
-          css={css`
             background-color: #e1e1e1;
-            border: 1px solid #666;
             border-bottom: none;
             padding: 10px;
             color: ${!activeItemTab ? '#666' : 'white'};

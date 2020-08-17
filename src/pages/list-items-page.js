@@ -35,14 +35,14 @@ const ListItemsPage = ({
           color: #666;
           padding: 20px;
           display: grid;
-          grid-template-rows: 40px 1fr;
+          grid-template-rows: 65px 1fr;
         `}
       >
         <div
           css={css`
             display: grid;
             gap: 20px;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 40px;
           `}
         >
           {showListItemTabs && <TabMenu listTitle={listTitle} />}
