@@ -35,7 +35,7 @@ const TabMenu = () => {
             padding: 10px;
             color: ${!activeItemTab ? '#666' : 'white'};
             cursor: pointer;
-            background-color: ${!activeItemTab ? '#e1e1e1' : '#4ababa'};
+            background-color: ${!activeItemTab ? '#e1e1e1' : '#4ababa20'};
           `}
           onClick={() => setActiveItemTab(false)}
         >
@@ -49,7 +49,7 @@ const TabMenu = () => {
             padding: 10px;
             color: ${activeItemTab ? '#666' : 'white'};
             cursor: pointer;
-            background-color: ${activeItemTab ? '#e1e1e1' : '#4ababa'};
+            background-color: ${activeItemTab ? '#e1e1e1' : '#4ababa20'};
           `}
           onClick={() => setActiveItemTab(true)}
         >
