@@ -176,9 +176,6 @@ const LoginForm = ({ flipCard }) => {
                 justify-content: center;
                 cursor: pointer;
               `}
-              onClick={() => {
-                login()
-              }}
             >
               Login
             </button>
