@@ -50,8 +50,6 @@ const Lists = () => {
     deleteList({ variables: { listId } })
   }
 
-  console.log('deleted list: ', deleteListData)
-
   if (loading)
     return (
       <p
