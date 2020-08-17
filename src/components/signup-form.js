@@ -3,36 +3,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx, css } from '@emotion/core'
+import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../components/token-context'
 import logo from '../brain.png'
 
 const SignUpForm = ({ flipCard }) => {
-  const [signUpUsername, setSignUpUsername] = React.useState('')
-  const [signUpPassword, setSignUpPassword] = React.useState('')
-  const [confirmPassword, setConfirmPassword] = React.useState('')
-  const [email, setEmail] = React.useState('')
+  const { register, handleSubmit, getValues, errors } = useForm()
 
   const { setToken } = React.useContext(TokenContext)
-
-  const handleSignUpChange = (event, type) => {
-    switch (type) {
-      case 'username':
-        setSignUpUsername(event.target.value)
-        break
-      case 'email':
-        setEmail(event.target.value)
-        break
-      case 'password':
-        setSignUpPassword(event.target.value)
-        break
-      case 'confirmPassword':
-        setConfirmPassword(event.target.value)
-        break
-      default:
-        break
-    }
-  }
 
   const SIGN_UP = gql`
     mutation signUp($username: String!, $email: String!, $password: String!) {
@@ -46,10 +25,13 @@ const SignUpForm = ({ flipCard }) => {
 
   const [userSignUp, { data: signUpData }] = useMutation(SIGN_UP)
 
-  const signup = () => {
-    userSignUp({
-      variables: { username: signUpUsername, email, password: signUpPassword },
-    })
+  const signup = (data) => {
+    if (data) {
+      const { username, email, password, passwordConfirm } = data
+      userSignUp({
+        variables: { username, email, password },
+      })
+    }
   }
 
   if (signUpData?.signup?.token) {
@@ -94,7 +76,8 @@ const SignUpForm = ({ flipCard }) => {
             `}
           />
         </div>
-        <div
+        <form
+          onSubmit={handleSubmit(signup)}
           css={css`
             display: grid;
             grid-template-columns: 1fr;
@@ -125,9 +108,25 @@ const SignUpForm = ({ flipCard }) => {
             `}
             type="text"
             id="signup-username"
-            value={signUpUsername}
-            onChange={(event) => handleSignUpChange(event, 'username')}
+            name="username"
+            ref={register({
+              required: 'Username is required',
+              minLength: {
+                value: 2,
+                message: 'Min username length is 2 characters',
+              },
+            })}
           />
+          {errors.username && (
+            <span
+              css={css`
+                color: tomato;
+                font-size: 1rem;
+              `}
+            >
+              {errors.username.message}
+            </span>
+          )}
           <label
             htmlFor="email"
             css={css`
@@ -145,9 +144,25 @@ const SignUpForm = ({ flipCard }) => {
             `}
             type="text"
             id="email"
-            value={email}
-            onChange={(event) => handleSignUpChange(event, 'email')}
+            name="email"
+            ref={register({
+              required: 'Email is required',
+              pattern: {
+                value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                message: 'Invalid email address',
+              },
+            })}
           />
+          {errors.email && (
+            <span
+              css={css`
+                color: tomato;
+                font-size: 1rem;
+              `}
+            >
+              {errors.email.message}
+            </span>
+          )}
           <label
             htmlFor="signup-password"
             css={css`
@@ -165,9 +180,25 @@ const SignUpForm = ({ flipCard }) => {
             `}
             type="password"
             id="signup-password"
-            value={signUpPassword}
-            onChange={(event) => handleSignUpChange(event, 'password')}
+            name="password"
+            ref={register({
+              required: 'Password is required',
+              minLength: {
+                value: 8,
+                message: 'Min password length is 8 characters',
+              },
+            })}
           />
+          {errors.password && (
+            <span
+              css={css`
+                color: tomato;
+                font-size: 1rem;
+              `}
+            >
+              {errors.password.message}
+            </span>
+          )}
           <label
             htmlFor="confirm-password"
             css={css`
@@ -185,62 +216,79 @@ const SignUpForm = ({ flipCard }) => {
             `}
             type="password"
             id="confirm-password"
-            value={confirmPassword}
-            onChange={(event) => handleSignUpChange(event, 'confirmPassword')}
+            name="passwordConfirm"
+            ref={register({
+              required: 'Password confirmation is required',
+              minLength: {
+                value: 8,
+                message: 'Min password length is 8 characters',
+              },
+              validate: {
+                matchesPreviousPassword: (value) => {
+                  const { password } = getValues()
+                  return password === value || 'Passwords should match!'
+                },
+              },
+            })}
           />
-        </div>
-        <div
-          css={css`
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto;
-            gap: 20px;
-            margin-top: 20px;
-            align-content: start;
-          `}
-        >
-          <button
+          {errors.passwordConfirm && (
+            <span
+              css={css`
+                color: tomato;
+                font-size: 1rem;
+              `}
+            >
+              {errors.passwordConfirm.message}
+            </span>
+          )}
+          <div
             css={css`
-              all: unset;
-              padding: 10px;
-              border-radius: 10px;
-              font-size: 2rem;
-              box-shadow: none;
-              background-color: ${signUpPassword !== confirmPassword
-                ? '#666'
-                : '#4ababa'};
-              color: white;
-              display: flex;
-              justify-content: center;
-              cursor: pointer;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto;
+              gap: 20px;
+              margin-top: 20px;
+              align-content: start;
             `}
-            disabled={signUpPassword !== confirmPassword ? true : false}
-            onClick={() => {
-              signup()
-            }}
           >
-            Register
-          </button>
-          <button
-            css={css`
-              all: unset;
-              padding: 10px;
-              border-radius: 10px;
-              font-size: 2rem;
-              box-shadow: none;
-              background-color: none;
-              color: white;
-              display: flex;
-              justify-content: center;
-              cursor: pointer;
-            `}
-            onClick={() => {
-              flipCard()
-            }}
-          >
-            Login
-          </button>
-        </div>
+            <button
+              type="submit"
+              css={css`
+                all: unset;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: 2rem;
+                box-shadow: none;
+                background-color: #4ababa;
+                color: white;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+              `}
+            >
+              Register
+            </button>
+            <button
+              css={css`
+                all: unset;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: 2rem;
+                box-shadow: none;
+                background-color: none;
+                color: white;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+              `}
+              onClick={() => {
+                flipCard()
+              }}
+            >
+              Login
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   )
