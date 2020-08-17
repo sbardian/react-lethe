@@ -5,8 +5,11 @@ import { jsx, css } from '@emotion/core'
 import { RiPlayListAddLine } from 'react-icons/ri'
 import PageLayout from '../components/page-layout'
 import Lists from '../components/lists'
+import AddListDialog from '../components/add-list-dialog'
 
 const ListsPage = () => {
+  const [showDialog, setShowDialog] = React.useState(false)
+
   return (
     <PageLayout>
       <div
@@ -23,12 +26,13 @@ const ListsPage = () => {
             color: #4ababa;
             cursor: pointer;
           `}
-          onClick={() => console.log('add list')}
+          onClick={() => setShowDialog(!showDialog)}
         >
           <RiPlayListAddLine size="34" />
         </div>
         <Lists />
       </div>
+      {showDialog && <AddListDialog setShowDialog={setShowDialog} />}
     </PageLayout>
   )
 }
