@@ -103,13 +103,14 @@ const Lists = () => {
             css={css`
               display: grid;
               gap: 20px;
-              grid-template-columns: 1fr 20px 20px;
+              grid-template-columns: 1fr 30px 30px;
               grid-template-rows: 40px;
               align-items: center;
               border: 1px solid #666;
               padding: 5px;
               color: #666;
               margin: 8px;
+              padding-right: 20px;
             `}
           >
             <Link
@@ -127,12 +128,15 @@ const Lists = () => {
                 {list.title}
               </span>
             </Link>
-            <div type="button" onClick={() => console.log('settings')}>
-              <GiSettingsKnobs
-                css={css`
-                  color: #666;
-                `}
-              />
+            <div
+              type="button"
+              onClick={() => console.log('settings')}
+              css={css`
+                color: #666;
+                cursor: pointer;
+              `}
+            >
+              <GiSettingsKnobs size="30" />
             </div>
             <div
               type="button"
@@ -142,7 +146,7 @@ const Lists = () => {
                 cursor: pointer;
               `}
             >
-              <FiDelete />
+              <FiDelete size="30" />
             </div>
           </li>
         ))}
