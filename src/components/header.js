@@ -99,6 +99,11 @@ const Header = () => {
             display: grid;
             grid-template-columns: 1fr 5fr;
             align-items: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            @media (min-width: 800px) {
+              margin-left: 0;
+            }
           `}
         >
           <MenuButton />
@@ -128,6 +133,10 @@ const Header = () => {
           css={css`
             display: grid;
             align-content: end;
+            margin: 0 20px 0 20px;
+            @media (min-width: 800px) {
+              margin: 0;
+            }
           `}
         >
           {`Welcome ${letter}${restOfName}!`}
