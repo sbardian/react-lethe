@@ -9,6 +9,7 @@ import { RiPlayListAddLine } from 'react-icons/ri'
 const AddListDialog = ({ setShowDialog }) => {
   const navigate = useNavigate()
   const [title, setTitle] = React.useState('')
+  const [createItemError, setCreateItemError] = React.useState()
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -38,9 +39,13 @@ const AddListDialog = ({ setShowDialog }) => {
     }
   `
 
-  const [createNewList, { loading, error }] = useMutation(ADD_LIST, {
+  const [createNewList, { error }] = useMutation(ADD_LIST, {
     onCompleted: () => setShowDialog(false),
   })
+
+  if (error) {
+    setCreateItemError(error.message)
+  }
 
   return (
     <div
@@ -156,6 +161,9 @@ const AddListDialog = ({ setShowDialog }) => {
             >
               Cancel
             </button>
+            {createItemError && (
+              <div>{`Error creating item: ${createItemError}`}</div>
+            )}
           </div>
         </div>
       </div>
