@@ -116,7 +116,7 @@ const Header = () => {
                 cursor: pointer;
                 padding: 10px;
                 border-radius: 5px;
-                background-color: #666;
+                background-color: #4ababa;
                 font-size: 1.1rem;
                 color: white;
               `}
