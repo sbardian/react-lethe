@@ -116,12 +116,22 @@ const Lists = () => {
                 grid-template-columns: 1fr 30px 30px;
                 grid-template-rows: 40px;
               }
+              &:hover {
+                -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
+                -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
+                box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
+                background-color: #fff;
+              }
             `}
           >
             <Link
               to={`/list/${list.id}`}
               css={css`
                 text-decoration: none;
+                height: 100%;
+                align-content: center;
+                display: grid;
+                margin-left: 15px;
               `}
             >
               <span
