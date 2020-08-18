@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
-import { MdPlaylistAdd } from 'react-icons/md'
+import { MdAddCircle } from 'react-icons/md'
 import PageLayout from '../components/page-layout'
 import { MenuContext } from '../components/menu-context'
 import ListItems from '../components/list-items'
@@ -47,11 +47,14 @@ const ListItemsPage = ({ listId }) => {
               display: grid;
               color: #4ababa;
               justify-items: end;
+              align-content: flex-end;
+              padding-bottom: 5px;
+              color: #4ababa;
               cursor: pointer;
             `}
             onClick={() => setShowDialog(!showDialog)}
           >
-            <MdPlaylistAdd size="34" />
+            <MdAddCircle size="34" />
           </div>
         </div>
         <ListItems listId={listId} setListTitle={setListTitle} />
