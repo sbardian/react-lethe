@@ -93,8 +93,11 @@ const Lists = () => {
     >
       <ul
         css={css`
+          all: unset;
+          display: grid;
+          gap: 20px;
           list-style: none;
-          padding-left: 0;
+          padding: 20px;
         `}
       >
         {getListsData.getMyInfo.lists.map((list) => (
@@ -103,14 +106,16 @@ const Lists = () => {
             css={css`
               display: grid;
               gap: 20px;
-              grid-template-columns: 1fr 30px 30px;
-              grid-template-rows: 40px;
+              grid-template-columns: 1fr;
               align-items: center;
               border: 1px solid #666;
               padding: 5px;
               color: #666;
-              margin: 8px;
               padding-right: 20px;
+              @media (min-width: 800px) {
+                grid-template-columns: 1fr 30px 30px;
+                grid-template-rows: 40px;
+              }
             `}
           >
             <Link
@@ -133,6 +138,7 @@ const Lists = () => {
               css={css`
                 color: #666;
                 cursor: pointer;
+                justify-self: end;
               `}
             >
               <GiSettingsKnobs size="30" />
@@ -143,6 +149,7 @@ const Lists = () => {
               css={css`
                 color: #666;
                 cursor: pointer;
+                justify-self: end;
               `}
             >
               <FiDelete size="30" />

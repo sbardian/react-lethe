@@ -11,7 +11,7 @@ import { RiCheckboxBlankLine } from 'react-icons/ri'
 import { MenuContext } from './menu-context'
 
 const ListItems = ({ listId, setListTitle }) => {
-  const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
+  const { activeItemTab } = React.useContext(MenuContext)
   const [displayedItems, setDisplayedItems] = React.useState()
 
   const navigate = useNavigate()
