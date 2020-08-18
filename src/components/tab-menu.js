@@ -23,7 +23,7 @@ const TabMenu = ({ listTitle }) => {
       <span
         css={css`
           font-size: 1.2rem;
-          color: white;
+          color: #fd6100;
         `}
       >
         {listTitle}
