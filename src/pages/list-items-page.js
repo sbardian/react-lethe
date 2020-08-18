@@ -10,16 +10,12 @@ import TabMenu from '../components/tab-menu'
 import Dialog, { useDialog } from '../components/dialog'
 import AddItemDialog from '../components/add-item-dialog'
 
-const ListItemsPage = ({
-  listId,
-  location: {
-    state: { listTitle },
-  },
-}) => {
+const ListItemsPage = ({ listId }) => {
   const { showDialog, setShowDialog } = useDialog()
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
   )
+  const [listTitle, setListTitle] = React.useState('')
 
   React.useEffect(() => {
     setShowListItemTabs(true)
@@ -58,7 +54,7 @@ const ListItemsPage = ({
             <MdPlaylistAdd size="34" />
           </div>
         </div>
-        <ListItems listId={listId} />
+        <ListItems listId={listId} setListTitle={setListTitle} />
       </div>
       <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
         {({ setShowDialog }) => (

@@ -10,7 +10,7 @@ import { TiDeleteOutline } from 'react-icons/ti'
 import { RiCheckboxBlankLine } from 'react-icons/ri'
 import { MenuContext } from './menu-context'
 
-const ListItems = ({ listId }) => {
+const ListItems = ({ listId, setListTitle }) => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
   const [displayedItems, setDisplayedItems] = React.useState()
 
@@ -74,7 +74,8 @@ const ListItems = ({ listId }) => {
   if (error) return <p>{`ERROR: ${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
 
-  const [{ items }] = data?.getLists
+  const [{ items, title }] = data?.getLists
+  setListTitle(title)
 
   return (
     <div

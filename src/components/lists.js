@@ -115,7 +115,6 @@ const Lists = () => {
           >
             <Link
               to={`/list/${list.id}`}
-              state={{ listId: list.id, listTitle: list.title }}
               css={css`
                 text-decoration: none;
               `}
