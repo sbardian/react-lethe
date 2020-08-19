@@ -11,7 +11,6 @@ const Lists = () => {
   const GET_MY_LISTS = gql`
     {
       getMyInfo {
-        id
         lists {
           id
           title
@@ -26,6 +25,7 @@ const Lists = () => {
       deleteList(listId: $listId) {
         id
         title
+        owner
       }
     }
   `

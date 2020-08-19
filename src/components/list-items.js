@@ -23,7 +23,6 @@ const ListItems = ({ listId, setListTitle }) => {
   const GET_LIST_ITEMS = gql`
     query getLists($id_is: String!) {
       getLists(id_is: $id_is) {
-        id
         title
         items {
           id
@@ -60,7 +59,43 @@ const ListItems = ({ listId, setListTitle }) => {
     }
   `
 
-  const { loading, error, data } = useQuery(GET_LIST_ITEMS, {
+  const ITEM_ADDED = gql`
+    subscription onItemAdded($listId: String!) {
+      itemAdded(listId: $listId) {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  `
+
+  const ITEM_DELETED = gql`
+    subscription onItemDeleted($listId: String!) {
+      itemDeleted(listId: $listId) {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  `
+
+  const ITEM_EDITED = gql`
+    subscription onItemEdited($listId: String!) {
+      itemEdited(listId: $listId) {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  `
+
+  const { subscribeToMore, loading, error, data } = useQuery(GET_LIST_ITEMS, {
     variables: {
       id_is: listId,
     },
@@ -101,8 +136,80 @@ const ListItems = ({ listId, setListTitle }) => {
   if (error) return <p>{`ERROR: ${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
 
-  const [{ items, title }] = data?.getLists
+  const [{ title }] = data?.getLists
   setListTitle(title)
+
+  subscribeToMore({
+    document: ITEM_ADDED,
+    variables: { listId },
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev
+      const { id } = subscriptionData.data.itemAdded
+      const [list] = prev.getLists
+      if (!list.items.some((item) => item.id === id)) {
+        const newItems = {
+          ...prev,
+          getLists: [
+            {
+              ...list,
+              items: [{ ...subscriptionData.data.itemAdded }, ...list.items],
+            },
+          ],
+        }
+        return newItems
+      }
+      return prev
+    },
+  })
+  subscribeToMore({
+    document: ITEM_DELETED,
+    variables: { listId },
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev
+      const { id } = subscriptionData.data.itemDeleted
+      const [list] = prev.getLists
+      if (list.items.some((item) => item.id === id)) {
+        const filteredItems = list.items.filter((item) => item.id !== id)
+        const newItems = {
+          ...prev,
+          getLists: [
+            {
+              ...list,
+              items: [...filteredItems],
+            },
+          ],
+        }
+        return newItems
+      }
+      return prev
+    },
+  })
+  subscribeToMore({
+    document: ITEM_EDITED,
+    variables: { listId },
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev
+      const { id } = subscriptionData.data.itemEdited
+      const [list] = prev.getLists
+      if (list.items.some((item) => item.id === id)) {
+        const noneEditItems = list.items.filter((item) => item.id !== id)
+        const newItems = {
+          ...prev,
+          getLists: [
+            {
+              ...list,
+              items: [
+                ...noneEditItems,
+                { ...subscriptionData.data.itemEdited },
+              ],
+            },
+          ],
+        }
+        return newItems
+      }
+      return prev
+    },
+  })
 
   return (
     <div
