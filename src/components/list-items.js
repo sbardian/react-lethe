@@ -3,21 +3,23 @@
 import React from 'react'
 import { jsx, css } from '@emotion/core'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { useNavigate } from '@reach/router'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { RiCheckboxBlankLine } from 'react-icons/ri'
+import Dialog, { useDialog } from '../components/dialog'
+import EditItemDialog from './edit-item-dialog'
 import { MenuContext } from './menu-context'
 
 const ListItems = ({ listId, setListTitle }) => {
+  const { showDialog, setShowDialog } = useDialog()
   const { activeItemTab } = React.useContext(MenuContext)
   const [displayedItems, setDisplayedItems] = React.useState()
+  const [currentItem, setCurrentItem] = React.useState(null)
 
-  const navigate = useNavigate()
-
-  const editItem = () => {
-    console.log('EDIT ITEM')
+  const editItem = (item) => {
+    setCurrentItem(item)
+    setShowDialog(!showDialog)
   }
 
   const GET_LIST_ITEMS = gql`
@@ -308,7 +310,7 @@ const ListItems = ({ listId, setListTitle }) => {
                       cursor: pointer;
                     `}
                     onClick={() => {
-                      navigate(`/editItem/${item.id}`)
+                      editItem(item)
                     }}
                   >
                     <AiOutlineEdit size="30" />
@@ -341,6 +343,15 @@ const ListItems = ({ listId, setListTitle }) => {
             </li>
           ))}
       </ul>
+      <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
+        {({ setShowDialog }) => (
+          <EditItemDialog
+            setShowDialog={setShowDialog}
+            item={currentItem}
+            listId={listId}
+          />
+        )}
+      </Dialog>
     </div>
   )
 }
