@@ -15,6 +15,8 @@ const ListItemsPage = ({ listId }) => {
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
   )
+
+  // TODO: fix this later...:)
   const [listTitle, setListTitle] = React.useState('')
 
   React.useEffect(() => {
