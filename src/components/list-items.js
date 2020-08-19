@@ -48,6 +48,18 @@ const ListItems = ({ listId, setListTitle }) => {
     }
   `
 
+  const DELETE_ITEM = gql`
+    mutation deleteItem($itemId: String!) {
+      deleteItem(itemId: $itemId) {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  `
+
   const { loading, error, data } = useQuery(GET_LIST_ITEMS, {
     variables: {
       id_is: listId,
@@ -55,6 +67,7 @@ const ListItems = ({ listId, setListTitle }) => {
   })
 
   const [updateItem] = useMutation(UPDATE_ITEM_STATUS)
+  const [deleteItem] = useMutation(DELETE_ITEM)
 
   React.useEffect(() => {
     if (data?.getLists[0]?.items) {
@@ -172,7 +185,14 @@ const ListItems = ({ listId, setListTitle }) => {
                         `}
                       />
                     ) : (
-                      <RiCheckboxBlankLine size="30" />
+                      <RiCheckboxBlankLine
+                        size="30"
+                        css={css`
+                          &:hover {
+                            color: green;
+                          }
+                        `}
+                      />
                     )}
                   </div>
                   <div
@@ -189,7 +209,23 @@ const ListItems = ({ listId, setListTitle }) => {
                   <div
                     css={css`
                       align-self: end;
+                      &:hover {
+                        color: red;
+                      }
                     `}
+                    onClick={() => {
+                      deleteItem({
+                        refetchQueries: [
+                          {
+                            query: GET_LIST_ITEMS,
+                            variables: {
+                              id_is: listId,
+                            },
+                          },
+                        ],
+                        variables: { itemId: item.id },
+                      })
+                    }}
                   >
                     <TiDeleteOutline size="30" />
                   </div>
