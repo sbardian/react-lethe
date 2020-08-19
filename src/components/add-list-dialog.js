@@ -6,7 +6,7 @@ import { gql, useMutation } from '@apollo/client'
 
 const AddListDialog = ({ setShowDialog, ...rest }) => {
   const [title, setTitle] = React.useState('')
-  const [createItemError, setCreateItemError] = React.useState()
+  const [createListError, setCreateListError] = React.useState()
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -41,7 +41,7 @@ const AddListDialog = ({ setShowDialog, ...rest }) => {
   })
 
   if (error) {
-    setCreateItemError(error.message)
+    setCreateListError(error.message)
   }
 
   return (
@@ -56,7 +56,7 @@ const AddListDialog = ({ setShowDialog, ...rest }) => {
         padding: 20px;
       `}
     >
-      <h2>Add List Dialog</h2>
+      <h2>Add List</h2>
       <div
         css={css`
           display: grid;
@@ -146,8 +146,8 @@ const AddListDialog = ({ setShowDialog, ...rest }) => {
           >
             Cancel
           </button>
-          {createItemError && (
-            <div>{`Error creating item: ${createItemError}`}</div>
+          {createListError && (
+            <div>{`Error creating item: ${createListError}`}</div>
           )}
         </div>
       </div>
