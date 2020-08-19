@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx, css } from '@emotion/core'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import { useNavigate } from '@reach/router'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
@@ -36,11 +36,25 @@ const ListItems = ({ listId, setListTitle }) => {
     }
   `
 
+  const UPDATE_ITEM_STATUS = gql`
+    mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
+      updateItem(itemId: $itemId, title: $title, status: $status) {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  `
+
   const { loading, error, data } = useQuery(GET_LIST_ITEMS, {
     variables: {
       id_is: listId,
     },
   })
+
+  const [updateItem] = useMutation(UPDATE_ITEM_STATUS)
 
   React.useEffect(() => {
     if (data?.getLists[0]?.items) {
@@ -132,12 +146,29 @@ const ListItems = ({ listId, setListTitle }) => {
                     css={css`
                       align-self: end;
                     `}
+                    onClick={() => {
+                      updateItem({
+                        refetchQueries: [
+                          {
+                            query: GET_LIST_ITEMS,
+                            variables: {
+                              id_is: listId,
+                            },
+                          },
+                        ],
+                        variables: {
+                          itemId: item.id,
+                          title: item.title,
+                          status: !item.status,
+                        },
+                      })
+                    }}
                   >
                     {item.status ? (
                       <BsCheckBox
                         size="30"
                         css={css`
-                          color: ${item.status ? 'green' : '#666'};
+                          color: green;
                         `}
                       />
                     ) : (
