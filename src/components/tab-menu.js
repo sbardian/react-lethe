@@ -7,8 +7,6 @@ import { MenuContext } from './menu-context'
 const TabMenu = ({ listTitle }) => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
 
-  console.log('listTitle: ', listTitle)
-
   return (
     <nav
       css={css`
