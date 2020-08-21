@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import Header from './header'
 import SideBar from './sidebar'
 
@@ -10,28 +10,28 @@ const PageLayout = ({ children }) => {
   return (
     <div
       className="pagelayout-container"
-      css={css`
-        display: grid;
-        grid-template-rows: 200px 1fr;
-        gap: 20px;
-        width: 100%;
-        height: 100vh;
-        @media (min-width: 800px) {
-          grid-template-rows: 100px 1fr;
-          grid-template-columns: unset;
-        }
-      `}
+      sx={{
+        display: 'grid',
+        gridTemplateRows: '200px 1fr',
+        gap: 1,
+        width: '100%',
+        height: '100vh',
+        '@media (min-width: 800px)': {
+          gridTemplateRows: '100px 1fr',
+          gridTemplateColumns: 'unset',
+        },
+      }}
     >
       <Header />
       <div
-        css={css`
-          display: grid;
-          grid-template-rows: auto 1fr;
-          @media (min-width: 800px) {
-            grid-template-rows: unset;
-            grid-template-columns: auto 5fr;
-          }
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateRows: 'auto 1fr',
+          '@media (min-width: 800px)': {
+            gridTemplateRows: 'unset',
+            gridTemplateColumns: 'auto 5fr',
+          },
+        }}
       >
         <SideBar />
         {children}

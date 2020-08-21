@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import { MdAddCircle } from 'react-icons/md'
 import PageLayout from '../components/page-layout'
 import { MenuContext } from '../components/menu-context'
@@ -29,31 +29,41 @@ const ListItemsPage = ({ listId }) => {
   return (
     <PageLayout>
       <div
-        css={css`
-          color: #666;
-          padding: 20px;
-          display: grid;
-          grid-template-rows: 75px 1fr;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateRows: '80px 1fr',
+          color: 'textSecondary',
+          padding: 3,
+        }}
       >
         <div
-          css={css`
-            display: grid;
-            gap: 20px;
-            grid-template-columns: 1fr 40px;
-          `}
+          sx={{
+            display: 'grid',
+            gap: 3,
+            gridTemplateColumns: '1fr 40px',
+          }}
         >
           {showListItemTabs && <TabMenu listTitle={listTitle} />}
           <div
-            css={css`
-              display: grid;
-              color: #4ababa;
-              justify-items: end;
-              align-content: flex-end;
-              padding-bottom: 5px;
-              color: #4ababa;
-              cursor: pointer;
-            `}
+            // sx={{
+            //   display: 'grid',
+            //   color: 'textSecondary',
+            //   justifyItems: 'end',
+            //   alignContent: 'end',
+            //   paddingBottom: 1,
+            //   cursor: 'pointer',
+            // }}
+            sx={{
+              display: 'grid',
+              justifySelf: 'end',
+              alignContent: 'end',
+              color: 'text',
+              cursor: 'pointer',
+              paddingBottom: 1,
+              '&:hover': {
+                color: 'colorThree',
+              },
+            }}
             onClick={() => setShowDialog(!showDialog)}
           >
             <MdAddCircle size="34" />

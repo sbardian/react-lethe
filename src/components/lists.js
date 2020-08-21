@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Link } from '@reach/router'
 import { GiSettingsKnobs } from 'react-icons/gi'
@@ -53,9 +53,9 @@ const Lists = () => {
   if (loading)
     return (
       <p
-        css={css`
-          color: #666;
-        `}
+        sx={{
+          color: 'textSecondary',
+        }}
       >
         Loading...
       </p>
@@ -87,80 +87,76 @@ const Lists = () => {
 
   return (
     <div
-      css={css`
-        background-color: #e1e1e1;
-      `}
+      sx={{
+        backgroundColor: 'offWhite',
+      }}
     >
       <ul
-        css={css`
-          all: unset;
-          display: grid;
-          gap: 20px;
-          list-style: none;
-          padding: 20px;
-        `}
+        sx={{
+          all: 'unset',
+          display: 'grid',
+          gap: 3,
+          listStyle: 'none',
+          padding: 3,
+        }}
       >
         {getListsData.getMyInfo.lists.map((list) => (
           <li
             key={list.id}
-            css={css`
-              display: grid;
-              gap: 20px;
-              grid-template-columns: 1fr;
-              align-items: center;
-              border: 1px solid #666;
-              padding: 5px;
-              color: #666;
-              padding-right: 20px;
-              @media (min-width: 800px) {
-                grid-template-columns: 1fr 30px 30px;
-                grid-template-rows: 40px;
-              }
-              &:hover {
-                -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                background-color: #fff;
-              }
-            `}
+            sx={{
+              display: 'grid',
+              gap: 3,
+              gridTemplateColumns: '1fr',
+              border: (theme) => `1px solid ${theme.colors.textSecondary}`,
+              padding: '5px',
+              color: 'textSecondary',
+              paddingRight: 3,
+              '@media (min-width:  800px)': {
+                gridTemplateColumns: '1fr 30px 30px',
+                gridTemplateRows: '40px',
+              },
+              '&:hover': {
+                webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                backgroundColor: 'colorThree',
+                color: 'text',
+                border: '1px solid transparent',
+              },
+            }}
           >
             <Link
               to={`/list/${list.id}`}
-              css={css`
-                text-decoration: none;
-                height: 100%;
-                align-content: center;
-                display: grid;
-                margin-left: 15px;
-              `}
+              sx={{
+                textDecoration: 'none',
+                height: '100%',
+                alignContent: 'center',
+                display: 'grid',
+                marginLeft: 3,
+                color: 'inherit',
+              }}
             >
-              <span
-                css={css`
-                  color: #666;
-                `}
-              >
-                {list.title}
-              </span>
+              <span>{list.title}</span>
             </Link>
             <div
               type="button"
               onClick={() => console.log('settings')}
-              css={css`
-                color: #666;
-                cursor: pointer;
-                justify-self: end;
-              `}
+              sx={{
+                cursor: 'pointer',
+                justifySelf: 'end',
+                alignSelf: 'center',
+              }}
             >
               <GiSettingsKnobs size="30" />
             </div>
             <div
               type="button"
               onClick={() => handleDeleteList(list.id)}
-              css={css`
-                color: #666;
-                cursor: pointer;
-                justify-self: end;
-              `}
+              sx={{
+                cursor: 'pointer',
+                justifySelf: 'end',
+                alignSelf: 'center',
+              }}
             >
               <FiDelete size="30" />
             </div>

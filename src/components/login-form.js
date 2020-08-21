@@ -2,7 +2,9 @@
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { jsx, css } from '@emotion/core'
+// import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
+import { Styled } from 'theme-ui'
 import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../components/token-context'
@@ -38,74 +40,72 @@ const LoginForm = ({ flipCard }) => {
 
   return (
     <div
-      css={css`
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        justify-items: center;
-        @media (min-width: 762px) {
-          grid-template-columns: 600px;
-          padding-top: 100px;
-        }
-      `}
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        justifyContent: 'center',
+        justifyItems: 'center',
+        '@media (min-width: 762px)': {
+          gridTemplateColumns: '600px',
+          paddingTop: 6,
+        },
+      }}
     >
       <div
-        css={css`
-          display: grid;
-          gap: 20px;
-          grid-template-columns: 1fr;
-          grid-template-rows: 250px 300px 150px;
-          justify-items: center;
-          -webkit-box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          background-color: #e1e1e1;
-          width: 100%;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gridTemplateRows: '250px 300px 150px',
+          justifyItems: 'center',
+          webkitBoxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
+          mozBoxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
+          boxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
+          backgroundColor: 'offWhite',
+          width: '100%',
+        }}
       >
         <div>
           <img
             src={logo}
             alt="Logo"
-            css={css`
-              width: 350px;
-              height: 250px;
-            `}
+            sx={{
+              width: '350px',
+              height: '250px',
+            }}
           />
         </div>
         <form
           onSubmit={handleSubmit(login)}
-          css={css`
-            display: grid;
-            grid-template-columns: 1fr;
-            font-size: 1.5rem;
-          `}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            fontSize: 1,
+          }}
         >
           <h2
-            css={css`
-              justify-self: center;
-              color: #666;
-            `}
+            sx={{
+              justifySelf: 'center',
+              color: 'textDark',
+            }}
           >
             Login
           </h2>
           <label
             htmlFor="username"
-            css={css`
-              color: #666;
-              align-self: end;
-            `}
+            sx={{
+              color: 'textDark',
+              alignSelf: 'end',
+            }}
           >
             Username
           </label>
           <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 1.5rem;
-              height: 2rem;
-            `}
+            sx={{
+              color: 'textDark',
+              borderRadius: '5px',
+              fontSize: 1,
+              marginBottom: 3,
+            }}
             name="username"
             type="text"
             id="username"
@@ -113,30 +113,30 @@ const LoginForm = ({ flipCard }) => {
           />
           {errors.username && (
             <span
-              css={css`
-                color: tomato;
-                font-size: 1rem;
-              `}
+              sx={{
+                color: 'textError',
+                fontSize: 10,
+              }}
             >
               Username is required
             </span>
           )}
           <label
             htmlFor="password"
-            css={css`
-              color: #666;
-              align-self: end;
-            `}
+            sx={{
+              color: 'textDark',
+              alignSelf: 'end',
+            }}
           >
             Password
           </label>
           <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 1.5rem;
-              height: 2rem;
-            `}
+            sx={{
+              color: 'textDark',
+              borderRadius: '5px',
+              fontSize: 1,
+              marginBottom: 3,
+            }}
             name="password"
             type="password"
             id="password"
@@ -144,55 +144,55 @@ const LoginForm = ({ flipCard }) => {
           />
           {errors.password && (
             <span
-              css={css`
-                color: tomato;
-                font-size: 1rem;
-              `}
+              sx={{
+                color: 'textError',
+                fontSize: 10,
+              }}
             >
               Password is required
             </span>
           )}
           <div
-            css={css`
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: auto;
-              gap: 20px;
-              align-content: start;
-              margin-top: 20px;
-            `}
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: 'auto',
+              gap: 4,
+              alignContent: 'start',
+              marginTop: 3,
+            }}
           >
             <button
               type="submit"
-              css={css`
-                all: unset;
-                padding: 10px;
-                border-radius: 10px;
-                font-size: 2rem;
-                box-shadow: none;
-                background-color: #4ababa;
-                color: white;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-              `}
+              sx={{
+                all: 'unset',
+                padding: 2,
+                borderRadius: '10px',
+                fontSize: 3,
+                boxShadow: 'none',
+                backgroundColor: 'colorThree',
+                color: 'white',
+                display: 'flex',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
             >
               Login
             </button>
             <button
               type="button"
-              css={css`
-                all: unset;
-                padding: 10px;
-                border-radius: 10px;
-                font-size: 2rem;
-                box-shadow: none;
-                background-color: none;
-                color: #666;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-              `}
+              sx={{
+                all: 'unset',
+                padding: 1,
+                borderRadius: '10px',
+                fontSize: 3,
+                boxShadow: 'none',
+                backgroundColor: 'none',
+                color: 'textDark',
+                display: 'flex',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
               onClick={() => {
                 flipCard()
               }}

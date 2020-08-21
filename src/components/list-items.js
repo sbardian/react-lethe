@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
@@ -128,9 +128,9 @@ const ListItems = ({ listId, setListTitle }) => {
   if (loading)
     return (
       <p
-        css={css`
-          color: #666;
-        `}
+        sx={{
+          color: 'textSecondary',
+        }}
       >
         Loading...
       </p>
@@ -215,59 +215,60 @@ const ListItems = ({ listId, setListTitle }) => {
 
   return (
     <div
-      css={css`
-        background-color: #e1e1e1;
-        margin: 0;
-        height: 100%;
-      `}
+      sx={{
+        backgroundColor: 'offWhite',
+        margin: 0,
+        height: '100%',
+      }}
     >
       <ul
-        css={css`
-          display: grid;
-          gap: 10px;
-          grid-template-columns: repeat(auto-fill, 200px);
-          list-style: none;
-          padding: 10px 20px 20px 20px;
-        `}
+        sx={{
+          display: 'grid',
+          gap: 2,
+          gridTemplateColumns: 'repeat(auto-fill, 200px)',
+          listStyle: 'none',
+          padding: 2,
+        }}
       >
         {displayedItems &&
           displayedItems.map((item) => (
             <li
               key={item.id}
-              css={css`
-                border: 1px solid #666;
-                background-color: #f1f1f1;
-                padding: 10px;
-                &:hover {
-                  -webkit-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                  -moz-box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                  box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.66);
-                  background-color: #fff;
-                }
-              `}
+              sx={{
+                border: ({ colors }) => `1px solid ${colors.textSecondary}`,
+                backgroundColor: 'offWhite',
+                padding: 2,
+                '&:hover': {
+                  webkitBoxShadow: '0px 0px 10px -1px rgba(0, 0, 0, 0.66)',
+                  mozBoxShadow: '0px 0px 10px -1px rgba(0, 0, 0, 0.66)',
+                  boxShadow: '0px 0px 10px -1px rgba(0, 0, 0, 0.66)',
+                  backgroundColor: 'colorThree',
+                  color: 'text',
+                },
+              }}
             >
               <div
-                css={css`
-                  display: grid;
-                  grid-template-columns: 1fr;
-                  grid-template-rows: 1fr 1fr;
-                  height: 100%;
-                  width: 100%;
-                `}
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr',
+                  gridTemplateRows: '1fr 1fr',
+                  height: '100%',
+                  width: '100%',
+                }}
               >
                 <span>{item.title}</span>
                 <div
-                  css={css`
-                    display: grid;
-                    grid-template-columns: repeat(3, 40px);
-                    justify-content: end;
-                    gap: 5px;
-                  `}
+                  sx={{
+                    display: 'grid',
+                    gap: 2,
+                    gridTemplateColumns: 'repeat(3, 40px)',
+                    justifyContent: 'end',
+                  }}
                 >
                   <div
-                    css={css`
-                      align-self: end;
-                    `}
+                    sx={{
+                      alignSelf: 'end',
+                    }}
                     onClick={() => {
                       updateItem({
                         refetchQueries: [
@@ -289,26 +290,31 @@ const ListItems = ({ listId, setListTitle }) => {
                     {item.status ? (
                       <BsCheckBox
                         size="30"
-                        css={css`
-                          color: green;
-                        `}
+                        sx={{
+                          color: 'green',
+                          cursor: 'pointer',
+                        }}
                       />
                     ) : (
                       <RiCheckboxBlankLine
                         size="30"
-                        css={css`
-                          &:hover {
-                            color: green;
-                          }
-                        `}
+                        sx={{
+                          cursor: 'pointer',
+                          '&:hover': {
+                            color: 'chartreuse',
+                          },
+                        }}
                       />
                     )}
                   </div>
                   <div
-                    css={css`
-                      align-self: end;
-                      cursor: pointer;
-                    `}
+                    sx={{
+                      alignSelf: 'end',
+                      cursor: 'pointer',
+                      '&:hover': {
+                        color: 'coral',
+                      },
+                    }}
                     onClick={() => {
                       editItem(item)
                     }}
@@ -316,12 +322,13 @@ const ListItems = ({ listId, setListTitle }) => {
                     <AiOutlineEdit size="30" />
                   </div>
                   <div
-                    css={css`
-                      align-self: end;
-                      &:hover {
-                        color: red;
-                      }
-                    `}
+                    sx={{
+                      alignSelf: 'end',
+                      cursor: 'pointer',
+                      '&:hover': {
+                        color: 'crimson',
+                      },
+                    }}
                     onClick={() => {
                       deleteItem({
                         refetchQueries: [

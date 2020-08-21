@@ -1,14 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { TokenProvider } from './components/token-context'
+import { ThemeProvider } from 'theme-ui'
+import theme from './theme'
 
 ReactDOM.render(
   <React.StrictMode>
     <TokenProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </TokenProvider>
   </React.StrictMode>,
   document.getElementById('root'),

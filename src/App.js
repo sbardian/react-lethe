@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-/** @jsx jsx */
 import React from 'react'
-import { jsx } from '@emotion/core'
 import { Router } from '@reach/router'
 import {
   ApolloClient,

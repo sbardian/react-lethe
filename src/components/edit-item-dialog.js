@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { jsx, css } from '@emotion/core'
 
 const EditItemDialog = ({ item, listId, setShowDialog }) => {
   const [title, setTitle] = React.useState(item.title)
@@ -65,44 +65,43 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
 
   return (
     <div
-      css={css`
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr;
-        border: 1px solid white;
-        background-color: #666;
-        margin: 20px;
-        padding: 20px;
-        color: white;
-      `}
+      sx={{
+        display: 'grid',
+        gap: 3,
+        gridTemplateColumns: '1fr',
+        border: ({ colors }) => `1px solid ${colors.offWhite}`,
+        backgroundColor: 'textSecondary',
+        margin: 3,
+        padding: 3,
+        color: 'text',
+      }}
     >
       <h2>Edit Item</h2>
       <div
-        css={css`
-          display: grid;
-          grid-template-columns: 1fr;
-          font-size: 1.5rem;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          fontSize: 1,
+        }}
       >
         <label
           htmlFor="title"
-          css={css`
-            align-self: end;
-            color: white;
-          `}
+          sx={{
+            alignSelf: 'end',
+            color: 'text',
+          }}
         >
           Title
         </label>
         <input
-          css={css`
-            color: #666;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            height: 2rem;
-            @media (min-width: 430px) {
-              font-size: 1.5rem;
-            }
-          `}
+          sx={{
+            color: 'textSecondary',
+            borderRadius: '5px',
+            fontSize: 0,
+            '@media (min-width: 430px)': {
+              fontSize: 1,
+            },
+          }}
           name="title"
           type="text"
           id="title"
@@ -111,32 +110,32 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
           onChange={(event) => handleChange(event)}
         />
         <div
-          css={css`
-            display: grid;
-            gap: 20px;
-            align-content: start;
-            margin-top: 20px;
-            grid-template-columns: 1fr;
-            @media (min-width: 430px) {
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: auto;
-            }
-          `}
+          sx={{
+            display: 'grid',
+            gap: 3,
+            alignContent: 'start',
+            marginTop: 3,
+            gridTemplateColumns: '1fr',
+            '@media (min-width: 430px)': {
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: 'auto',
+            },
+          }}
         >
           <button
             type="submit"
-            css={css`
-              all: unset;
-              padding: 10px;
-              border-radius: 10px;
-              font-size: 2rem;
-              box-shadow: none;
-              background-color: #4ababa;
-              color: white;
-              display: flex;
-              justify-content: center;
-              cursor: pointer;
-            `}
+            sx={{
+              all: 'unset',
+              padding: 2,
+              borderRadius: '10px',
+              fontSize: 3,
+              boxShadow: 'none',
+              backgroundColor: 'colorThree',
+              color: 'text',
+              display: 'flex',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
             onClick={() => {
               if (title) {
                 updateItem()
@@ -148,17 +147,18 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
           </button>
           <button
             type="submit"
-            css={css`
-              all: unset;
-              padding: 10px;
-              border-radius: 10px;
-              font-size: 2rem;
-              box-shadow: none;
-              color: white;
-              display: flex;
-              justify-content: center;
-              cursor: pointer;
-            `}
+            sx={{
+              all: 'unset',
+              padding: 2,
+              borderRadius: '10px',
+              fontSize: 3,
+              boxShadow: 'none',
+              backgroundColor: 'none',
+              color: 'text',
+              display: 'flex',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
             onClick={() => {
               setShowDialog(false)
             }}

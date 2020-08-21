@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, useThemeUI } from 'theme-ui'
+// import { jsx, css } from '@emotion/core'
 import { gql, useQuery } from '@apollo/client'
 import { useNavigate } from '@reach/router'
 import { TokenContext } from '../components/token-context'
@@ -11,6 +12,8 @@ import logo from '../brain.png'
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)
   const navigate = useNavigate()
+
+  const { colorMode, setColorMode } = useThemeUI()
 
   const logout = () => {
     removeToken()
@@ -31,10 +34,10 @@ const Header = () => {
   if (loading) {
     return (
       <p
-        css={css`
-          color: #666;
-          font-size: 2rem;
-        `}
+        sx={{
+          color: 'textLight',
+          fontSize: 2,
+        }}
       >
         Loading...
       </p>
@@ -49,80 +52,96 @@ const Header = () => {
 
   return (
     <div
-      css={css`
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr;
-        grid-template-rows: 100px 100px;
-        @media (min-width: 800px) {
-          grid-template-columns: 190px 5fr;
-          grid-template-rows: unset;
-        }
-      `}
+      sx={{
+        display: 'grid',
+        gap: 2,
+        gridTemplateColumns: '1fr',
+        gridTemplateRows: '100px 100px',
+        '@media (min-width: 800px)': {
+          gridTemplateColumns: '190px 1fr',
+          gridTemplateRows: 'unset',
+        },
+      }}
     >
       <div
-        css={css`
-          display: grid;
-          grid-template-rows: auto auto;
-          align-content: start;
-          justify-content: center;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateRows: 'auto auto',
+          alignContent: 'start',
+          justifyContent: 'center',
+        }}
       >
         <img
           src={logo}
           alt="logo"
-          css={css`
-            align-self: center;
-            height: 75px;
-            width: 125px;
-            padding-top: 10px;
-          `}
+          sx={{
+            alignSelf: 'center',
+            height: '75px',
+            width: '125px',
+            paddingTop: 1,
+          }}
         />
         <span
-          css={css`
-            align-self: center;
-            justify-self: center;
-            font-size: 2rem;
-          `}
+          sx={{
+            alignSelf: 'center',
+            justifySelf: 'center',
+            fontSize: 3,
+          }}
         >
           Lethe
         </span>
       </div>
       <div
-        css={css`
-          display: grid;
-          grid-template-rows: 1fr 1fr;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateRows: '1fr 1fr',
+        }}
       >
         <div
-          css={css`
-            display: grid;
-            grid-template-columns: 1fr 5fr;
-            align-items: center;
-            margin-left: 20px;
-            margin-right: 20px;
-            @media (min-width: 800px) {
-              margin-left: 0;
-            }
-          `}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 5fr',
+            alignItems: 'center',
+            marginLeft: 3,
+            marginRight: 3,
+            '@media (min-width: 800px)': {
+              marginLeft: 0,
+            },
+          }}
         >
           <MenuButton />
           <div
-            css={css`
-              justify-self: end;
-              padding-top: 20px;
-            `}
+            sx={{
+              justifySelf: 'end',
+              paddingTop: 3,
+            }}
           >
             <button
-              css={css`
-                border: 1px solid #666;
-                cursor: pointer;
-                padding: 10px;
-                border-radius: 5px;
-                background-color: #4ababa;
-                font-size: 1.1rem;
-                color: white;
-              `}
+              sx={{
+                cursor: 'pointer',
+                padding: 2,
+                borderRadius: '5px',
+                backgroundColor: 'colorThree',
+                fontSize: 2,
+                border: 'none',
+                color: 'text',
+              }}
+              onClick={() => {
+                setColorMode(colorMode === 'dark' ? 'light' : 'dark')
+              }}
+            >
+              Mode
+            </button>
+            <button
+              sx={{
+                cursor: 'pointer',
+                padding: 2,
+                borderRadius: '5px',
+                backgroundColor: 'colorThree',
+                fontSize: 2,
+                border: 'none',
+                color: 'text',
+              }}
               onClick={() => logout()}
             >
               Logout
@@ -130,14 +149,14 @@ const Header = () => {
           </div>
         </div>
         <div
-          css={css`
-            display: grid;
-            align-content: end;
-            margin: 0 20px 0 20px;
-            @media (min-width: 800px) {
-              margin: 0;
-            }
-          `}
+          sx={{
+            display: 'grid',
+            alignContent: 'start',
+            margin: ({ space }) => `0 ${space.space} 0 ${space.space}`,
+            '@media (min-width: 800px)': {
+              margin: 0,
+            },
+          }}
         >
           {`Welcome ${letter}${restOfName}!`}
         </div>

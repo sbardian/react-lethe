@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 
 const Dialog = ({ children, showDialog, setShowDialog }) => {
   const bag = {
@@ -13,16 +13,16 @@ const Dialog = ({ children, showDialog, setShowDialog }) => {
     <React.Fragment>
       {showDialog && (
         <div
-          css={css`
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            @media (min-width: 800px) {
-              width: 600px;
-            }
-          `}
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            '@media (min-width: 800px)': {
+              width: '600px',
+            },
+          }}
         >
           {children(bag)}
         </div>

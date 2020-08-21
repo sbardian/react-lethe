@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
+// import { jsx, css } from '@emotion/core'
 import { Link } from '@reach/router'
 import {
   AiOutlineUnorderedList,
@@ -14,83 +15,88 @@ const SideBar = () => {
 
   return isSideBarOpen ? (
     <div
-      css={css`
-        padding: 20px;
-      `}
+      sx={{
+        padding: 3,
+      }}
     >
       <ul
-        css={css`
-          display: grid;
-          gap: 20px;
-          grid-template-rows: repeat(auto-fit, auto);
-          align-items: center;
-          list-style: none;
-          padding-left: 0px;
-          @media (min-width: 800px) {
-            min-width: 150px;
-          }
-        `}
+        sx={{
+          display: 'grid',
+          gap: 3,
+          gridTemplateRows: 'repeat(auto-fit, auto)',
+          alignItems: 'center',
+          listStyle: 'none',
+          fontSize: 1,
+          paddingLeft: 0,
+          '@media (min-width: 800px)': {
+            minWidth: '150px',
+            width: '100%',
+          },
+        }}
       >
         <Link
-          css={css`
-            text-decoration: none;
-            color: white;
-            padding: 7px;
-          `}
+          sx={{
+            textDecoration: 'none',
+            color: 'offWhite',
+            padding: 2,
+          }}
           to="/lists"
           state={{ tab: null }}
         >
           <li
-            css={css`
-              display: flex;
-            `}
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '40px 1fr',
+              alignItems: 'center',
+            }}
           >
             <AiOutlineUnorderedList
-              css={css`
-                padding-right: 10px;
-              `}
+              sx={{
+                paddingRight: 2,
+              }}
+              size="34"
             />
             Lists
           </li>
         </Link>
         <Link
-          css={css`
-            text-decoration: none;
-            color: white;
-            padding: 7px;
-          `}
+          sx={{
+            textDecoration: 'none',
+            color: 'offWhite',
+            padding: 2,
+          }}
           to="/profile"
         >
           <li
-            css={css`
-              display: flex;
-            `}
+            sx={{
+              display: 'flex',
+            }}
           >
             <AiOutlineProfile
-              css={css`
-                padding-right: 10px;
-              `}
+              sx={{
+                paddingRight: 2,
+              }}
             />
             Profile
           </li>
         </Link>
         <Link
-          css={css`
-            text-decoration: none;
-            color: white;
-            padding: 7px;
-          `}
+          sx={{
+            textDecoration: 'none',
+            color: 'offWhite',
+            padding: 2,
+          }}
           to="/settings"
         >
           <li
-            css={css`
-              display: flex;
-            `}
+            sx={{
+              display: 'flex',
+            }}
           >
             <AiOutlineSetting
-              css={css`
-                padding-right: 10px;
-              `}
+              sx={{
+                paddingRight: 2,
+              }}
             />
             Settings
           </li>

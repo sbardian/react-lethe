@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
+import { act } from '@testing-library/react'
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import { MenuContext } from './menu-context'
 
 const TabMenu = ({ listTitle }) => {
@@ -9,56 +10,52 @@ const TabMenu = ({ listTitle }) => {
 
   return (
     <nav
-      css={css`
-        height: 100%;
-        display: grid;
-        gap: 10px;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        align-content: end;
-      `}
+      sx={{
+        height: '100%',
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gridTemplateRows: 'auto auto',
+        alignContent: 'end',
+      }}
     >
       <span
-        css={css`
-          font-size: 1.2rem;
-          color: #fd6100;
-        `}
+        sx={{
+          fontSize: 1,
+          color: 'text',
+        }}
       >
         {listTitle}
       </span>
       <ol
-        css={css`
-          display: flex;
-          flex-wrap: wrap;
-          list-style: none;
-          margin: 0;
-          padding-left: 0;
-          gap: 10px;
-        `}
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          listStyle: 'none',
+          margin: 0,
+          paddingLeft: 0,
+          gap: 3,
+        }}
       >
         <li
-          css={css`
-            background-color: #e1e1e1;
-            border-bottom: none;
-            padding: 10px;
-            color: ${!activeItemTab ? '#666' : 'white'};
-            cursor: pointer;
-            background-color: ${!activeItemTab ? '#e1e1e1' : '#4ababa20'};
-          `}
+          sx={{
+            borderBottom: 'none',
+            padding: 3,
+            color: !activeItemTab ? 'textSecondary' : 'text',
+            backgroundColor: !activeItemTab ? 'offWhite' : 'background',
+            cursor: 'pointer',
+          }}
           onClick={() => setActiveItemTab(false)}
         >
           Active
         </li>
         <li
-          css={css`
-            background-color: #e1e1e1;
-            border: 1px solid #666;
-            border-bottom: none;
-            padding: 10px;
-            color: ${activeItemTab ? '#666' : 'white'};
-            cursor: pointer;
-            background-color: ${activeItemTab ? '#e1e1e1' : '#4ababa20'};
-          `}
+          sx={{
+            borderBottom: 'none',
+            padding: 3,
+            color: activeItemTab ? 'textSecondary' : 'text',
+            backgroundColor: activeItemTab ? 'offWhite' : 'background',
+            cursor: 'pointer',
+          }}
           onClick={() => setActiveItemTab(true)}
         >
           Complete

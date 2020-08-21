@@ -2,7 +2,8 @@
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
+// import { jsx, css } from '@emotion/core'
 import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../components/token-context'
@@ -41,71 +42,72 @@ const SignUpForm = ({ flipCard }) => {
 
   return (
     <div
-      css={css`
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        justify-items: center;
-        @media (min-width: 762px) {
-          padding-top: 100px;
-          grid-template-columns: 600px;
-        }
-      `}
+      sx={{
+        display: 'grid',
+        gap: 1,
+        gridTemplateColumns: '1fr',
+        justifyContent: 'center',
+        justifyItems: 'center',
+        '@media (min-width: 762px)': {
+          gridTemplateColumns: '600px',
+          paddingTop: 6,
+        },
+      }}
     >
       <div
-        css={css`
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: 250px 1fr 150px;
-          justify-items: center;
-          -webkit-box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 6px 54px -5px rgba(0, 0, 0, 0.75);
-          background-color: #666;
-          width: 100%;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gridTemplateRows: '250px 1fr 150px',
+          justifyItems: 'center',
+          webkitBoxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
+          mozBoxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
+          boxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
+          backgroundColor: 'background',
+          width: '100%',
+        }}
       >
         <div>
           <img
             src={logo}
             alt="Logo"
-            css={css`
-              width: 350px;
-              height: 250px;
-            `}
+            sx={{
+              width: '350px',
+              height: '250px',
+            }}
           />
         </div>
         <form
           onSubmit={handleSubmit(signup)}
-          css={css`
-            display: grid;
-            grid-template-columns: 1fr;
-            font-size: 1.5rem;
-          `}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            fontSize: 1,
+            color: 'textLight',
+          }}
         >
           <h2
-            css={css`
-              justify-self: center;
-            `}
+            sx={{
+              justifySelf: 'center',
+            }}
           >
             Register
           </h2>
           <label
             htmlFor="signup-username"
-            css={css`
-              align-self: flex-end;
-            `}
+            sx={{
+              alignSelf: 'end',
+            }}
           >
             Username
           </label>
           <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 1.5rem;
-              height: 2rem;
-            `}
+            sx={{
+              color: 'textDark',
+              borderRadius: '5px',
+              fontSize: 1,
+              marginBottom: 3,
+            }}
             type="text"
             id="signup-username"
             name="username"
@@ -119,29 +121,29 @@ const SignUpForm = ({ flipCard }) => {
           />
           {errors.username && (
             <span
-              css={css`
-                color: tomato;
-                font-size: 1rem;
-              `}
+              sx={{
+                color: 'textError',
+                fontSize: 10,
+              }}
             >
               {errors.username.message}
             </span>
           )}
           <label
             htmlFor="email"
-            css={css`
-              align-self: flex-end;
-            `}
+            sx={{
+              alignSelf: 'end',
+            }}
           >
             Email
           </label>
           <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 1.5rem;
-              height: 2rem;
-            `}
+            sx={{
+              color: 'textDark',
+              borderRadius: '5px',
+              fontSize: 1,
+              marginBottom: 3,
+            }}
             type="text"
             id="email"
             name="email"
@@ -155,29 +157,29 @@ const SignUpForm = ({ flipCard }) => {
           />
           {errors.email && (
             <span
-              css={css`
-                color: tomato;
-                font-size: 1rem;
-              `}
+              sx={{
+                color: 'textError',
+                fontSize: 10,
+              }}
             >
               {errors.email.message}
             </span>
           )}
           <label
             htmlFor="signup-password"
-            css={css`
-              align-self: flex-end;
-            `}
+            sx={{
+              alignSelf: 'end',
+            }}
           >
             Password
           </label>
           <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 1.5rem;
-              height: 2rem;
-            `}
+            sx={{
+              color: 'textDark',
+              borderRadius: '5px',
+              fontSize: 1,
+              marginBottom: 3,
+            }}
             type="password"
             id="signup-password"
             name="password"
@@ -191,29 +193,29 @@ const SignUpForm = ({ flipCard }) => {
           />
           {errors.password && (
             <span
-              css={css`
-                color: tomato;
-                font-size: 1rem;
-              `}
+              sx={{
+                color: 'textError',
+                fontSize: 10,
+              }}
             >
               {errors.password.message}
             </span>
           )}
           <label
             htmlFor="confirm-password"
-            css={css`
-              align-self: flex-end;
-            `}
+            sx={{
+              alignSelf: 'end',
+            }}
           >
             Confirm Password
           </label>
           <input
-            css={css`
-              color: #666;
-              border-radius: 5px;
-              font-size: 1.5rem;
-              height: 2rem;
-            `}
+            sx={{
+              color: 'textDark',
+              borderRadius: '5px',
+              fontSize: 1,
+              marginBottom: 3,
+            }}
             type="password"
             id="confirm-password"
             name="passwordConfirm"
@@ -233,54 +235,54 @@ const SignUpForm = ({ flipCard }) => {
           />
           {errors.passwordConfirm && (
             <span
-              css={css`
-                color: tomato;
-                font-size: 1rem;
-              `}
+              sx={{
+                color: 'textError',
+                fontSize: 10,
+              }}
             >
               {errors.passwordConfirm.message}
             </span>
           )}
           <div
-            css={css`
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: auto;
-              gap: 20px;
-              margin-top: 20px;
-              align-content: start;
-            `}
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: 'auto',
+              gap: 4,
+              alignContent: 'start',
+              marginTop: 2,
+            }}
           >
             <button
               type="submit"
-              css={css`
-                all: unset;
-                padding: 10px;
-                border-radius: 10px;
-                font-size: 2rem;
-                box-shadow: none;
-                background-color: #4ababa;
-                color: white;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-              `}
+              sx={{
+                all: 'unset',
+                padding: '10px',
+                borderRadius: '10px',
+                fontSize: 3,
+                boxShadow: 'none',
+                backgroundColor: 'colorThree',
+                color: 'white',
+                display: 'flex',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
             >
               Register
             </button>
             <button
-              css={css`
-                all: unset;
-                padding: 10px;
-                border-radius: 10px;
-                font-size: 2rem;
-                box-shadow: none;
-                background-color: none;
-                color: white;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-              `}
+              sx={{
+                all: 'unset',
+                padding: '10px',
+                borderRadius: '10px',
+                fontSize: 3,
+                boxShadow: 'none',
+                backgroundColor: 'none',
+                color: 'textLight',
+                display: 'flex',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
               onClick={() => {
                 flipCard()
               }}

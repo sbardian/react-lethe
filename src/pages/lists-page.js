@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import { RiPlayListAddLine } from 'react-icons/ri'
 import PageLayout from '../components/page-layout'
 import Lists from '../components/lists'
@@ -14,19 +14,25 @@ const ListsPage = () => {
   return (
     <PageLayout>
       <div
-        css={css`
-          color: #666;
-          padding: 20px;
-          display: grid;
-          grid-template-rows: 40px 1fr;
-        `}
+        sx={{
+          display: 'grid',
+          gridTemplateRows: '40px 1fr',
+          color: 'textDark',
+          padding: 3,
+        }}
       >
         <div
-          css={css`
-            justify-self: end;
-            color: #4ababa;
-            cursor: pointer;
-          `}
+          sx={{
+            display: 'grid',
+            justifySelf: 'end',
+            alignContent: 'end',
+            color: 'text',
+            cursor: 'pointer',
+            paddingBottom: 1,
+            '&:hover': {
+              color: 'colorThree',
+            },
+          }}
           onClick={() => {
             setShowDialog(!showDialog)
           }}
