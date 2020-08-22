@@ -51,7 +51,7 @@ const AddListDialog = ({ setShowDialog, ...rest }) => {
         gap: 3,
         gridTemplateColumns: '1fr',
         border: ({ colors }) => `1px solid ${colors.offWhite}`,
-        backgroundColor: 'textSecondary',
+        backgroundColor: 'backgroundSecondary',
         margin: 3,
         padding: 3,
       }}
