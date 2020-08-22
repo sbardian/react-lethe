@@ -30,7 +30,7 @@
     "@testing-library/jest-dom": "5.11.3",
     "@testing-library/react": "10.4.8",
     "@testing-library/user-event": "12.1.1",
-    "deepmerge": "^4.2.2",
+    "deepmerge": "4.2.2",
     "graphql": "15.3.0",
     "react": "16.13.1",
     "react-card-flip": "1.0.11",
@@ -39,7 +39,7 @@
     "react-icons": "3.11.0",
     "react-scripts": "3.4.3",
     "subscriptions-transport-ws": "0.9.18",
-    "theme-ui": "^0.3.1"
+    "theme-ui": "0.3.1"
   },
   "devDependencies": {
     "prettier": "2.0.5",
