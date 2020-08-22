@@ -37,7 +37,7 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: 'offWhite',
+            color: 'text',
             padding: 2,
           }}
           to="/lists"
@@ -62,7 +62,7 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: 'offWhite',
+            color: 'text',
             padding: 2,
           }}
           to="/profile"
@@ -76,6 +76,7 @@ const SideBar = () => {
               sx={{
                 paddingRight: 2,
               }}
+              size="34"
             />
             Profile
           </li>
@@ -83,7 +84,7 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: 'offWhite',
+            color: 'text',
             padding: 2,
           }}
           to="/settings"
@@ -97,6 +98,7 @@ const SideBar = () => {
               sx={{
                 paddingRight: 2,
               }}
+              size="34"
             />
             Settings
           </li>
