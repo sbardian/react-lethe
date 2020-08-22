@@ -70,7 +70,7 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
         gap: 3,
         gridTemplateColumns: '1fr',
         border: ({ colors }) => `1px solid ${colors.offWhite}`,
-        backgroundColor: 'textSecondary',
+        backgroundColor: 'backgroundSecondary',
         margin: 3,
         padding: 3,
         color: 'text',
