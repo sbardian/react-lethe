@@ -56,12 +56,12 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
         gap: 3,
         gridTemplateColumns: '1fr',
         border: ({ colors }) => `1px solid ${colors.offWhite}`,
-        backgroundColor: 'textSecondary',
+        backgroundColor: 'backgroundSecondary',
         margin: 3,
         padding: 3,
       }}
     >
-      <h2>Add Item Dialog</h2>
+      <h2>Add Item</h2>
       <div
         sx={{
           display: 'grid',
