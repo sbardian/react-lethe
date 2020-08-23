@@ -60,7 +60,7 @@ const LoginForm = ({ flipCard }) => {
           webkitBoxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
           mozBoxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
           boxShadow: '0px 6px 54px -5px rgba(0, 0, 0, 0.75)',
-          backgroundColor: 'offWhite',
+          backgroundColor: 'backgroundSecondary',
           width: '100%',
         }}
       >
@@ -170,11 +170,14 @@ const LoginForm = ({ flipCard }) => {
                 borderRadius: '10px',
                 fontSize: 3,
                 boxShadow: 'none',
-                backgroundColor: 'colorThree',
-                color: 'white',
+                backgroundColor: 'transparent',
+                color: 'text',
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',
+                '&:hover': {
+                  backgroundColor: 'colorThree',
+                },
               }}
             >
               Login
@@ -183,7 +186,7 @@ const LoginForm = ({ flipCard }) => {
               type="button"
               sx={{
                 all: 'unset',
-                padding: 1,
+                padding: 2,
                 borderRadius: '10px',
                 fontSize: 3,
                 boxShadow: 'none',

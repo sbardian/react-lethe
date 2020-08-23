@@ -257,15 +257,18 @@ const SignUpForm = ({ flipCard }) => {
               type="submit"
               sx={{
                 all: 'unset',
-                padding: '10px',
                 borderRadius: '10px',
                 fontSize: 3,
+                padding: 2,
                 boxShadow: 'none',
-                backgroundColor: 'colorThree',
-                color: 'white',
+                backgroundColor: 'transparent',
+                color: 'text',
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',
+                '&:hover': {
+                  backgroundColor: 'colorThree',
+                },
               }}
             >
               Register
@@ -273,9 +276,9 @@ const SignUpForm = ({ flipCard }) => {
             <button
               sx={{
                 all: 'unset',
-                padding: '10px',
                 borderRadius: '10px',
                 fontSize: 3,
+                padding: 2,
                 boxShadow: 'none',
                 backgroundColor: 'none',
                 color: 'textLight',

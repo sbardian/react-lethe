@@ -88,7 +88,7 @@ const Lists = () => {
   return (
     <div
       sx={{
-        backgroundColor: 'offWhite',
+        backgroundColor: 'colorTwo',
       }}
     >
       <ul

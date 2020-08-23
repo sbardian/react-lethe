@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react'
-import { jsx } from '@emotion/core'
+import { jsx } from 'theme-ui'
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 import { MenuContext } from './menu-context'
 
@@ -12,9 +12,27 @@ const MenuButton = () => {
   }
 
   return isSideBarOpen ? (
-    <AiOutlineMenuFold size="30" onClick={() => toggleSidebar()} />
+    <AiOutlineMenuFold
+      size="30"
+      onClick={() => toggleSidebar()}
+      sx={{
+        '&:hover': {
+          color: 'colorThree',
+          cursor: 'pointer',
+        },
+      }}
+    />
   ) : (
-    <AiOutlineMenuUnfold size="30" onClick={() => toggleSidebar()} />
+    <AiOutlineMenuUnfold
+      size="30"
+      onClick={() => toggleSidebar()}
+      x={{
+        '&:hover': {
+          color: 'colorThree',
+          cursor: 'pointer',
+        },
+      }}
+    />
   )
 }
 

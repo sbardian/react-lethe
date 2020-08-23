@@ -227,7 +227,7 @@ const ListItems = ({ listId, setListTitle }) => {
           gap: 2,
           gridTemplateColumns: 'repeat(auto-fill, 200px)',
           listStyle: 'none',
-          padding: 2,
+          padding: 3,
         }}
       >
         {displayedItems &&
@@ -291,8 +291,10 @@ const ListItems = ({ listId, setListTitle }) => {
                       <BsCheckBox
                         size="30"
                         sx={{
-                          color: 'green',
                           cursor: 'pointer',
+                          '&:hover': {
+                            color: 'chartreuse',
+                          },
                         }}
                       />
                     ) : (
