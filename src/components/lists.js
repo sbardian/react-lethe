@@ -106,16 +106,12 @@ const Lists = () => {
             sx={{
               display: 'grid',
               gap: 3,
-              gridTemplateColumns: '1fr',
+              gridTemplateColumns: '1fr 30px',
               border: (theme) => `1px solid ${theme.colors.textSecondary}`,
               backgroundColor: 'offWhite',
               padding: '5px',
               color: 'textSecondary',
               paddingRight: 3,
-              '@media (min-width:  800px)': {
-                gridTemplateColumns: '1fr 30px 30px',
-                gridTemplateRows: '40px',
-              },
               '&:hover': {
                 webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                 mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
@@ -123,6 +119,9 @@ const Lists = () => {
                 backgroundColor: 'colorThree',
                 color: 'text',
                 border: '1px solid transparent',
+              },
+              '@media (min-width: 800px)': {
+                gridTemplateColumns: '1fr 80px',
               },
             }}
           >
@@ -140,26 +139,36 @@ const Lists = () => {
               <span>{list.title}</span>
             </Link>
             <div
-              type="button"
-              onClick={() => console.log('settings')}
               sx={{
-                cursor: 'pointer',
-                justifySelf: 'end',
-                alignSelf: 'center',
+                display: 'grid',
+                gap: 3,
+                '@media (min-width: 800px)': {
+                  gridTemplateColumns: '30px 30px',
+                },
               }}
             >
-              <GiSettingsKnobs size="30" />
-            </div>
-            <div
-              type="button"
-              onClick={() => handleDeleteList(list.id)}
-              sx={{
-                cursor: 'pointer',
-                justifySelf: 'end',
-                alignSelf: 'center',
-              }}
-            >
-              <FiDelete size="30" />
+              <div
+                type="button"
+                onClick={() => console.log('settings')}
+                sx={{
+                  cursor: 'pointer',
+                  justifySelf: 'end',
+                  alignSelf: 'center',
+                }}
+              >
+                <GiSettingsKnobs size="30" />
+              </div>
+              <div
+                type="button"
+                onClick={() => handleDeleteList(list.id)}
+                sx={{
+                  cursor: 'pointer',
+                  justifySelf: 'end',
+                  alignSelf: 'center',
+                }}
+              >
+                <FiDelete size="30" />
+              </div>
             </div>
           </li>
         ))}
