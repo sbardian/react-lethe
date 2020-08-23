@@ -10,7 +10,7 @@ import {
 } from 'react-icons/ai'
 import { MenuContext } from './menu-context'
 
-const SideBar = ({ location }) => {
+const SideBar = () => {
   const {
     isSideBarOpen,
     activeSideBarLink,
