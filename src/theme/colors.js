@@ -15,8 +15,8 @@ export default {
   modes: {
     light: {
       link: 'tomato',
-      text: '#666',
-      textSecondary: '#666',
+      text: '#363535',
+      textSecondary: '#828181',
       textError: '#cf1b0e',
       background: '#b1bed5',
       backgroundSecondary: '#bfd8d5',
