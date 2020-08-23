@@ -22,6 +22,7 @@ const TabMenu = ({ listTitle }) => {
         sx={{
           fontSize: 1,
           color: 'text',
+          marginBottom: '5px',
         }}
       >
         {listTitle}
@@ -33,14 +34,14 @@ const TabMenu = ({ listTitle }) => {
           listStyle: 'none',
           margin: 0,
           paddingLeft: 0,
-          gap: 3,
+          gap: 2,
         }}
       >
         <li
           sx={{
             borderBottom: 'none',
             padding: 3,
-            color: !activeItemTab ? 'textSecondary' : 'text',
+            color: !activeItemTab ? 'text' : 'textSecondary',
             backgroundColor: !activeItemTab ? 'colorTwo' : 'offWhite',
             cursor: 'pointer',
           }}
@@ -52,7 +53,7 @@ const TabMenu = ({ listTitle }) => {
           sx={{
             borderBottom: 'none',
             padding: 3,
-            color: activeItemTab ? 'textSecondary' : 'text',
+            color: activeItemTab ? 'text' : 'textSecondary',
             backgroundColor: activeItemTab ? 'colorTwo' : 'offWhite',
             cursor: 'pointer',
           }}

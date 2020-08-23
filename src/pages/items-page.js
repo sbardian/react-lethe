@@ -31,7 +31,7 @@ const ListItemsPage = ({ listId }) => {
       <div
         sx={{
           display: 'grid',
-          gridTemplateRows: '80px 1fr',
+          gridTemplateRows: '85px 1fr',
           color: 'textSecondary',
           padding: 3,
         }}
