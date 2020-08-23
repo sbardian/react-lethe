@@ -86,6 +86,7 @@ const Header = () => {
             alignSelf: 'center',
             justifySelf: 'center',
             fontSize: 3,
+            color: 'textSecondary',
           }}
         >
           Lethe
@@ -158,6 +159,7 @@ const Header = () => {
           sx={{
             display: 'grid',
             alignContent: 'start',
+            color: 'textSecondary',
             margin: ({ space }) => `0 ${space.space} 0 ${space.space}`,
             '@media (min-width: 800px)': {
               margin: 0,

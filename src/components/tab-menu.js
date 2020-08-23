@@ -21,7 +21,7 @@ const TabMenu = ({ listTitle }) => {
       <span
         sx={{
           fontSize: 1,
-          color: 'text',
+          color: 'textSecondary',
           marginBottom: '5px',
         }}
       >
