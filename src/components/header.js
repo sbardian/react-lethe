@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, useThemeUI } from 'theme-ui'
-// import { jsx, css } from '@emotion/core'
+import { jsx, useColorMode, useThemeUI } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
 import { useNavigate } from '@reach/router'
+import { FiSunrise, FiSunset } from 'react-icons/fi'
 import { TokenContext } from '../components/token-context'
 import MenuButton from './menu-button'
 import logo from '../brain.png'
@@ -123,17 +123,20 @@ const Header = () => {
               sx={{
                 cursor: 'pointer',
                 padding: 2,
-                borderRadius: '5px',
-                backgroundColor: 'colorThree',
                 fontSize: 2,
                 border: 'none',
-                color: 'text',
+                color: colorMode === 'dark' ? 'yellow' : 'textSecondary',
+                backgroundColor: 'transparent',
               }}
               onClick={() => {
                 setColorMode(colorMode === 'dark' ? 'light' : 'dark')
               }}
             >
-              Mode
+              {colorMode === 'dark' ? (
+                <FiSunrise size="24" />
+              ) : (
+                <FiSunset size="24" />
+              )}
             </button>
             <button
               sx={{
