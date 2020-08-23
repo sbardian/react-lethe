@@ -108,6 +108,7 @@ const Lists = () => {
               gap: 3,
               gridTemplateColumns: '1fr',
               border: (theme) => `1px solid ${theme.colors.textSecondary}`,
+              backgroundColor: 'offWhite',
               padding: '5px',
               color: 'textSecondary',
               paddingRight: 3,

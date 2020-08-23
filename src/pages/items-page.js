@@ -5,7 +5,7 @@ import { jsx } from 'theme-ui'
 import { MdAddCircle } from 'react-icons/md'
 import PageLayout from '../components/page-layout'
 import { MenuContext } from '../components/menu-context'
-import ListItems from '../components/list-items'
+import Items from '../components/items'
 import TabMenu from '../components/tab-menu'
 import Dialog, { useDialog } from '../components/dialog'
 import AddItemDialog from '../components/add-item-dialog'
@@ -45,14 +45,6 @@ const ListItemsPage = ({ listId }) => {
         >
           {showListItemTabs && <TabMenu listTitle={listTitle} />}
           <div
-            // sx={{
-            //   display: 'grid',
-            //   color: 'textSecondary',
-            //   justifyItems: 'end',
-            //   alignContent: 'end',
-            //   paddingBottom: 1,
-            //   cursor: 'pointer',
-            // }}
             sx={{
               display: 'grid',
               justifySelf: 'end',
@@ -69,7 +61,7 @@ const ListItemsPage = ({ listId }) => {
             <MdAddCircle size="34" />
           </div>
         </div>
-        <ListItems listId={listId} setListTitle={setListTitle} />
+        <Items listId={listId} setListTitle={setListTitle} />
       </div>
       <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
         {({ setShowDialog }) => (

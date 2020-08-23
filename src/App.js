@@ -14,7 +14,7 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { MenuProvider } from './components/menu-context'
 import LoginPage from './pages/login-page'
 import ListsPage from './pages/lists-page'
-import ListItemsPage from './pages/list-items-page'
+import ItemsPage from './pages/items-page'
 import ProfilePage from './pages/profile-page'
 import SettingsPage from './pages/settings-page'
 import { TokenContext } from './components/token-context'
@@ -78,7 +78,7 @@ const App = () => {
             <ListsPage path="lists" />
             <ProfilePage path="profile" />
             <SettingsPage path="settings" />
-            <ListItemsPage path="list/:listId" />
+            <ItemsPage path="list/:listId" />
           </Router>
         </ApolloProvider>
       </MenuProvider>

@@ -41,7 +41,7 @@ const TabMenu = ({ listTitle }) => {
             borderBottom: 'none',
             padding: 3,
             color: !activeItemTab ? 'textSecondary' : 'text',
-            backgroundColor: !activeItemTab ? 'offWhite' : 'background',
+            backgroundColor: !activeItemTab ? 'colorTwo' : 'offWhite',
             cursor: 'pointer',
           }}
           onClick={() => setActiveItemTab(false)}
@@ -53,7 +53,7 @@ const TabMenu = ({ listTitle }) => {
             borderBottom: 'none',
             padding: 3,
             color: activeItemTab ? 'textSecondary' : 'text',
-            backgroundColor: activeItemTab ? 'offWhite' : 'background',
+            backgroundColor: activeItemTab ? 'colorTwo' : 'offWhite',
             cursor: 'pointer',
           }}
           onClick={() => setActiveItemTab(true)}

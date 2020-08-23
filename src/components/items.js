@@ -216,7 +216,7 @@ const ListItems = ({ listId, setListTitle }) => {
   return (
     <div
       sx={{
-        backgroundColor: 'offWhite',
+        backgroundColor: 'colorTwo',
         margin: 0,
         height: '100%',
       }}
@@ -239,9 +239,9 @@ const ListItems = ({ listId, setListTitle }) => {
                 backgroundColor: 'offWhite',
                 padding: 2,
                 '&:hover': {
-                  webkitBoxShadow: '0px 0px 10px -1px rgba(0, 0, 0, 0.66)',
-                  mozBoxShadow: '0px 0px 10px -1px rgba(0, 0, 0, 0.66)',
-                  boxShadow: '0px 0px 10px -1px rgba(0, 0, 0, 0.66)',
+                  webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                  mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                  boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                   backgroundColor: 'colorThree',
                   color: 'text',
                 },
