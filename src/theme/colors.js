@@ -18,7 +18,6 @@ export default {
       text: '#fff',
       textSecondary: '#828181',
       textError: '#cf1b0e',
-
       background: '#ffffff',
       backgroundSecondary: '#f9f6f7',
       colorOne: '#ffffff',
