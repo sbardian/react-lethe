@@ -84,7 +84,7 @@ const LoginForm = ({ flipCard }) => {
           <h2
             sx={{
               justifySelf: 'center',
-              color: 'textDark',
+              color: 'textSecondary',
             }}
           >
             Login
@@ -92,7 +92,7 @@ const LoginForm = ({ flipCard }) => {
           <label
             htmlFor="username"
             sx={{
-              color: 'textDark',
+              color: 'textSecondary',
               alignSelf: 'end',
               marginTop: 2,
             }}
@@ -101,7 +101,7 @@ const LoginForm = ({ flipCard }) => {
           </label>
           <input
             sx={{
-              color: 'textDark',
+              color: 'textSecondary',
               borderRadius: '5px',
               fontSize: 1,
             }}
@@ -123,7 +123,7 @@ const LoginForm = ({ flipCard }) => {
           <label
             htmlFor="password"
             sx={{
-              color: 'textDark',
+              color: 'textSecondary',
               alignSelf: 'end',
               marginTop: 2,
             }}
@@ -132,7 +132,7 @@ const LoginForm = ({ flipCard }) => {
           </label>
           <input
             sx={{
-              color: 'textDark',
+              color: 'textSecondary',
               borderRadius: '5px',
               fontSize: 1,
             }}
@@ -170,12 +170,13 @@ const LoginForm = ({ flipCard }) => {
                 fontSize: 3,
                 boxShadow: 'none',
                 backgroundColor: 'transparent',
-                color: 'text',
+                color: 'textSecondary',
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',
                 '&:hover': {
                   backgroundColor: 'colorThree',
+                  color: 'text',
                 },
               }}
             >
@@ -190,7 +191,7 @@ const LoginForm = ({ flipCard }) => {
                 fontSize: 3,
                 boxShadow: 'none',
                 backgroundColor: 'none',
-                color: 'textDark',
+                color: 'textSecondary',
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',

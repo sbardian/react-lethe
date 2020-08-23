@@ -82,7 +82,7 @@ const SignUpForm = ({ flipCard }) => {
             display: 'grid',
             gridTemplateColumns: '1fr',
             fontSize: 1,
-            color: 'textLight',
+            color: 'textSecondary',
           }}
         >
           <h2
@@ -261,12 +261,13 @@ const SignUpForm = ({ flipCard }) => {
                 padding: 2,
                 boxShadow: 'none',
                 backgroundColor: 'transparent',
-                color: 'text',
+                color: 'textSecondary',
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',
                 '&:hover': {
                   backgroundColor: 'colorThree',
+                  color: 'text',
                 },
               }}
             >
@@ -281,7 +282,7 @@ const SignUpForm = ({ flipCard }) => {
                 padding: 2,
                 boxShadow: 'none',
                 backgroundColor: 'none',
-                color: 'textLight',
+                color: 'textSecondary',
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',
