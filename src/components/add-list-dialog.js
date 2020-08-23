@@ -77,7 +77,6 @@ const AddListDialog = ({ setShowDialog, ...rest }) => {
             color: 'textSecondary',
             borderRadius: '5px',
             fontSize: 0,
-            // height: 5
             '@media (min-width: 430px)': {
               fontSize: 1,
             },
