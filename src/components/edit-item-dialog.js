@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
+import LetheInput from './lethe-input'
 
 const EditItemDialog = ({ item, listId, setShowDialog }) => {
   const [title, setTitle] = React.useState(item.title)
@@ -97,15 +98,7 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
         >
           Title
         </label>
-        <input
-          sx={{
-            color: 'textSecondary',
-            borderRadius: '5px',
-            fontSize: 0,
-            '@media (min-width: 430px)': {
-              fontSize: 1,
-            },
-          }}
+        <LetheInput
           name="title"
           type="text"
           id="title"

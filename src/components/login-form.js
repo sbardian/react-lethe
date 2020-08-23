@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { jsx, css } from '@emotion/core'
 import { jsx } from 'theme-ui'
 import { Styled } from 'theme-ui'
 import { useForm } from 'react-hook-form'
