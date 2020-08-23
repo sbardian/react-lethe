@@ -19,7 +19,6 @@ const SideBar = () => {
 
   const isActive = (props) => {
     if (props.isPartiallyCurrent) {
-      console.log('isPartiallyCurrent: ', props.type)
       setActiveSideBarLink(props.type)
     }
   }
