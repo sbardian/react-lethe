@@ -55,12 +55,12 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
         display: 'grid',
         gap: 3,
         gridTemplateColumns: '1fr',
-        border: ({ colors }) => `1px solid ${colors.offWhite}`,
+        border: ({ colors }) => `1px solid ${colors.colorThree}`,
         backgroundColor: 'background',
         webkitBoxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
         mozBoxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
         boxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
-        color: 'text',
+        color: 'textSecondary',
         margin: 3,
         padding: 3,
       }}
@@ -77,6 +77,7 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
           htmlFor="title"
           sx={{
             alignSelf: 'end',
+            marginBottom: 2,
           }}
         >
           Title
@@ -151,7 +152,7 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
               fontSize: 3,
               boxShadow: 'none',
               backgroundColor: 'none',
-              color: 'text',
+              color: 'textSecondary',
               display: 'flex',
               justifyContent: 'center',
               cursor: 'pointer',

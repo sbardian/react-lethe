@@ -69,11 +69,14 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
         display: 'grid',
         gap: 3,
         gridTemplateColumns: '1fr',
-        border: ({ colors }) => `1px solid ${colors.offWhite}`,
+        border: ({ colors }) => `1px solid ${colors.colorThree}`,
         backgroundColor: 'backgroundSecondary',
+        webkitBoxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
+        mozBoxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
+        boxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
         margin: 3,
         padding: 3,
-        color: 'text',
+        color: 'textSecondary',
       }}
     >
       <h2>Edit Item</h2>
@@ -88,7 +91,8 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
           htmlFor="title"
           sx={{
             alignSelf: 'end',
-            color: 'text',
+            color: 'textSecondary',
+            marginBottom: 2,
           }}
         >
           Title
@@ -154,7 +158,7 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
               fontSize: 3,
               boxShadow: 'none',
               backgroundColor: 'none',
-              color: 'text',
+              color: 'textSecondary',
               display: 'flex',
               justifyContent: 'center',
               cursor: 'pointer',
