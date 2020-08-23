@@ -10,7 +10,7 @@ import { TokenContext } from '../components/token-context'
 import logo from '../brain.png'
 
 const SignUpForm = ({ flipCard }) => {
-  const { register, handleSubmit, getValues, errors } = useForm()
+  const { register, handleSubmit, getValues, errors, reset } = useForm()
 
   const { setToken } = React.useContext(TokenContext)
 
@@ -97,6 +97,7 @@ const SignUpForm = ({ flipCard }) => {
             htmlFor="signup-username"
             sx={{
               alignSelf: 'end',
+              marginTop: 2,
             }}
           >
             Username
@@ -106,7 +107,6 @@ const SignUpForm = ({ flipCard }) => {
               color: 'textDark',
               borderRadius: '5px',
               fontSize: 1,
-              marginBottom: 3,
             }}
             type="text"
             id="signup-username"
@@ -133,6 +133,7 @@ const SignUpForm = ({ flipCard }) => {
             htmlFor="email"
             sx={{
               alignSelf: 'end',
+              marginTop: 2,
             }}
           >
             Email
@@ -142,7 +143,6 @@ const SignUpForm = ({ flipCard }) => {
               color: 'textDark',
               borderRadius: '5px',
               fontSize: 1,
-              marginBottom: 3,
             }}
             type="text"
             id="email"
@@ -169,6 +169,7 @@ const SignUpForm = ({ flipCard }) => {
             htmlFor="signup-password"
             sx={{
               alignSelf: 'end',
+              marginTop: 2,
             }}
           >
             Password
@@ -178,7 +179,6 @@ const SignUpForm = ({ flipCard }) => {
               color: 'textDark',
               borderRadius: '5px',
               fontSize: 1,
-              marginBottom: 3,
             }}
             type="password"
             id="signup-password"
@@ -205,6 +205,7 @@ const SignUpForm = ({ flipCard }) => {
             htmlFor="confirm-password"
             sx={{
               alignSelf: 'end',
+              marginTop: 2,
             }}
           >
             Confirm Password
@@ -214,7 +215,6 @@ const SignUpForm = ({ flipCard }) => {
               color: 'textDark',
               borderRadius: '5px',
               fontSize: 1,
-              marginBottom: 3,
             }}
             type="password"
             id="confirm-password"
@@ -274,6 +274,7 @@ const SignUpForm = ({ flipCard }) => {
               Register
             </button>
             <button
+              type="button"
               sx={{
                 all: 'unset',
                 borderRadius: '10px',
@@ -287,6 +288,7 @@ const SignUpForm = ({ flipCard }) => {
                 cursor: 'pointer',
               }}
               onClick={() => {
+                reset()
                 flipCard()
               }}
             >

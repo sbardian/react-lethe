@@ -11,7 +11,7 @@ import { TokenContext } from '../components/token-context'
 import logo from '../brain.png'
 
 const LoginForm = ({ flipCard }) => {
-  const { register, handleSubmit, watch, errors } = useForm()
+  const { register, handleSubmit, reset, errors } = useForm()
 
   const { setToken } = React.useContext(TokenContext)
 
@@ -95,6 +95,7 @@ const LoginForm = ({ flipCard }) => {
             sx={{
               color: 'textDark',
               alignSelf: 'end',
+              marginTop: 2,
             }}
           >
             Username
@@ -104,7 +105,6 @@ const LoginForm = ({ flipCard }) => {
               color: 'textDark',
               borderRadius: '5px',
               fontSize: 1,
-              marginBottom: 3,
             }}
             name="username"
             type="text"
@@ -126,6 +126,7 @@ const LoginForm = ({ flipCard }) => {
             sx={{
               color: 'textDark',
               alignSelf: 'end',
+              marginTop: 2,
             }}
           >
             Password
@@ -135,7 +136,6 @@ const LoginForm = ({ flipCard }) => {
               color: 'textDark',
               borderRadius: '5px',
               fontSize: 1,
-              marginBottom: 3,
             }}
             name="password"
             type="password"
@@ -197,6 +197,7 @@ const LoginForm = ({ flipCard }) => {
                 cursor: 'pointer',
               }}
               onClick={() => {
+                reset()
                 flipCard()
               }}
             >
