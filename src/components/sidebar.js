@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-// import { jsx, css } from '@emotion/core'
-import { Link } from '@reach/router'
+import { Link, useMatch } from '@reach/router'
 import {
   AiOutlineUnorderedList,
   AiOutlineProfile,
@@ -10,8 +10,33 @@ import {
 } from 'react-icons/ai'
 import { MenuContext } from './menu-context'
 
-const SideBar = () => {
-  const { isSideBarOpen } = React.useContext(MenuContext)
+const SideBar = ({ location }) => {
+  const {
+    isSideBarOpen,
+    activeSideBarLink,
+    setActiveSideBarLink,
+  } = React.useContext(MenuContext)
+
+  const isActive = (props) => {
+    if (props.isPartiallyCurrent) {
+      console.log('isPartiallyCurrent: ', props.type)
+      setActiveSideBarLink(props.type)
+    }
+  }
+
+  const isLists = useMatch('list')
+  const isProfile = useMatch('profile')
+  const isSettings = useMatch('settings')
+
+  React.useEffect(() => {
+    if (isLists) {
+      setActiveSideBarLink({ type: 'lists' })
+    } else if (isProfile) {
+      setActiveSideBarLink({ type: 'profile' })
+    } else if (isSettings) {
+      setActiveSideBarLink({ type: 'settings' })
+    }
+  }, [])
 
   return isSideBarOpen ? (
     <div
@@ -37,11 +62,16 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: 'text',
+            color: activeSideBarLink === 'lists' ? 'text' : 'textSecondary',
+            backgroundColor:
+              activeSideBarLink === 'lists' ? 'colorThree' : 'transparent',
             padding: 2,
+            '&:hover': {
+              color: 'text',
+            },
           }}
           to="/lists"
-          state={{ tab: null }}
+          getProps={(props) => isActive({ ...props, type: 'lists' })}
         >
           <li
             sx={{
@@ -62,10 +92,16 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: 'text',
+            color: activeSideBarLink === 'profile' ? 'text' : 'textSecondary',
+            backgroundColor:
+              activeSideBarLink === 'profile' ? 'colorThree' : 'transparent',
             padding: 2,
+            '&:hover': {
+              color: 'text',
+            },
           }}
           to="/profile"
+          getProps={(props) => isActive({ ...props, type: 'profile' })}
         >
           <li
             sx={{
@@ -86,10 +122,16 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: 'text',
+            color: activeSideBarLink === 'settings' ? 'text' : 'textSecondary',
+            backgroundColor:
+              activeSideBarLink === 'settings' ? 'colorThree' : 'transparent',
             padding: 2,
+            '&:hover': {
+              color: 'text',
+            },
           }}
           to="/settings"
+          getProps={(props) => isActive({ ...props, type: 'settings' })}
         >
           <li
             sx={{
