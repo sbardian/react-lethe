@@ -160,9 +160,10 @@ const Header = () => {
             display: 'grid',
             alignContent: 'start',
             color: 'textSecondary',
+            marginLeft: 3,
             margin: ({ space }) => `0 ${space.space} 0 ${space.space}`,
             '@media (min-width: 800px)': {
-              margin: 0,
+              marginLeft: 0,
             },
           }}
         >

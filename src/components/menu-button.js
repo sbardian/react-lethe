@@ -16,6 +16,7 @@ const MenuButton = () => {
       size="30"
       onClick={() => toggleSidebar()}
       sx={{
+        color: 'textSecondary',
         '&:hover': {
           color: 'colorThree',
           cursor: 'pointer',
@@ -26,7 +27,8 @@ const MenuButton = () => {
     <AiOutlineMenuUnfold
       size="30"
       onClick={() => toggleSidebar()}
-      x={{
+      sx={{
+        color: 'textSecondary',
         '&:hover': {
           color: 'colorThree',
           cursor: 'pointer',

@@ -26,7 +26,7 @@ const ListsPage = () => {
             display: 'grid',
             justifySelf: 'end',
             alignContent: 'end',
-            color: 'text',
+            color: 'textSecondary',
             cursor: 'pointer',
             paddingBottom: 1,
             '&:hover': {
