@@ -112,6 +112,9 @@ const Header = () => {
           <MenuButton />
           <div
             sx={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 3,
               justifySelf: 'end',
               paddingTop: 3,
             }}
