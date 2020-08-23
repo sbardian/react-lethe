@@ -56,7 +56,11 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
         gap: 3,
         gridTemplateColumns: '1fr',
         border: ({ colors }) => `1px solid ${colors.offWhite}`,
-        backgroundColor: 'backgroundSecondary',
+        backgroundColor: 'background',
+        webkitBoxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
+        mozBoxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
+        boxShadow: '0px 0px 40px 12px rgba(0,0,0,0.72)',
+        color: 'text',
         margin: 3,
         padding: 3,
       }}
