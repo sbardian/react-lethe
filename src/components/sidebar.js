@@ -69,7 +69,9 @@ const SideBar = () => {
         >
           <li
             sx={{
-              display: 'flex',
+              display: 'grid',
+              gridTemplateColumns: '40px 1fr',
+              alignItems: 'center',
             }}
           >
             <AiOutlineProfile
@@ -91,7 +93,9 @@ const SideBar = () => {
         >
           <li
             sx={{
-              display: 'flex',
+              display: 'grid',
+              gridTemplateColumns: '40px 1fr',
+              alignItems: 'center',
             }}
           >
             <AiOutlineSetting
