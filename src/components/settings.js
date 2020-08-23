@@ -7,7 +7,7 @@ const Settings = () => {
   return (
     <div
       sx={{
-        backgroundColor: 'offWhite',
+        backgroundColor: 'colorTwo',
       }}
     >
       <div

@@ -7,7 +7,7 @@ const Profile = () => {
   return (
     <div
       sx={{
-        backgroundColor: 'offWhite',
+        backgroundColor: 'colorTwo',
       }}
     >
       <div
