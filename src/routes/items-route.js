@@ -10,7 +10,7 @@ import TabMenu from '../components/tab-menu'
 import Dialog, { useDialog } from '../components/dialog'
 import AddItemDialog from '../components/add-item-dialog'
 
-const ListItemsPage = ({ listId }) => {
+const ListItemsRoute = ({ listId }) => {
   const { showDialog, setShowDialog } = useDialog()
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
@@ -72,4 +72,4 @@ const ListItemsPage = ({ listId }) => {
   )
 }
 
-export default ListItemsPage
+export default ListItemsRoute

@@ -3,7 +3,7 @@ import { useNavigate } from '@reach/router'
 import { TokenContext } from '../components/token-context'
 import LoginCard from '../components/login-card'
 
-const LoginPage = ({ navigation }) => {
+const LoginRoute = () => {
   const { token } = React.useContext(TokenContext)
   const navigate = useNavigate()
 
@@ -14,4 +14,4 @@ const LoginPage = ({ navigation }) => {
   return <LoginCard />
 }
 
-export default LoginPage
+export default LoginRoute

@@ -12,11 +12,12 @@ import { setContext } from '@apollo/client/link/context'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { MenuProvider } from './components/menu-context'
-import LoginPage from './pages/login-page'
-import ListsPage from './pages/lists-page'
-import ItemsPage from './pages/items-page'
-import ProfilePage from './pages/profile-page'
-import SettingsPage from './pages/settings-page'
+import LoginRoute from './routes/login-route'
+import ListsRoute from './routes/lists-route'
+import ItemsRoute from './routes/items-route'
+import ProfileRoute from './routes/profile-route'
+import SettingsRoute from './routes/settings-route'
+import AuthRoute from './routes/auth-route'
 import { TokenContext } from './components/token-context'
 import './App.css'
 
@@ -74,11 +75,11 @@ const App = () => {
       <MenuProvider>
         <ApolloProvider client={client}>
           <Router>
-            <LoginPage path="/" />
-            <ListsPage path="lists" />
-            <ProfilePage path="profile" />
-            <SettingsPage path="settings" />
-            <ItemsPage path="list/:listId" />
+            <LoginRoute path="/" />
+            <AuthRoute as={ListsRoute} path="lists" />
+            <AuthRoute as={ProfileRoute} path="profile" />
+            <AuthRoute as={SettingsRoute} path="settings" />
+            <AuthRoute as={ItemsRoute} path="list/:listId" />
           </Router>
         </ApolloProvider>
       </MenuProvider>

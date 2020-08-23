@@ -8,7 +8,7 @@ import Lists from '../components/lists'
 import AddListDialog from '../components/add-list-dialog'
 import Dialog, { useDialog } from '../components/dialog'
 
-const ListsPage = () => {
+const ListsRoute = () => {
   const { showDialog, setShowDialog } = useDialog()
 
   return (
@@ -48,4 +48,4 @@ const ListsPage = () => {
   )
 }
 
-export default ListsPage
+export default ListsRoute

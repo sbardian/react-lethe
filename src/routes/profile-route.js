@@ -3,9 +3,9 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import PageLayout from '../components/page-layout'
-import Settings from '../components/settings'
+import Profile from '../components/profile'
 
-const SettingsPage = () => {
+const ProfileRoute = () => {
   return (
     <PageLayout>
       <div
@@ -16,10 +16,10 @@ const SettingsPage = () => {
           color: 'textSecondary',
         }}
       >
-        <Settings />
+        <Profile />
       </div>
     </PageLayout>
   )
 }
 
-export default SettingsPage
+export default ProfileRoute
