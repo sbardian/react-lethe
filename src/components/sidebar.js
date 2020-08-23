@@ -68,6 +68,7 @@ const SideBar = () => {
             padding: 2,
             '&:hover': {
               color: 'text',
+              backgroundColor: 'colorThree',
             },
           }}
           to="/lists"
@@ -98,6 +99,7 @@ const SideBar = () => {
             padding: 2,
             '&:hover': {
               color: 'text',
+              backgroundColor: 'colorThree',
             },
           }}
           to="/profile"
@@ -128,6 +130,7 @@ const SideBar = () => {
             padding: 2,
             '&:hover': {
               color: 'text',
+              backgroundColor: 'colorThree',
             },
           }}
           to="/settings"
