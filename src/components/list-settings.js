@@ -34,10 +34,6 @@ const ListSettings = ({ listId }) => {
     return <div>Error: ${error.message}</div>
   }
 
-  // const { getLists } = data
-
-  // const [{ id, title }] = getLists
-
   return (
     <div
       sx={{

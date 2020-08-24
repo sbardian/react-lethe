@@ -103,8 +103,18 @@ const ListItems = ({ listId, setListTitle }) => {
     },
   })
 
-  const [updateItem] = useMutation(UPDATE_ITEM_STATUS)
-  const [deleteItem] = useMutation(DELETE_ITEM)
+  const [updateItem] = useMutation(UPDATE_ITEM_STATUS, {
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
+  })
+  const [deleteItem] = useMutation(DELETE_ITEM, {
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
+  })
 
   React.useEffect(() => {
     if (data?.getLists[0]?.items) {

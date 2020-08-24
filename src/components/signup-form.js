@@ -23,7 +23,12 @@ const SignUpForm = ({ flipCard }) => {
     }
   `
 
-  const [userSignUp, { data: signUpData }] = useMutation(SIGN_UP)
+  const [userSignUp, { data: signUpData }] = useMutation(SIGN_UP, {
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
+  })
 
   const signup = (data) => {
     if (data) {

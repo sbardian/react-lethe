@@ -44,6 +44,10 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
 
   const [createNewItem, { error }] = useMutation(ADD_ITEM, {
     onCompleted: () => setShowDialog(false),
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
   })
 
   if (error) {

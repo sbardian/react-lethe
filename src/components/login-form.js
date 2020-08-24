@@ -22,7 +22,12 @@ const LoginForm = ({ flipCard }) => {
     }
   `
 
-  const [userLogin, { data: loginData }] = useMutation(LOGIN)
+  const [userLogin, { data: loginData }] = useMutation(LOGIN, {
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
+  })
 
   React.useEffect(() => {
     if (loginData?.login?.token) {

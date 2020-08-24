@@ -58,6 +58,10 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
       status: item.status,
     },
     awaitRefetchQueries: true,
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
   })
 
   if (error) {

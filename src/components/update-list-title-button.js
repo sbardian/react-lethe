@@ -35,6 +35,10 @@ const UpdateListTitleButton = ({
 
   const [updateList, { loading, error, data }] = useMutation(UPDATE_LIST, {
     onCompleted: () => setTitleNotUpdated(true),
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
   })
 
   if (loading) {

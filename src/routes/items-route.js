@@ -53,6 +53,7 @@ const ListItemsRoute = ({ listId }) => {
               gap: 3,
               gridTemplateColumns: '30px 30px',
               color: 'textSecondary',
+              paddingBottom: 2,
             }}
           >
             <ListSettingsButton listId={listId} hoverColor="colorThree" />

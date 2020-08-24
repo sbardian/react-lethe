@@ -46,7 +46,12 @@ const Lists = () => {
     GET_MY_LISTS,
   )
 
-  const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST)
+  const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST, {
+    onError: (error) => {
+      // TODO: time to implement alerts!
+      console.log('Show alert')
+    },
+  })
 
   const handleDeleteList = (listId) => {
     deleteList({ variables: { listId } })
