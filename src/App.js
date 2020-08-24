@@ -14,6 +14,7 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { MenuProvider } from './components/menu-context'
 import LoginRoute from './routes/login-route'
 import ListsRoute from './routes/lists-route'
+import ListSettingsRoute from './routes/list-settings-route'
 import ItemsRoute from './routes/items-route'
 import ProfileRoute from './routes/profile-route'
 import SettingsRoute from './routes/settings-route'
@@ -80,6 +81,7 @@ const App = () => {
             <AuthRoute as={ProfileRoute} path="profile" />
             <AuthRoute as={SettingsRoute} path="settings" />
             <AuthRoute as={ItemsRoute} path="list/:listId" />
+            <AuthRoute as={ListSettingsRoute} path="list/settings/:listId" />
           </Router>
         </ApolloProvider>
       </MenuProvider>

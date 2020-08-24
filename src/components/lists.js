@@ -3,11 +3,13 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { Link } from '@reach/router'
+import { Link, useNavigate } from '@reach/router'
 import { GiSettingsKnobs } from 'react-icons/gi'
 import { FiDelete } from 'react-icons/fi'
 
 const Lists = () => {
+  const navigate = useNavigate()
+
   const GET_MY_LISTS = gql`
     {
       getMyInfo {
@@ -147,17 +149,17 @@ const Lists = () => {
                 },
               }}
             >
-              <div
-                type="button"
-                onClick={() => console.log('settings')}
+              <Link
+                to={`/list/settings/${list.id}`}
                 sx={{
                   cursor: 'pointer',
                   justifySelf: 'end',
                   alignSelf: 'center',
+                  color: 'inherit',
                 }}
               >
                 <GiSettingsKnobs size="30" />
-              </div>
+              </Link>
               <div
                 type="button"
                 onClick={() => handleDeleteList(list.id)}
