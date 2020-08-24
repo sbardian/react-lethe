@@ -60,7 +60,6 @@ const ListSettings = ({ listId }) => {
         {orgTitle} Settings
       </span>
       <EditListTitle listId={listId} orgTitle={orgTitle} />
-
       <div
         sx={{
           display: 'grid',

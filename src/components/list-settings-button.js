@@ -5,7 +5,7 @@ import { jsx } from 'theme-ui'
 import { Link } from '@reach/router'
 import { GiSettingsKnobs } from 'react-icons/gi'
 
-const ListSettingsButton = ({ listId }) => {
+const ListSettingsButton = ({ listId, hoverColor }) => {
   return (
     <Link
       to={`/list/settings/${listId}`}
@@ -15,7 +15,7 @@ const ListSettingsButton = ({ listId }) => {
         alignSelf: 'center',
         color: 'inherit',
         '&:hover': {
-          color: 'colorThree',
+          color: hoverColor,
         },
       }}
     >

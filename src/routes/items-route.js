@@ -55,7 +55,7 @@ const ListItemsRoute = ({ listId }) => {
               color: 'textSecondary',
             }}
           >
-            <ListSettingsButton listId={listId} />
+            <ListSettingsButton listId={listId} hoverColor="colorThree" />
             <MdAddCircle
               size="30"
               onClick={() => setShowDialog(!showDialog)}

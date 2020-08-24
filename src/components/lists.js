@@ -149,7 +149,7 @@ const Lists = () => {
                 },
               }}
             >
-              <ListSettingsButton listId={list.id} />
+              <ListSettingsButton listId={list.id} hoverColor="text" />
               <div
                 type="button"
                 onClick={() => handleDeleteList(list.id)}
