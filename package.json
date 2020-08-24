@@ -31,16 +31,19 @@
     "@testing-library/jest-dom": "5.11.3",
     "@testing-library/react": "10.4.8",
     "@testing-library/user-event": "12.1.1",
+    "add": "^2.0.6",
     "deepmerge": "4.2.2",
     "graphql": "15.3.0",
     "react": "16.13.1",
+    "react-alerts-plus": "^1.0.0",
     "react-card-flip": "1.0.11",
     "react-dom": "16.13.1",
     "react-hook-form": "6.4.1",
     "react-icons": "3.11.0",
     "react-scripts": "3.4.3",
     "subscriptions-transport-ws": "0.9.18",
-    "theme-ui": "0.3.1"
+    "theme-ui": "0.3.1",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",

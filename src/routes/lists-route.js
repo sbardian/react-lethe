@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { RiPlayListAddLine } from 'react-icons/ri'
+import { AlertWrapper } from 'react-alerts-plus'
 import PageLayout from '../components/page-layout'
 import Lists from '../components/lists'
 import AddListDialog from '../components/add-list-dialog'
@@ -13,37 +14,45 @@ const ListsRoute = () => {
 
   return (
     <PageLayout>
-      <div
-        sx={{
-          display: 'grid',
-          gridTemplateRows: '40px 1fr',
-          color: 'textDark',
-          padding: 3,
-        }}
-      >
-        <div
-          sx={{
-            display: 'grid',
-            justifySelf: 'end',
-            alignContent: 'end',
-            color: 'textSecondary',
-            cursor: 'pointer',
-            paddingBottom: 1,
-            '&:hover': {
-              color: 'colorThree',
-            },
-          }}
-          onClick={() => {
-            setShowDialog(!showDialog)
-          }}
-        >
-          <RiPlayListAddLine size="34" />
-        </div>
-        <Lists />
-      </div>
-      <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-        {({ setShowDialog }) => <AddListDialog setShowDialog={setShowDialog} />}
-      </Dialog>
+      <AlertWrapper>
+        {({ show }) => (
+          <React.Fragment>
+            <div
+              sx={{
+                display: 'grid',
+                gridTemplateRows: '40px 1fr',
+                color: 'textDark',
+                padding: 3,
+              }}
+            >
+              <div
+                sx={{
+                  display: 'grid',
+                  justifySelf: 'end',
+                  alignContent: 'end',
+                  color: 'textSecondary',
+                  cursor: 'pointer',
+                  paddingBottom: 1,
+                  '&:hover': {
+                    color: 'colorThree',
+                  },
+                }}
+                onClick={() => {
+                  setShowDialog(!showDialog)
+                }}
+              >
+                <RiPlayListAddLine size="34" />
+              </div>
+              <Lists show={show} />
+            </div>
+            <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
+              {({ setShowDialog }) => (
+                <AddListDialog setShowDialog={setShowDialog} show={show} />
+              )}
+            </Dialog>
+          </React.Fragment>
+        )}
+      </AlertWrapper>
     </PageLayout>
   )
 }

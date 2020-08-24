@@ -4,12 +4,14 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { BiSave } from 'react-icons/bi'
+import alertsConfig from './alerts-config'
 
 const UpdateListTitleButton = ({
   listId,
   newTitle,
   titleNotUpdated,
   setTitleNotUpdated,
+  show,
 }) => {
   const GET_MY_LISTS = gql`
     {
@@ -36,8 +38,8 @@ const UpdateListTitleButton = ({
   const [updateList, { loading, error, data }] = useMutation(UPDATE_LIST, {
     onCompleted: () => setTitleNotUpdated(true),
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertsConfig, message: `Error: ${error}` })
+      setTitleNotUpdated(true)
     },
   })
 
@@ -47,16 +49,6 @@ const UpdateListTitleButton = ({
         sx={{ justifySelf: 'center', alignSelf: 'center', cursor: 'pointer' }}
       >
         Saving
-      </span>
-    )
-  }
-
-  if (error) {
-    return (
-      <span
-        sx={{ justifySelf: 'center', alignSelf: 'center', cursor: 'pointer' }}
-      >
-        Error
       </span>
     )
   }

@@ -4,8 +4,9 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import LetheInput from './lethe-input'
+import alertConfig from './alerts-config'
 
-const AddItemDialog = ({ setShowDialog, listId }) => {
+const AddItemDialog = ({ setShowDialog, listId, show }) => {
   const [title, setTitle] = React.useState('')
   const [createItemError, setCreateItemError] = React.useState()
 
@@ -45,8 +46,7 @@ const AddItemDialog = ({ setShowDialog, listId }) => {
   const [createNewItem, { error }] = useMutation(ADD_ITEM, {
     onCompleted: () => setShowDialog(false),
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertConfig, message: `Error: ${error}` })
     },
   })
 

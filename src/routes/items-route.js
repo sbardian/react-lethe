@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { MdAddCircle } from 'react-icons/md'
+import { AlertWrapper } from 'react-alerts-plus'
 import PageLayout from '../components/page-layout'
 import { MenuContext } from '../components/menu-context'
 import Items from '../components/items'
@@ -29,56 +30,66 @@ const ListItemsRoute = ({ listId }) => {
 
   return (
     <PageLayout>
-      <div
-        sx={{
-          display: 'grid',
-          gridTemplateRows: '85px 1fr',
-          color: 'textSecondary',
-          padding: 3,
-        }}
-      >
-        <div
-          sx={{
-            display: 'grid',
-            gap: 3,
-            gridTemplateColumns: '1fr 40px',
-          }}
-        >
-          {showListItemTabs && <TabMenu listTitle={listTitle} />}
-          <div
-            sx={{
-              display: 'grid',
-              justifySelf: 'end',
-              alignContent: 'end',
-              gap: 3,
-              gridTemplateColumns: '30px 30px',
-              color: 'textSecondary',
-              paddingBottom: 2,
-            }}
-          >
-            <ListSettingsButton listId={listId} hoverColor="colorThree" />
-            <MdAddCircle
-              size="30"
-              onClick={() => setShowDialog(!showDialog)}
+      <AlertWrapper>
+        {({ show }) => (
+          <React.Fragment>
+            <div
               sx={{
-                cursor: 'pointer',
-                justifySelf: 'end',
-                alignSelf: 'center',
-                color: 'inherit',
-                '&:hover': {
-                  color: 'colorThree',
-                },
+                display: 'grid',
+                gridTemplateRows: '85px 1fr',
+                color: 'textSecondary',
+                padding: 3,
               }}
-            />
-          </div>
-        </div>
-        <Items listId={listId} setListTitle={setListTitle} />
-      </div>
-      <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-        {({ setShowDialog }) => (
-          <AddItemDialog setShowDialog={setShowDialog} listId={listId} />
+            >
+              <div
+                sx={{
+                  display: 'grid',
+                  gap: 3,
+                  gridTemplateColumns: '1fr 40px',
+                }}
+              >
+                {showListItemTabs && <TabMenu listTitle={listTitle} />}
+                <div
+                  sx={{
+                    display: 'grid',
+                    justifySelf: 'end',
+                    alignContent: 'end',
+                    gap: 3,
+                    gridTemplateColumns: '30px 30px',
+                    color: 'textSecondary',
+                    paddingBottom: 2,
+                  }}
+                >
+                  <ListSettingsButton listId={listId} hoverColor="colorThree" />
+                  <MdAddCircle
+                    size="30"
+                    onClick={() => setShowDialog(!showDialog)}
+                    sx={{
+                      cursor: 'pointer',
+                      justifySelf: 'end',
+                      alignSelf: 'center',
+                      color: 'inherit',
+                      '&:hover': {
+                        color: 'colorThree',
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+              <Items listId={listId} setListTitle={setListTitle} show={show} />
+            </div>
+            <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
+              {({ setShowDialog }) => (
+                <AddItemDialog
+                  setShowDialog={setShowDialog}
+                  listId={listId}
+                  show={show}
+                />
+              )}
+            </Dialog>
+          </React.Fragment>
         )}
-      </Dialog>
+      </AlertWrapper>
     </PageLayout>
   )
 }

@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
+import { AlertWrapper } from 'react-alerts-plus'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
@@ -10,8 +11,9 @@ import { RiCheckboxBlankLine } from 'react-icons/ri'
 import Dialog, { useDialog } from '../components/dialog'
 import EditItemDialog from './edit-item-dialog'
 import { MenuContext } from './menu-context'
+import alertConfig from './alerts-config'
 
-const ListItems = ({ listId, setListTitle }) => {
+const ListItems = ({ listId, setListTitle, show }) => {
   const { showDialog, setShowDialog } = useDialog()
   const { activeItemTab } = React.useContext(MenuContext)
   const [displayedItems, setDisplayedItems] = React.useState()
@@ -105,14 +107,12 @@ const ListItems = ({ listId, setListTitle }) => {
 
   const [updateItem] = useMutation(UPDATE_ITEM_STATUS, {
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertConfig, message: `Error: ${error}` })
     },
   })
   const [deleteItem] = useMutation(DELETE_ITEM, {
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertConfig, message: `Error: ${error}` })
     },
   })
 
@@ -364,11 +364,16 @@ const ListItems = ({ listId, setListTitle }) => {
       </ul>
       <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
         {({ setShowDialog }) => (
-          <EditItemDialog
-            setShowDialog={setShowDialog}
-            item={currentItem}
-            listId={listId}
-          />
+          <AlertWrapper>
+            {({ show }) => (
+              <EditItemDialog
+                setShowDialog={setShowDialog}
+                item={currentItem}
+                listId={listId}
+                show={show}
+              />
+            )}
+          </AlertWrapper>
         )}
       </Dialog>
     </div>

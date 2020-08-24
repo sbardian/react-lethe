@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
+import { AlertWrapper } from 'react-alerts-plus'
 import UpdateListTitleButton from './update-list-title-button'
 import LetheInput from './lethe-input'
 
@@ -21,39 +22,44 @@ const EditListTitle = ({ listId, orgTitle }) => {
   }, [orgTitle])
 
   return (
-    <div
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        '@media (min-width: 430px)': {
-          gap: 3,
-          gridTemplateColumns: '60px 1fr',
-          gridTemplateRows: 'auto auto',
-        },
-      }}
-    >
-      <UpdateListTitleButton
-        listId={listId}
-        newTitle={newTitle}
-        titleNotUpdated={titleNotUpdated}
-        setTitleNotUpdated={setTitleNotUpdated}
-      />
-      <div
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-        }}
-      >
-        <label htmlFor="edit-list-title" sx={{ marginBottom: 2 }}>
-          Title
-        </label>
-        <LetheInput
-          value={newTitle}
-          id="edit-list-title"
-          onChange={(event) => handleTitleChange(event)}
-        />
-      </div>
-    </div>
+    <AlertWrapper>
+      {({ show }) => (
+        <div
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            '@media (min-width: 430px)': {
+              gap: 3,
+              gridTemplateColumns: '60px 1fr',
+              gridTemplateRows: 'auto auto',
+            },
+          }}
+        >
+          <UpdateListTitleButton
+            listId={listId}
+            newTitle={newTitle}
+            titleNotUpdated={titleNotUpdated}
+            setTitleNotUpdated={setTitleNotUpdated}
+            show={show}
+          />
+          <div
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+            }}
+          >
+            <label htmlFor="edit-list-title" sx={{ marginBottom: 2 }}>
+              Title
+            </label>
+            <LetheInput
+              value={newTitle}
+              id="edit-list-title"
+              onChange={(event) => handleTitleChange(event)}
+            />
+          </div>
+        </div>
+      )}
+    </AlertWrapper>
   )
 }
 

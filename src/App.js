@@ -11,6 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
+import { AlertProvider } from 'react-alerts-plus'
 import { MenuProvider } from './components/menu-context'
 import LoginRoute from './routes/login-route'
 import ListsRoute from './routes/lists-route'
@@ -74,16 +75,18 @@ const App = () => {
   return (
     <div className="App">
       <MenuProvider>
-        <ApolloProvider client={client}>
-          <Router>
-            <LoginRoute path="/" />
-            <AuthRoute as={ListsRoute} path="lists" />
-            <AuthRoute as={ProfileRoute} path="profile" />
-            <AuthRoute as={SettingsRoute} path="settings" />
-            <AuthRoute as={ItemsRoute} path="list/:listId" />
-            <AuthRoute as={ListSettingsRoute} path="list/settings/:listId" />
-          </Router>
-        </ApolloProvider>
+        <AlertProvider>
+          <ApolloProvider client={client}>
+            <Router>
+              <LoginRoute path="/" />
+              <AuthRoute as={ListsRoute} path="lists" />
+              <AuthRoute as={ProfileRoute} path="profile" />
+              <AuthRoute as={SettingsRoute} path="settings" />
+              <AuthRoute as={ItemsRoute} path="list/:listId" />
+              <AuthRoute as={ListSettingsRoute} path="list/settings/:listId" />
+            </Router>
+          </ApolloProvider>
+        </AlertProvider>
       </MenuProvider>
     </div>
   )

@@ -7,9 +7,10 @@ import { Styled } from 'theme-ui'
 import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../components/token-context'
+import alertConfig from './alerts-config'
 import logo from '../brain.png'
 
-const LoginForm = ({ flipCard }) => {
+const LoginForm = ({ flipCard, show }) => {
   const { register, handleSubmit, reset, errors } = useForm()
 
   const { setToken } = React.useContext(TokenContext)
@@ -24,8 +25,7 @@ const LoginForm = ({ flipCard }) => {
 
   const [userLogin, { data: loginData }] = useMutation(LOGIN, {
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertConfig, message: `Error: ${error}` })
     },
   })
 

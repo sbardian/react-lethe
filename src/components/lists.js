@@ -6,8 +6,9 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 import { Link, useNavigate } from '@reach/router'
 import { FiDelete } from 'react-icons/fi'
 import ListSettingsButton from './list-settings-button'
+import alertConfig from './alerts-config'
 
-const Lists = () => {
+const Lists = ({ show }) => {
   const navigate = useNavigate()
 
   const GET_MY_LISTS = gql`
@@ -48,8 +49,7 @@ const Lists = () => {
 
   const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST, {
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertConfig, message: `Error: ${error}` })
     },
   })
 

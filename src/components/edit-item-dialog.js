@@ -4,8 +4,9 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import LetheInput from './lethe-input'
+import alertConfig from './alerts-config'
 
-const EditItemDialog = ({ item, listId, setShowDialog }) => {
+const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
   const [title, setTitle] = React.useState(item.title)
   const [createItemError, setEditItemError] = React.useState()
 
@@ -59,8 +60,7 @@ const EditItemDialog = ({ item, listId, setShowDialog }) => {
     },
     awaitRefetchQueries: true,
     onError: (error) => {
-      // TODO: time to implement alerts!
-      console.log('Show alert')
+      show({ ...alertConfig, message: `Error: ${error}` })
     },
   })
 
