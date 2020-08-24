@@ -26,7 +26,7 @@ const SignUpForm = ({ flipCard, show }) => {
 
   const [userSignUp, { data: signUpData }] = useMutation(SIGN_UP, {
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 

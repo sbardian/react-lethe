@@ -107,12 +107,12 @@ const ListItems = ({ listId, setListTitle, show }) => {
 
   const [updateItem] = useMutation(UPDATE_ITEM_STATUS, {
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
   const [deleteItem] = useMutation(DELETE_ITEM, {
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 
@@ -145,7 +145,7 @@ const ListItems = ({ listId, setListTitle, show }) => {
         Loading...
       </p>
     )
-  if (error) return <p>{`ERROR: ${error}`}</p>
+  if (error) return <p>{`${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
 
   const [{ title }] = data?.getLists

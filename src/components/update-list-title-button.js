@@ -46,7 +46,7 @@ const UpdateListTitleButton = ({
       })
     },
     onError: (error) => {
-      show({ ...alertsConfig, message: `Error: ${error}` })
+      show({ ...alertsConfig, message: error })
       setTitleNotUpdated(true)
     },
   })

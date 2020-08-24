@@ -49,7 +49,7 @@ const Lists = ({ show }) => {
 
   const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST, {
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 
@@ -67,7 +67,7 @@ const Lists = ({ show }) => {
         Loading...
       </p>
     )
-  if (error) return <p>{`ERROR: ${error}`}</p>
+  if (error) return <p>{`${error}`}</p>
   if (!getListsData) return <p>You currently have no lists. Create some!</p>
 
   subscribeToMore({

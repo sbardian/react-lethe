@@ -43,7 +43,7 @@ const Header = () => {
       </p>
     )
   }
-  if (error) return <p>{`ERROR: ${error}`}</p>
+  if (error) return <p>{`${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
 
   const { username } = data.getMyInfo

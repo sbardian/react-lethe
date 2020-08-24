@@ -25,7 +25,7 @@ const LoginForm = ({ flipCard, show }) => {
 
   const [userLogin, { data: loginData }] = useMutation(LOGIN, {
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 

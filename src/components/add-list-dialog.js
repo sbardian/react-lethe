@@ -41,7 +41,7 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
   const [createNewList, { error }] = useMutation(ADD_LIST, {
     onCompleted: () => setShowDialog(false),
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 

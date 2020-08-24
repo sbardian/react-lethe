@@ -46,7 +46,7 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
   const [createNewItem, { error }] = useMutation(ADD_ITEM, {
     onCompleted: () => setShowDialog(false),
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 

@@ -60,7 +60,7 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
     },
     awaitRefetchQueries: true,
     onError: (error) => {
-      show({ ...alertConfig, message: `Error: ${error}` })
+      show({ ...alertConfig, message: error })
     },
   })
 
