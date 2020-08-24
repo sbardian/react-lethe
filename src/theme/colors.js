@@ -2,7 +2,7 @@ export default {
   initialColorMode: 'dark',
   link: 'tomato',
   text: '#fffafa',
-  textSecondary: '#9c9b9b',
+  textSecondary: '#797878',
   textError: '#cf1b0e',
   background: '#222831',
   backgroundSecondary: '#393e46',
