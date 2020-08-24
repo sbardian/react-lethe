@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { gql, useQuery, useMutation } from '@apollo/client'
 import UpdateListTitleButton from './update-list-title-button'
 import LetheInput from './lethe-input'
 
@@ -25,9 +24,12 @@ const EditListTitle = ({ listId, orgTitle }) => {
     <div
       sx={{
         display: 'grid',
-        gap: 3,
-        gridTemplateColumns: '60px 1fr',
-        gridTemplateRows: 'auto auto',
+        gridTemplateColumns: '1fr',
+        '@media (min-width: 430px)': {
+          gap: 3,
+          gridTemplateColumns: '60px 1fr',
+          gridTemplateRows: 'auto auto',
+        },
       }}
     >
       <UpdateListTitleButton

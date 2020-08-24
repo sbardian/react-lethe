@@ -9,8 +9,12 @@ const LetheInput = ({ children, ...rest }) => {
       sx={{
         color: 'textSecondary',
         borderRadius: '5px',
-        fontSize: 1,
         lineHeight: 2,
+        fontSize: 0,
+        '@media (min-width: 430px)': {
+          fontSize: 1,
+          lineHeight: 2,
+        },
       }}
       {...rest}
     >

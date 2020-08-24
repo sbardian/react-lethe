@@ -62,9 +62,13 @@ const UpdateListTitleButton = ({
       disabled={titleNotUpdated}
       sx={{
         all: 'unset',
-        justifySelf: 'center',
-        alignSelf: 'center',
         cursor: 'pointer',
+        justifySelf: 'start',
+        alignSelf: 'start',
+        '@media (min-width: 430px)': {
+          justifySelf: 'center',
+          alignSelf: 'center',
+        },
       }}
       onClick={() => {
         updateList({
