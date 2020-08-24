@@ -2,11 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { gql, useQuery, useMutation } from '@apollo/client'
-import { Link, useNavigate } from '@reach/router'
-import { BiSave } from 'react-icons/bi'
-import PageLayout from './page-layout'
-import LetheInput from './lethe-input'
+import { gql, useQuery } from '@apollo/client'
 import EditListTitle from './edit-list-title'
 
 const ListSettings = ({ listId }) => {
@@ -19,10 +15,7 @@ const ListSettings = ({ listId }) => {
     }
   `
 
-  const [newTitle, setNewTitle] = React.useState('')
   const [orgTitle, setOrgTitle] = React.useState('')
-  const [titleNotChanged, setTitleNotChanged] = React.useState(true)
-  const [deleteConfirmed, setDeleteConfirmed] = React.useState(true)
 
   const { loading, error, data } = useQuery(GET_LIST, {
     variables: { id_is: listId },
@@ -41,9 +34,9 @@ const ListSettings = ({ listId }) => {
     return <div>Error: ${error.message}</div>
   }
 
-  const { getLists } = data
+  // const { getLists } = data
 
-  const [{ id, title }] = getLists
+  // const [{ id, title }] = getLists
 
   return (
     <div

@@ -9,6 +9,7 @@ import Items from '../components/items'
 import TabMenu from '../components/tab-menu'
 import Dialog, { useDialog } from '../components/dialog'
 import AddItemDialog from '../components/add-item-dialog'
+import ListSettingsButton from '../components/list-settings-button'
 
 const ListItemsRoute = ({ listId }) => {
   const { showDialog, setShowDialog } = useDialog()
@@ -49,16 +50,25 @@ const ListItemsRoute = ({ listId }) => {
               display: 'grid',
               justifySelf: 'end',
               alignContent: 'end',
+              gap: 3,
+              gridTemplateColumns: '30px 30px',
               color: 'textSecondary',
-              cursor: 'pointer',
-              paddingBottom: 1,
-              '&:hover': {
-                color: 'colorThree',
-              },
             }}
-            onClick={() => setShowDialog(!showDialog)}
           >
-            <MdAddCircle size="34" />
+            <ListSettingsButton listId={listId} />
+            <MdAddCircle
+              size="30"
+              onClick={() => setShowDialog(!showDialog)}
+              sx={{
+                cursor: 'pointer',
+                justifySelf: 'end',
+                alignSelf: 'center',
+                color: 'inherit',
+                '&:hover': {
+                  color: 'colorThree',
+                },
+              }}
+            />
           </div>
         </div>
         <Items listId={listId} setListTitle={setListTitle} />

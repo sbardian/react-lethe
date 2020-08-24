@@ -4,8 +4,8 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Link, useNavigate } from '@reach/router'
-import { GiSettingsKnobs } from 'react-icons/gi'
 import { FiDelete } from 'react-icons/fi'
+import ListSettingsButton from './list-settings-button'
 
 const Lists = () => {
   const navigate = useNavigate()
@@ -149,17 +149,7 @@ const Lists = () => {
                 },
               }}
             >
-              <Link
-                to={`/list/settings/${list.id}`}
-                sx={{
-                  cursor: 'pointer',
-                  justifySelf: 'end',
-                  alignSelf: 'center',
-                  color: 'inherit',
-                }}
-              >
-                <GiSettingsKnobs size="30" />
-              </Link>
+              <ListSettingsButton listId={list.id} />
               <div
                 type="button"
                 onClick={() => handleDeleteList(list.id)}
