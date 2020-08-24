@@ -10,6 +10,7 @@ const ListSettingsButton = ({ listId, hoverColor }) => {
     <Link
       to={`/list/settings/${listId}`}
       sx={{
+        display: 'grid',
         cursor: 'pointer',
         justifySelf: 'end',
         alignSelf: 'center',

@@ -154,6 +154,7 @@ const Lists = () => {
                 type="button"
                 onClick={() => handleDeleteList(list.id)}
                 sx={{
+                  display: 'grid',
                   cursor: 'pointer',
                   justifySelf: 'end',
                   alignSelf: 'center',
