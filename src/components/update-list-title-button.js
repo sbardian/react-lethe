@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { gql, useQuery, useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { BiSave } from 'react-icons/bi'
 import alertsConfig from './alerts-config'
 
@@ -36,7 +36,15 @@ const UpdateListTitleButton = ({
   `
 
   const [updateList, { loading, error, data }] = useMutation(UPDATE_LIST, {
-    onCompleted: () => setTitleNotUpdated(true),
+    onCompleted: () => {
+      setTitleNotUpdated(true)
+      show({
+        ...alertsConfig,
+        message: `Update successful.`,
+        style: { backgroundColor: '#666', color: 'white' },
+        progressBarColor: 'chartreuse',
+      })
+    },
     onError: (error) => {
       show({ ...alertsConfig, message: `Error: ${error}` })
       setTitleNotUpdated(true)
