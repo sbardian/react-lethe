@@ -6,6 +6,28 @@ import { gql, useMutation } from '@apollo/client'
 import { BiSave } from 'react-icons/bi'
 import alertsConfig from '../../../utils/alerts-config'
 
+export const GET_MY_LISTS = gql`
+  {
+    getMyInfo {
+      id
+      lists {
+        id
+        title
+        owner
+      }
+    }
+  }
+`
+
+export const UPDATE_LIST = gql`
+  mutation updateList($listId: String!, $title: String!) {
+    updateList(listId: $listId, title: $title) {
+      id
+      title
+    }
+  }
+`
+
 const UpdateListTitleButton = ({
   listId,
   newTitle,
@@ -13,30 +35,8 @@ const UpdateListTitleButton = ({
   setTitleNotUpdated,
   show,
 }) => {
-  const GET_MY_LISTS = gql`
-    {
-      getMyInfo {
-        id
-        lists {
-          id
-          title
-          owner
-        }
-      }
-    }
-  `
-
-  const UPDATE_LIST = gql`
-    mutation updateList($listId: String!, $title: String!) {
-      updateList(listId: $listId, title: $title) {
-        id
-        title
-      }
-    }
-  `
-
   const [updateList, { loading, error, data }] = useMutation(UPDATE_LIST, {
-    onCompleted: () => {
+    onCompleted: (data) => {
       setTitleNotUpdated(true)
       show({
         ...alertsConfig,
