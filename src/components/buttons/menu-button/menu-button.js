@@ -13,6 +13,7 @@ const MenuButton = () => {
 
   return isSideBarOpen ? (
     <AiOutlineMenuFold
+      data-testid="hide-menu-button"
       aria-label="Hide Menu"
       size="30"
       onClick={() => toggleSidebar()}
@@ -26,6 +27,7 @@ const MenuButton = () => {
     />
   ) : (
     <AiOutlineMenuUnfold
+      data-testid="show-menu-button"
       aria-label="Show Menu"
       size="30"
       onClick={() => toggleSidebar()}
