@@ -50,7 +50,12 @@ const Lists = ({ show }) => {
 
   const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST, {
     onCompleted: () => {
-      show({ ...alertConfig, message: 'List deleted successfully' })
+      show({
+        ...alertConfig,
+        message: 'List deleted successfully',
+        style: { backgroundColor: '#666', color: 'white' },
+        progressBarColor: 'chartreuse',
+      })
     },
     onError: (error) => {
       show({ ...alertConfig, message: error })
