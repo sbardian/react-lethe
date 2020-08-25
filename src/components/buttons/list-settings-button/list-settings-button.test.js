@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render } from '../../../utils/test/custom-renderer'
 import ListSettingsButton from './list-settings-button'
 
 const data = {
