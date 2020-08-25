@@ -19,7 +19,8 @@ const theme = {
     '0.8rem', // 10
   ],
   fontWeights: {
-    body: 200,
+    body: 300,
+    heavy: 400,
     heading: 500,
     bold: 700,
   },

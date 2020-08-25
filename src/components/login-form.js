@@ -10,8 +10,9 @@ import { TokenContext } from '../components/token-context'
 import alertConfig from './alerts-config'
 import logo from '../brain.png'
 
-const LoginForm = ({ flipCard, show }) => {
+const LoginForm = ({ flipCard }) => {
   const { register, handleSubmit, reset, errors } = useForm()
+  const [loginError, setLoginError] = React.useState('')
 
   const { setToken } = React.useContext(TokenContext)
 
@@ -25,7 +26,7 @@ const LoginForm = ({ flipCard, show }) => {
 
   const [userLogin, { data: loginData }] = useMutation(LOGIN, {
     onError: (error) => {
-      show({ ...alertConfig, message: error })
+      setLoginError(error.message)
     },
   })
 
@@ -203,12 +204,22 @@ const LoginForm = ({ flipCard, show }) => {
               }}
               onClick={() => {
                 reset()
+                setLoginError('')
                 flipCard()
               }}
             >
               Register
             </button>
           </div>
+          <React.Fragment>
+            {loginError ? (
+              <div sx={{ color: 'textError', justifySelf: 'center' }}>
+                {loginError}
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </React.Fragment>
         </form>
       </div>
     </div>
