@@ -1,6 +1,6 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import MockApolloProvider from '../../../utils/stories/mock-apollo-client'
+import MockApolloProvider from '../../../utils/mock-apollo-client/mock-apollo-client'
 import UpdateListTitleButton from './update-list-title-button'
 import { GET_MY_LISTS, UPDATE_LIST } from './update-list-title-button'
 
