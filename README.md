@@ -3,7 +3,7 @@
 ## [Demo](https://lethe.netlify.app/)
 
 This is a React implementation of the Lethe React Native application. It uses
-the same GraphQL database on the backend (LetheAPI).
+the same GraphQL API on the backend (LetheAPI).
 
 ## Development
 
