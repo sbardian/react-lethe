@@ -8,10 +8,10 @@ import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { RiCheckboxBlankLine } from 'react-icons/ri'
-import Dialog, { useDialog } from '../components/dialog'
-import EditItemDialog from './edit-item-dialog'
-import { MenuContext } from './menu-context'
-import alertConfig from './alerts-config'
+import Dialog, { useDialog } from '../dialogs/dialog'
+import EditItemDialog from '../dialogs/edit-item-dialog/edit-item-dialog'
+import { MenuContext } from '../contexts/menu-context/menu-context'
+import alertConfig from '../../utils/alerts-config'
 
 const ListItems = ({ listId, setListTitle, show }) => {
   const { showDialog, setShowDialog } = useDialog()

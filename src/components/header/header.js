@@ -5,9 +5,9 @@ import { jsx, useColorMode, useThemeUI } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
 import { useNavigate } from '@reach/router'
 import { FiSunrise, FiSunset } from 'react-icons/fi'
-import { TokenContext } from '../components/token-context'
-import MenuButton from './menu-button'
-import logo from '../brain.png'
+import { TokenContext } from '../contexts/token-context/token-context'
+import MenuButton from '../buttons/menu-button/menu-button'
+import logo from '../../brain.png'
 
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)

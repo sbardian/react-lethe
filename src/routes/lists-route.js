@@ -4,10 +4,10 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { RiPlayListAddLine } from 'react-icons/ri'
 import { AlertWrapper } from 'react-alerts-plus'
-import PageLayout from '../components/page-layout'
-import Lists from '../components/lists'
-import AddListDialog from '../components/add-list-dialog'
-import Dialog, { useDialog } from '../components/dialog'
+import PageLayout from '../components/page-layout/page-layout'
+import Lists from '../components/lists/lists'
+import AddListDialog from '../components/dialogs/add-list-dialog/add-list-dialog'
+import Dialog, { useDialog } from '../components/dialogs/dialog'
 
 const ListsRoute = () => {
   const { showDialog, setShowDialog } = useDialog()

@@ -3,9 +3,9 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { MdArrowBack } from 'react-icons/md'
-import PageLayout from '../components/page-layout'
-import ListSettings from '../components/list-settings'
-import GoBack from '../components/go-back'
+import PageLayout from '../components/page-layout/page-layout'
+import ListSettings from '../components/list-settings/list-settings'
+import GoBack from '../components/go-back/go-back'
 
 const ListSettingsRoute = ({ listId }) => {
   return (

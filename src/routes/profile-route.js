@@ -2,8 +2,8 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import PageLayout from '../components/page-layout'
-import Profile from '../components/profile'
+import PageLayout from '../components/page-layout/page-layout'
+import Profile from '../components/profile/profile'
 
 const ProfileRoute = () => {
   return (

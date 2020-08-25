@@ -8,6 +8,8 @@ import { GiSettingsKnobs } from 'react-icons/gi'
 const ListSettingsButton = ({ listId, hoverColor }) => {
   return (
     <Link
+      data-testid="list-settings-button"
+      aria-label="list settings link"
       to={`/list/settings/${listId}`}
       sx={{
         display: 'grid',

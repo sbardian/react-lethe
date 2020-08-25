@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { gql, useQuery, useMutation } from '@apollo/client'
-import LetheInput from './lethe-input'
-import alertConfig from './alerts-config'
+import { gql, useMutation } from '@apollo/client'
+import LetheInput from '../../lethe-input/lethe-input'
+import alertsConfig from '../../../utils/alerts-config'
 
 const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
   const [title, setTitle] = React.useState(item.title)
@@ -60,7 +60,7 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
     },
     awaitRefetchQueries: true,
     onError: (error) => {
-      show({ ...alertConfig, message: error })
+      show({ ...alertsConfig, message: error })
     },
   })
 

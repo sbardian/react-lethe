@@ -5,8 +5,8 @@ import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Link, useNavigate } from '@reach/router'
 import { FiDelete } from 'react-icons/fi'
-import ListSettingsButton from './list-settings-button'
-import alertConfig from './alerts-config'
+import ListSettingsButton from '../buttons/list-settings-button/list-settings-button'
+import alertConfig from '../../utils/alerts-config'
 
 const Lists = ({ show }) => {
   const navigate = useNavigate()
@@ -48,6 +48,9 @@ const Lists = ({ show }) => {
   )
 
   const [deleteList, { data: deleteListData }] = useMutation(DELETE_LIST, {
+    onCompleted: () => {
+      show({ ...alertConfig, message: 'List deleted successfully' })
+    },
     onError: (error) => {
       show({ ...alertConfig, message: error })
     },

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactCardFlip from 'react-card-flip'
-import LoginForm from './login-form'
-import SignUpForm from './signup-form'
+import LoginForm from '../login-form/login-form'
+import SignUpForm from '../signup-form/signup-form'
 
 const LoginCard = () => {
   const [isFlipped, setIsFlipped] = React.useState(false)

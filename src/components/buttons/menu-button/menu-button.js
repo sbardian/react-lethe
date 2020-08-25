@@ -2,7 +2,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
-import { MenuContext } from './menu-context'
+import { MenuContext } from '../../contexts/menu-context/menu-context'
 
 const MenuButton = () => {
   const { isSideBarOpen, setIsSideBarOpen } = React.useContext(MenuContext)

@@ -8,7 +8,7 @@ import {
   AiOutlineProfile,
   AiOutlineSetting,
 } from 'react-icons/ai'
-import { MenuContext } from './menu-context'
+import { MenuContext } from '../contexts/menu-context/menu-context'
 
 const SideBar = () => {
   const {

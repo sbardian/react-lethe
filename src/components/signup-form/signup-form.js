@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
-import { TokenContext } from '../components/token-context'
-import logo from '../brain.png'
+import { TokenContext } from '../contexts/token-context/token-context'
+import logo from '../../brain.png'
 
 const SignUpForm = ({ flipCard }) => {
   const { register, handleSubmit, getValues, errors, reset } = useForm()

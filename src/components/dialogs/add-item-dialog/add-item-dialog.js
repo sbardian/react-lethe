@@ -3,50 +3,55 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
-import LetheInput from './lethe-input'
-import alertConfig from './alerts-config'
+import LetheInput from '../../lethe-input/lethe-input'
+import alertsConfig from '../../../utils/alerts-config'
 
-const AddListDialog = ({ setShowDialog, show, ...rest }) => {
+const AddItemDialog = ({ setShowDialog, listId, show }) => {
   const [title, setTitle] = React.useState('')
-  const [createListError, setCreateListError] = React.useState()
+  const [createItemError, setCreateItemError] = React.useState()
 
   const handleChange = (event) => {
     event.preventDefault()
     setTitle(event.target.value)
   }
 
-  const ADD_LIST = gql`
-    mutation createNewList($title: String!) {
-      createNewList(ListInfo: { title: $title }) {
+  const ADD_ITEM = gql`
+    mutation createNewItem($listId: String!, $title: String!) {
+      createNewItem(ItemInfo: { list: $listId, title: $title }) {
         id
         title
-        owner
+        creator
+        list
+        status
       }
     }
   `
 
-  const GET_MY_LISTS = gql`
-    {
-      getMyInfo {
+  const GET_LIST_ITEMS = gql`
+    query getLists($id_is: String!) {
+      getLists(id_is: $id_is) {
         id
-        lists {
+        title
+        items {
           id
           title
-          owner
+          creator
+          list
+          status
         }
       }
     }
   `
 
-  const [createNewList, { error }] = useMutation(ADD_LIST, {
+  const [createNewItem, { error }] = useMutation(ADD_ITEM, {
     onCompleted: () => setShowDialog(false),
     onError: (error) => {
-      show({ ...alertConfig, message: error })
+      show({ ...alertsConfig, message: error })
     },
   })
 
   if (error) {
-    setCreateListError(error.message)
+    setCreateItemError(error.message)
   }
 
   return (
@@ -65,7 +70,7 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
         padding: 3,
       }}
     >
-      <h2>Add List</h2>
+      <h2>Add Item</h2>
       <div
         sx={{
           display: 'grid',
@@ -77,7 +82,6 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
           htmlFor="title"
           sx={{
             alignSelf: 'end',
-            color: 'textSecondary',
             marginBottom: 2,
           }}
         >
@@ -120,9 +124,16 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
             }}
             onClick={() => {
               if (title) {
-                createNewList({
-                  variables: { title },
-                  refetchQueries: [{ query: GET_MY_LISTS }],
+                createNewItem({
+                  variables: { title, listId },
+                  refetchQueries: [
+                    {
+                      query: GET_LIST_ITEMS,
+                      variables: {
+                        id_is: listId,
+                      },
+                    },
+                  ],
                 })
               }
             }}
@@ -149,8 +160,8 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
           >
             Cancel
           </button>
-          {createListError && (
-            <div>{`Error creating item: ${createListError}`}</div>
+          {createItemError && (
+            <div>{`Error creating item: ${createItemError}`}</div>
           )}
         </div>
       </div>
@@ -158,4 +169,4 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
   )
 }
 
-export default AddListDialog
+export default AddItemDialog

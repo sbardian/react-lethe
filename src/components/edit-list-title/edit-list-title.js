@@ -3,8 +3,8 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { AlertWrapper } from 'react-alerts-plus'
-import UpdateListTitleButton from './update-list-title-button'
-import LetheInput from './lethe-input'
+import UpdateListTitleButton from '../buttons/update-list-title-button/update-list-title-button'
+import LetheInput from '../lethe-input/lethe-input'
 
 const EditListTitle = ({ listId, orgTitle }) => {
   const [newTitle, setNewTitle] = React.useState('')

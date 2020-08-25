@@ -2,8 +2,8 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import PageLayout from '../components/page-layout'
-import Settings from '../components/settings'
+import PageLayout from '../components/page-layout/page-layout'
+import Settings from '../components/settings/settings'
 
 const SettingsRoute = () => {
   return (

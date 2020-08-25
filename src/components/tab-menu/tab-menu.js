@@ -3,7 +3,7 @@
 import { act } from '@testing-library/react'
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { MenuContext } from './menu-context'
+import { MenuContext } from '../contexts/menu-context/menu-context'
 
 const TabMenu = ({ listTitle }) => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)

@@ -4,7 +4,7 @@ import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import { BiSave } from 'react-icons/bi'
-import alertsConfig from './alerts-config'
+import alertsConfig from '../../../utils/alerts-config'
 
 const UpdateListTitleButton = ({
   listId,

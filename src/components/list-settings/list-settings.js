@@ -3,7 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
-import EditListTitle from './edit-list-title'
+import EditListTitle from '../edit-list-title/edit-list-title'
 
 const ListSettings = ({ listId }) => {
   const GET_LIST = gql`

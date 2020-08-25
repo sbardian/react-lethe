@@ -3,8 +3,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
-import Header from './header'
-import SideBar from './sidebar'
+import Header from '../header/header'
+import SideBar from '../sidebar/sidebar'
 
 const PageLayout = ({ children }) => {
   return (
