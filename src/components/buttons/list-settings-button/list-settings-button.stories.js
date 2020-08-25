@@ -1,6 +1,5 @@
 import React from 'react'
 import ListSettingsButton from './list-settings-button'
-import theme from '../../../theme/colors'
 
 export default {
   component: ListSettingsButton,
@@ -15,6 +14,6 @@ export default {
 export const Default = (args) => <ListSettingsButton {...args} />
 
 Default.args = {
-  hoverColor: theme.colorThree,
+  hoverColor: 'colorThree',
   listId: '1',
 }
