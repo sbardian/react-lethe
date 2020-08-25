@@ -266,7 +266,7 @@ const ListItems = ({ listId, setListTitle, show }) => {
                   width: '100%',
                 }}
               >
-                <span>{item.title}</span>
+                <span sx={{ fontWeight: 'heavy' }}>{item.title}</span>
                 <div
                   sx={{
                     display: 'grid',
