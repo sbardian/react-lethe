@@ -14,6 +14,7 @@ const Lists = ({ show }) => {
   const GET_MY_LISTS = gql`
     {
       getMyInfo {
+        id
         lists {
           id
           title
@@ -54,6 +55,11 @@ const Lists = ({ show }) => {
     onError: (error) => {
       show({ ...alertConfig, message: error })
     },
+    refetchQueries: [
+      {
+        query: GET_MY_LISTS,
+      },
+    ],
   })
 
   const handleDeleteList = (listId) => {
@@ -73,6 +79,8 @@ const Lists = ({ show }) => {
   if (error) return <p>{`${error}`}</p>
   if (!getListsData) return <p>You currently have no lists. Create some!</p>
 
+  console.log('getListData: ', getListsData)
+
   subscribeToMore({
     document: LIST_DELETED,
     updateQuery: (prev, { subscriptionData }) => {
@@ -89,6 +97,7 @@ const Lists = ({ show }) => {
             lists: [...filteredLists],
           },
         }
+        console.log('newLists: ', newLists)
         return newLists
       }
       return prev
