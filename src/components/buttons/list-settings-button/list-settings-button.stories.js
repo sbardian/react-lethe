@@ -11,9 +11,9 @@ export default {
   excludeStories: /.*Data$/,
 }
 
-export const Default = (args) => <ListSettingsButton {...args} />
-
-Default.args = {
+const buttonData = {
   hoverColor: 'colorThree',
   listId: '1',
 }
+
+export const Default = () => <ListSettingsButton {...buttonData} />
