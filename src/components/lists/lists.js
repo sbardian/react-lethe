@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Link, useNavigate } from '@reach/router'
@@ -190,6 +191,10 @@ const Lists = ({ show }) => {
       </ul>
     </div>
   )
+}
+
+Lists.propTypes = {
+  show: PropTypes.func.isRequired,
 }
 
 export default Lists

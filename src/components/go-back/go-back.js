@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { useNavigate } from '@reach/router'
 
@@ -26,6 +27,10 @@ const GoBack = ({ children }) => {
       {children}
     </div>
   )
+}
+
+GoBack.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export default GoBack

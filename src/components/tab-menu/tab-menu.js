@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
-import { act } from '@testing-library/react'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { MenuContext } from '../contexts/menu-context/menu-context'
 
@@ -64,6 +64,10 @@ const TabMenu = ({ listTitle }) => {
       </ol>
     </nav>
   )
+}
+
+TabMenu.propTypes = {
+  listTitle: PropTypes.string.isRequired,
 }
 
 export default TabMenu

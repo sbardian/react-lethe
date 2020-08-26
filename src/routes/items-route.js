@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { MdAddCircle } from 'react-icons/md'
 import { AlertWrapper } from 'react-alerts-plus'
@@ -92,6 +93,10 @@ const ListItemsRoute = ({ listId }) => {
       </AlertWrapper>
     </PageLayout>
   )
+}
+
+ListItemsRoute.propTypes = {
+  listId: PropTypes.string.isRequired,
 }
 
 export default ListItemsRoute

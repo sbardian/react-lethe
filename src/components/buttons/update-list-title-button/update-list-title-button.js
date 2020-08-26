@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import { BiSave } from 'react-icons/bi'
@@ -100,6 +101,18 @@ const UpdateListTitleButton = ({
       )}
     </button>
   )
+}
+
+UpdateListTitleButton.defaultProps = {
+  newTitle: '',
+}
+
+UpdateListTitleButton.propTypes = {
+  listId: PropTypes.string.isRequired,
+  newTitle: PropTypes.string,
+  titleNotUpdated: PropTypes.bool.isRequired,
+  setTitleNotUpdated: PropTypes.func.isRequired,
+  show: PropTypes.func.isRequired,
 }
 
 export default UpdateListTitleButton

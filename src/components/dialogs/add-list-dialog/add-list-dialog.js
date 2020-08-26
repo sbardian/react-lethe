@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import LetheInput from '../../lethe-input/lethe-input'
 import alertsConfig from '../../../utils/alerts-config'
 
-const AddListDialog = ({ setShowDialog, show, ...rest }) => {
+const AddListDialog = ({ setShowDialog, show }) => {
   const [title, setTitle] = React.useState('')
   const [createListError, setCreateListError] = React.useState()
 
@@ -156,6 +157,11 @@ const AddListDialog = ({ setShowDialog, show, ...rest }) => {
       </div>
     </div>
   )
+}
+
+AddListDialog.propTypes = {
+  setShowDialog: PropTypes.func.isRequired,
+  show: PropTypes.func.isRequired,
 }
 
 export default AddListDialog

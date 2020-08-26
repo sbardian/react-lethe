@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
 import EditListTitle from '../edit-list-title/edit-list-title'
+import ListSettingsButton from '../buttons/list-settings-button/list-settings-button'
 
 const ListSettings = ({ listId }) => {
   const GET_LIST = gql`
@@ -66,6 +68,10 @@ const ListSettings = ({ listId }) => {
       ></div>
     </div>
   )
+}
+
+ListSettingsButton.propTypes = {
+  listId: PropTypes.string.isRequired,
 }
 
 export default ListSettings

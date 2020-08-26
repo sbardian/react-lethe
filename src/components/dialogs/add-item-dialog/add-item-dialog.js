@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import LetheInput from '../../lethe-input/lethe-input'
@@ -172,6 +173,12 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
       </div>
     </div>
   )
+}
+
+AddItemDialog.propTypes = {
+  setShowDialog: PropTypes.func.isRequired,
+  listId: PropTypes.string.isRequired,
+  show: PropTypes.func.isRequired,
 }
 
 export default AddItemDialog

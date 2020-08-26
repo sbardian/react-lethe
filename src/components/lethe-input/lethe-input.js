@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 
 const LetheInput = ({ children, label, ...rest }) => {
@@ -23,6 +24,11 @@ const LetheInput = ({ children, label, ...rest }) => {
       {children}
     </input>
   )
+}
+
+LetheInput.propTypes = {
+  children: PropTypes.node,
+  label: PropTypes.string.isRequired,
 }
 
 export default LetheInput

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 
 const Dialog = ({ children, showDialog, setShowDialog }) => {
@@ -29,6 +30,12 @@ const Dialog = ({ children, showDialog, setShowDialog }) => {
       )}
     </React.Fragment>
   )
+}
+
+Dialog.propTypes = {
+  children: PropTypes.node.isRequired,
+  showDialog: PropTypes.func.isRequired,
+  setShowDialog: PropTypes.func.isRequired,
 }
 
 export default Dialog

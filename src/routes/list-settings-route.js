@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { MdArrowBack } from 'react-icons/md'
 import PageLayout from '../components/page-layout/page-layout'
@@ -25,6 +26,10 @@ const ListSettingsRoute = ({ listId }) => {
       </div>
     </PageLayout>
   )
+}
+
+ListSettingsRoute.propTypes = {
+  listId: PropTypes.string.isRequired,
 }
 
 export default ListSettingsRoute

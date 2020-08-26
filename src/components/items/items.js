@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { AlertWrapper } from 'react-alerts-plus'
@@ -378,6 +379,12 @@ const ListItems = ({ listId, setListTitle, show }) => {
       </Dialog>
     </div>
   )
+}
+
+ListItems.propTypes = {
+  listId: PropTypes.string.isRequired,
+  setListTitle: PropTypes.func.isRequired,
+  show: PropTypes.func.isRequired,
 }
 
 export default ListItems
