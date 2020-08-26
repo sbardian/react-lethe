@@ -6,6 +6,34 @@ import { gql, useMutation } from '@apollo/client'
 import LetheInput from '../../lethe-input/lethe-input'
 import alertsConfig from '../../../utils/alerts-config'
 
+export const ADD_ITEM = gql`
+  mutation createNewItem($listId: String!, $title: String!) {
+    createNewItem(ItemInfo: { list: $listId, title: $title }) {
+      id
+      title
+      creator
+      list
+      status
+    }
+  }
+`
+
+export const GET_LIST_ITEMS = gql`
+  query getLists($id_is: String!) {
+    getLists(id_is: $id_is) {
+      id
+      title
+      items {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  }
+`
+
 const AddItemDialog = ({ setShowDialog, listId, show }) => {
   const [title, setTitle] = React.useState('')
   const [createItemError, setCreateItemError] = React.useState()
@@ -15,47 +43,19 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
     setTitle(event.target.value)
   }
 
-  const ADD_ITEM = gql`
-    mutation createNewItem($listId: String!, $title: String!) {
-      createNewItem(ItemInfo: { list: $listId, title: $title }) {
-        id
-        title
-        creator
-        list
-        status
-      }
-    }
-  `
-
-  const GET_LIST_ITEMS = gql`
-    query getLists($id_is: String!) {
-      getLists(id_is: $id_is) {
-        id
-        title
-        items {
-          id
-          title
-          creator
-          list
-          status
-        }
-      }
-    }
-  `
-
-  const [createNewItem, { error }] = useMutation(ADD_ITEM, {
-    onCompleted: () => setShowDialog(false),
+  const [createNewItem] = useMutation(ADD_ITEM, {
+    onCompleted: () => {
+      setShowDialog(false)
+    },
     onError: (error) => {
-      show({ ...alertsConfig, message: error })
+      show({ ...alertsConfig, message: `${error}` })
+      setCreateItemError(error.message)
     },
   })
 
-  if (error) {
-    setCreateItemError(error.message)
-  }
-
   return (
     <div
+      data-testid="add-list-item-dialog"
       sx={{
         display: 'grid',
         gap: 3,
@@ -88,6 +88,7 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
           Title
         </label>
         <LetheInput
+          label="add-item"
           name="title"
           type="text"
           id="title"
@@ -109,6 +110,8 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
           }}
         >
           <button
+            data-testid="submit"
+            aria-label="submit"
             type="submit"
             sx={{
               all: 'unset',
@@ -141,6 +144,8 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
             Submit
           </button>
           <button
+            data-testid="cancel"
+            aria-label="cancel"
             type="submit"
             sx={{
               all: 'unset',
