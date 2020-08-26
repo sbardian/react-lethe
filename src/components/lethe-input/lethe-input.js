@@ -3,9 +3,11 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 
-const LetheInput = ({ children, ...rest }) => {
+const LetheInput = ({ children, label, ...rest }) => {
   return (
     <input
+      data-testid="lethe-input"
+      aria-label={`${label}-input`}
       sx={{
         color: 'textSecondary',
         borderRadius: '5px',
