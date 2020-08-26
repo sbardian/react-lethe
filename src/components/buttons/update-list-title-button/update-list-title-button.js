@@ -46,7 +46,7 @@ const UpdateListTitleButton = ({
       })
     },
     onError: (error) => {
-      show({ ...alertsConfig, message: error })
+      show({ ...alertsConfig, message: `${error}` })
       setTitleNotUpdated(true)
     },
   })
@@ -63,6 +63,8 @@ const UpdateListTitleButton = ({
 
   return (
     <button
+      aria-label="update-title-button"
+      data-testid="update-title-button"
       disabled={titleNotUpdated}
       sx={{
         all: 'unset',
