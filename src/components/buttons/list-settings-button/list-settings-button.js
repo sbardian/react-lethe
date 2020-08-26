@@ -16,7 +16,7 @@ const ListSettingsButton = ({ listId, hoverColor }) => {
         cursor: 'pointer',
         justifySelf: 'end',
         alignSelf: 'center',
-        color: 'inherit',
+        color: 'textSecondary',
         '&:hover': {
           color: hoverColor,
         },
