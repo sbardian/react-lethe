@@ -96,7 +96,7 @@ const UpdateListTitleButton = ({
       {!titleNotUpdated ? (
         <BiSave size="30" sx={{ color: 'colorThree' }} />
       ) : (
-        <BiSave size="30" />
+        <BiSave size="30" sx={{ color: 'textSecondary' }} />
       )}
     </button>
   )
