@@ -1,19 +1,17 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import { jsx, useColorMode, useThemeUI } from 'theme-ui'
+import { jsx } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
 import { useNavigate } from '@reach/router'
-import { FiSunrise, FiSunset } from 'react-icons/fi'
 import { TokenContext } from '../contexts/token-context/token-context'
 import MenuButton from '../buttons/menu-button/menu-button'
+import ColorModeToggleButton from '../buttons/color-mode-toggle-button/color-mode-toggle-button'
 import logo from '../../brain.png'
 
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)
   const navigate = useNavigate()
-
-  const { colorMode, setColorMode } = useThemeUI()
 
   const logout = () => {
     removeToken()
@@ -120,25 +118,7 @@ const Header = () => {
               paddingTop: 3,
             }}
           >
-            <button
-              sx={{
-                cursor: 'pointer',
-                padding: 2,
-                fontSize: 2,
-                border: 'none',
-                color: colorMode === 'dark' ? 'yellow' : 'textSecondary',
-                backgroundColor: 'transparent',
-              }}
-              onClick={() => {
-                setColorMode(colorMode === 'dark' ? 'light' : 'dark')
-              }}
-            >
-              {colorMode === 'dark' ? (
-                <FiSunrise size="24" />
-              ) : (
-                <FiSunset size="24" />
-              )}
-            </button>
+            <ColorModeToggleButton />
             <button
               sx={{
                 cursor: 'pointer',
