@@ -25,22 +25,6 @@ export const mockData = [
       },
     },
   },
-]
-
-export const errorMockData = [
-  {
-    request: {
-      query: GET_MY_LISTS,
-      variables: {
-        id_is: '1',
-      },
-    },
-    result: {
-      data: {
-        updateList: { id: '1', title: 'New Title', __typename: 'List' },
-      },
-    },
-  },
   {
     request: {
       query: UPDATE_LIST,
