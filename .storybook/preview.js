@@ -1,7 +1,10 @@
+/** @jsx jsx */
 import React from 'react'
+import { jsx } from 'theme-ui'
 import { ThemeProvider } from 'theme-ui'
 import { AlertProvider } from 'react-alerts-plus'
 import { MenuProvider } from '../src/components/contexts/menu-context/menu-context'
+import ColorModeToggleButton from '../src/components/buttons/color-mode-toggle-button/color-mode-toggle-button'
 import theme from '../src/theme'
 
 export const parameters = {
@@ -13,6 +16,18 @@ export const decorators = [
     <ThemeProvider theme={theme}>
       <MenuProvider>
         <AlertProvider>
+          <div
+            sx={{
+              display: 'grid',
+              justifyContent: 'center',
+              borderBottom: ({ colors }) => `2px solid ${colors.colorThree}`,
+              paddingBottom: 5,
+              marginBottom: 5,
+            }}
+          >
+            <ColorModeToggleButton />
+            <span sx={{ color: 'textSecondary' }}>Toggle color mode</span>
+          </div>
           <Story />
         </AlertProvider>
       </MenuProvider>
