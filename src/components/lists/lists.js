@@ -4,8 +4,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { Link } from '@reach/router'
-import { FiDelete } from 'react-icons/fi'
 import ListSettingsButton from '../buttons/list-settings-button/list-settings-button'
+import DeleteListButton from '../buttons/delete-list-button/delete-list-button'
 
 const Lists = ({ lists, onDeleteList }) => {
   return (
@@ -68,19 +68,7 @@ const Lists = ({ lists, onDeleteList }) => {
             }}
           >
             <ListSettingsButton listId={list.id} hoverColor="text" />
-            <div
-              aria-label="delete list"
-              type="button"
-              onClick={() => onDeleteList(list.id)}
-              sx={{
-                display: 'grid',
-                cursor: 'pointer',
-                justifySelf: 'end',
-                alignSelf: 'center',
-              }}
-            >
-              <FiDelete size="30" />
-            </div>
+            <DeleteListButton listId={list.id} onDeleteList={onDeleteList} />
           </div>
         </li>
       ))}
