@@ -9,8 +9,12 @@ const AuthRoute = ({ as: Component, ...rest }) => {
   return token ? <Component {...rest} /> : <LoginRoute />
 }
 
+AuthRoute.defaultProps = {
+  Component: null,
+}
+
 AuthRoute.propTypes = {
-  Component: PropTypes.node.isRequired,
+  Component: PropTypes.node,
 }
 
 export default AuthRoute

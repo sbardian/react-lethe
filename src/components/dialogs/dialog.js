@@ -33,8 +33,8 @@ const Dialog = ({ children, showDialog, setShowDialog }) => {
 }
 
 Dialog.propTypes = {
-  children: PropTypes.node.isRequired,
-  showDialog: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
+  showDialog: PropTypes.bool.isRequired,
   setShowDialog: PropTypes.func.isRequired,
 }
 
