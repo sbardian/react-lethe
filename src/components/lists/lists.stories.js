@@ -18,6 +18,12 @@ const listsData = {
       owner: '1000',
       title: 'List One',
     },
+    {
+      __typename: 'List',
+      id: '2',
+      owner: '1000',
+      title: 'List Two',
+    },
   ],
   onDeleteList: action('delete list'),
 }

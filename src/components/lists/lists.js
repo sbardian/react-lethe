@@ -10,6 +10,7 @@ import DeleteListButton from '../buttons/delete-list-button/delete-list-button'
 const Lists = ({ lists, onDeleteList }) => {
   return (
     <ul
+      data-testid="lists-ul"
       sx={{
         all: 'unset',
         display: 'grid',
