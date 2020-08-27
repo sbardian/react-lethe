@@ -8,42 +8,40 @@ import { useNavigate } from '@reach/router'
 import Lists from '../lists/lists'
 import alertConfig from '../../utils/alerts-config'
 
+export const GET_MY_LISTS = gql`
+  {
+    getMyInfo {
+      id
+      lists {
+        id
+        title
+        owner
+      }
+    }
+  }
+`
+
+export const DELETE_LIST = gql`
+  mutation deleteList($listId: String!) {
+    deleteList(listId: $listId) {
+      id
+      title
+      owner
+    }
+  }
+`
+
+export const LIST_DELETED = gql`
+  subscription onListDeleted {
+    listDeleted {
+      id
+      title
+      owner
+    }
+  }
+`
+
 const ListsContainer = ({ show }) => {
-  const navigate = useNavigate()
-
-  const GET_MY_LISTS = gql`
-    {
-      getMyInfo {
-        id
-        lists {
-          id
-          title
-          owner
-        }
-      }
-    }
-  `
-
-  const DELETE_LIST = gql`
-    mutation deleteList($listId: String!) {
-      deleteList(listId: $listId) {
-        id
-        title
-        owner
-      }
-    }
-  `
-
-  const LIST_DELETED = gql`
-    subscription onListDeleted {
-      listDeleted {
-        id
-        title
-        owner
-      }
-    }
-  `
-
   const { subscribeToMore, data: getListsData, loading, error } = useQuery(
     GET_MY_LISTS,
   )
