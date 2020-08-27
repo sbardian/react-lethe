@@ -5,7 +5,7 @@ import { jsx } from 'theme-ui'
 import { RiPlayListAddLine } from 'react-icons/ri'
 import { AlertWrapper } from 'react-alerts-plus'
 import PageLayout from '../components/page-layout/page-layout'
-import Lists from '../components/lists/lists'
+import ListsContainer from '../components/lists-container/lists-container'
 import AddListDialog from '../components/dialogs/add-list-dialog/add-list-dialog'
 import Dialog, { useDialog } from '../components/dialogs/dialog'
 
@@ -43,7 +43,7 @@ const ListsRoute = () => {
               >
                 <RiPlayListAddLine size="34" />
               </div>
-              <Lists show={show} />
+              <ListsContainer show={show} />
             </div>
             <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
               {({ setShowDialog }) => (
