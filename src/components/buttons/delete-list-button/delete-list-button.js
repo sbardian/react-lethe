@@ -8,6 +8,7 @@ import { FiDelete } from 'react-icons/fi'
 const DeleteListButton = ({ onDeleteList, listId }) => {
   return (
     <div
+      data-testid="delete-list-button"
       aria-label="delete list"
       type="button"
       onClick={() => onDeleteList(listId)}
