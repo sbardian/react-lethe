@@ -7,7 +7,8 @@ export const MenuProvider = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = React.useState(true)
   const [activeSideBarLink, setActiveSideBarLink] = React.useState()
   const [showListItemTabs, setShowListItemTabs] = React.useState(false)
-  // activeItemTab: false = todo / true = complete
+
+  // activeItemTab: false = active / true = complete
   const [activeItemTab, setActiveItemTab] = React.useState(false)
 
   return (
