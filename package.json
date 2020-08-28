@@ -43,7 +43,7 @@
     "react-alerts-plus": "1.0.0",
     "react-card-flip": "1.0.11",
     "react-dom": "16.13.1",
-    "react-hook-form": "6.5.3",
+    "react-hook-form": "6.6.0",
     "react-icons": "3.11.0",
     "react-scripts": "3.4.3",
     "subscriptions-transport-ws": "0.9.18",
