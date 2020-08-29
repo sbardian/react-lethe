@@ -9,13 +9,13 @@ import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { RiCheckboxBlankLine } from 'react-icons/ri'
-import Dialog, { useDialog } from '../dialogs/dialog'
+import Dialog from '../dialogs/dialog'
 import EditItemDialog from '../dialogs/edit-item-dialog/edit-item-dialog'
 import { MenuContext } from '../contexts/menu-context/menu-context'
 import alertConfig from '../../utils/alerts-config'
 
 const ListItems = ({ listId, setListTitle, show }) => {
-  const { showDialog, setShowDialog } = useDialog()
+  const [showDialog, setShowDialog] = React.useState(false)
   const { activeItemTab } = React.useContext(MenuContext)
   const [displayedItems, setDisplayedItems] = React.useState()
   const [currentItem, setCurrentItem] = React.useState(null)
@@ -398,19 +398,17 @@ const ListItems = ({ listId, setListTitle, show }) => {
             </li>
           ))}
       </ul>
-      <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-        {() => (
-          <AlertWrapper>
-            {() => (
-              <EditItemDialog
-                setShowDialog={setShowDialog}
-                item={currentItem}
-                listId={listId}
-                show={show}
-              />
-            )}
-          </AlertWrapper>
-        )}
+      <Dialog showDialog={showDialog}>
+        <AlertWrapper>
+          {() => (
+            <EditItemDialog
+              setShowDialog={setShowDialog}
+              item={currentItem}
+              listId={listId}
+              show={show}
+            />
+          )}
+        </AlertWrapper>
       </Dialog>
     </div>
   )

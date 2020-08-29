@@ -7,10 +7,10 @@ import { AlertWrapper } from 'react-alerts-plus'
 import PageLayout from '../components/page-layout/page-layout'
 import ListsContainer from '../components/lists-container/lists-container'
 import AddListDialog from '../components/dialogs/add-list-dialog/add-list-dialog'
-import Dialog, { useDialog } from '../components/dialogs/dialog'
+import Dialog from '../components/dialogs/dialog'
 
 const ListsRoute = () => {
-  const { showDialog, setShowDialog } = useDialog()
+  const [showDialog, setShowDialog] = React.useState(false)
 
   return (
     <PageLayout>
@@ -51,10 +51,8 @@ const ListsRoute = () => {
               </div>
               <ListsContainer show={show} />
             </div>
-            <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-              {() => (
-                <AddListDialog setShowDialog={setShowDialog} show={show} />
-              )}
+            <Dialog showDialog={showDialog}>
+              <AddListDialog setShowDialog={setShowDialog} show={show} />
             </Dialog>
           </React.Fragment>
         )}

@@ -4,12 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 
-const Dialog = ({ children, showDialog, setShowDialog }) => {
-  const bag = {
-    showDialog,
-    setShowDialog,
-  }
-
+const Dialog = ({ children, showDialog }) => {
   return (
     <React.Fragment>
       {showDialog && (
@@ -25,7 +20,7 @@ const Dialog = ({ children, showDialog, setShowDialog }) => {
             },
           }}
         >
-          {children(bag)}
+          {children}
         </div>
       )}
     </React.Fragment>
@@ -35,18 +30,6 @@ const Dialog = ({ children, showDialog, setShowDialog }) => {
 Dialog.propTypes = {
   children: PropTypes.func.isRequired,
   showDialog: PropTypes.bool.isRequired,
-  setShowDialog: PropTypes.func.isRequired,
 }
 
 export default Dialog
-
-export const useDialog = () => {
-  const [showDialog, setShowDialog] = React.useState(false)
-
-  const bag = {
-    showDialog,
-    setShowDialog,
-  }
-
-  return bag
-}

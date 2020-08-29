@@ -9,12 +9,12 @@ import PageLayout from '../components/page-layout/page-layout'
 import { MenuContext } from '../components/contexts/menu-context/menu-context'
 import Items from '../components/items/items'
 import TabMenu from '../components/tab-menu/tab-menu'
-import Dialog, { useDialog } from '../components/dialogs/dialog'
+import Dialog from '../components/dialogs/dialog'
 import AddItemDialog from '../components/dialogs/add-item-dialog/add-item-dialog'
 import ListSettingsButton from '../components/buttons/list-settings-button/list-settings-button'
 
 const ListItemsRoute = ({ listId }) => {
-  const { showDialog, setShowDialog } = useDialog()
+  const [showDialog, setShowDialog] = React.useState(false)
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
   )
@@ -79,14 +79,12 @@ const ListItemsRoute = ({ listId }) => {
               </div>
               <Items listId={listId} setListTitle={setListTitle} show={show} />
             </div>
-            <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-              {() => (
-                <AddItemDialog
-                  setShowDialog={setShowDialog}
-                  listId={listId}
-                  show={show}
-                />
-              )}
+            <Dialog showDialog={showDialog}>
+              <AddItemDialog
+                setShowDialog={setShowDialog}
+                listId={listId}
+                show={show}
+              />
             </Dialog>
           </React.Fragment>
         )}
