@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
-import LetheInput from '../../lethe-input/lethe-input'
 import alertsConfig from '../../../utils/alerts-config'
 
 const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
@@ -59,8 +59,8 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
       status: item.status,
     },
     awaitRefetchQueries: true,
-    onError: (error) => {
-      show({ ...alertsConfig, message: error })
+    onError: (updateItemError) => {
+      show({ ...alertsConfig, message: updateItemError })
     },
   })
 
@@ -95,21 +95,33 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
         <label
           htmlFor="title"
           sx={{
+            display: 'grid',
             alignSelf: 'end',
             color: 'textSecondary',
             marginBottom: 2,
           }}
         >
           Title
+          <input
+            data-testid="lethe-input"
+            aria-label="edit-item-input"
+            sx={{
+              color: 'textSecondary',
+              borderRadius: '5px',
+              lineHeight: 2,
+              fontSize: 0,
+              '@media (min-width: 430px)': {
+                fontSize: 1,
+                lineHeight: 2,
+              },
+            }}
+            name="title"
+            type="text"
+            id="title"
+            value={title}
+            onChange={(event) => handleChange(event)}
+          />
         </label>
-        <LetheInput
-          name="title"
-          type="text"
-          id="title"
-          value={title}
-          autoFocus
-          onChange={(event) => handleChange(event)}
-        />
         <div
           sx={{
             display: 'grid',
@@ -173,6 +185,20 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
       </div>
     </div>
   )
+}
+
+EditItemDialog.propTypes = {
+  item: PropTypes.shape({
+    __typename: PropTypes.string,
+    creator: PropTypes.string,
+    id: PropTypes.string,
+    list: PropTypes.string,
+    status: PropTypes.bool,
+    title: PropTypes.string,
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+  setShowDialog: PropTypes.func.isRequired,
+  show: PropTypes.func.isRequired,
 }
 
 export default EditItemDialog

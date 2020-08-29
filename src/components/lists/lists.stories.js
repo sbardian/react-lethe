@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import Lists from './lists'

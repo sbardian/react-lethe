@@ -1,6 +1,6 @@
 import { GET_MY_LISTS, UPDATE_LIST } from './update-list-title-button'
 
-export const mockData = [
+export default [
   {
     request: {
       query: GET_MY_LISTS,

@@ -26,6 +26,9 @@ const ListsRoute = () => {
               }}
             >
               <div
+                role="button"
+                tabIndex={0}
+                aria-pressed="false"
                 sx={{
                   display: 'grid',
                   justifySelf: 'end',
@@ -37,6 +40,9 @@ const ListsRoute = () => {
                     color: 'colorThree',
                   },
                 }}
+                onKeyPress={() => {
+                  setShowDialog(!showDialog)
+                }}
                 onClick={() => {
                   setShowDialog(!showDialog)
                 }}
@@ -46,7 +52,7 @@ const ListsRoute = () => {
               <ListsContainer show={show} />
             </div>
             <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-              {({ setShowDialog }) => (
+              {() => (
                 <AddListDialog setShowDialog={setShowDialog} show={show} />
               )}
             </Dialog>

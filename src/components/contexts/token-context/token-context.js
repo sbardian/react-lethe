@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -32,5 +33,5 @@ export const TokenProvider = ({ children }) => {
 }
 
 TokenProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 }

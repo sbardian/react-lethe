@@ -41,7 +41,7 @@ const PageLayout = ({ children }) => {
 }
 
 PageLayout.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 }
 
 export default PageLayout

@@ -80,7 +80,7 @@ const ListItemsRoute = ({ listId }) => {
               <Items listId={listId} setListTitle={setListTitle} show={show} />
             </div>
             <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-              {({ setShowDialog }) => (
+              {() => (
                 <AddItemDialog
                   setShowDialog={setShowDialog}
                   listId={listId}

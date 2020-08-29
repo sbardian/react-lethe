@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { MockedProvider } from '@apollo/client/testing'
 
 const MockApolloProvider = ({ children, mocks }) => {
@@ -7,6 +8,15 @@ const MockApolloProvider = ({ children, mocks }) => {
       {children}
     </MockedProvider>
   )
+}
+
+MockApolloProvider.defaultProps = {
+  mocks: [],
+}
+
+MockApolloProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  mocks: PropTypes.arrayOf(PropTypes.any),
 }
 
 export default MockApolloProvider

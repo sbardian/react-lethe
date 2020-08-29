@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent, waitFor } from '../../../utils/test/custom-renderer'
 import UpdateListTitleButton from './update-list-title-button'
 import MockApolloProvider from '../../../utils/mock-apollo-client/mock-apollo-client'
-import { mockData } from './mocks'
+import mockData from './mocks'
 import alertsConfig from '../../../utils/alerts-config'
 
 const show = jest.fn()

@@ -1,6 +1,6 @@
 import { GET_LIST_ITEMS, ADD_ITEM } from './add-item-dialog'
 
-export const mockData = [
+export default [
   {
     request: {
       query: GET_LIST_ITEMS,

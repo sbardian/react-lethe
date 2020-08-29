@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
 import EditListTitle from '../edit-list-title/edit-list-title'
-import ListSettingsButton from '../buttons/list-settings-button/list-settings-button'
 
 const ListSettings = ({ listId }) => {
   const GET_LIST = gql`
@@ -65,12 +64,12 @@ const ListSettings = ({ listId }) => {
           gridTemplateColumns: '60px 1fr',
           gridTemplateRows: 'auto auto',
         }}
-      ></div>
+      />
     </div>
   )
 }
 
-ListSettingsButton.propTypes = {
+ListSettings.propTypes = {
   listId: PropTypes.string.isRequired,
 }
 

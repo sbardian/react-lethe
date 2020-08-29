@@ -55,8 +55,8 @@ const ListsContainer = ({ show }) => {
         progressBarColor: 'chartreuse',
       })
     },
-    onError: (error) => {
-      show({ ...alertConfig, message: error })
+    onError: (e) => {
+      show({ ...alertConfig, message: e })
     },
     refetchQueries: [
       {

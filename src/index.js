@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ThemeProvider } from 'theme-ui'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { TokenProvider } from './components/contexts/token-context/token-context'
-import { ThemeProvider } from 'theme-ui'
 import theme from './theme'
 
 ReactDOM.render(

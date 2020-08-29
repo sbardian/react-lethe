@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -100,29 +100,30 @@ const SignUpForm = ({ flipCard }) => {
           <label
             htmlFor="signup-username"
             sx={{
+              display: 'grid',
               alignSelf: 'end',
               marginTop: 2,
             }}
           >
             Username
+            <input
+              sx={{
+                color: 'textDark',
+                borderRadius: '5px',
+                fontSize: 1,
+              }}
+              type="text"
+              id="signup-username"
+              name="username"
+              ref={register({
+                required: 'Username is required',
+                minLength: {
+                  value: 2,
+                  message: 'Min username length is 2 characters',
+                },
+              })}
+            />
           </label>
-          <input
-            sx={{
-              color: 'textDark',
-              borderRadius: '5px',
-              fontSize: 1,
-            }}
-            type="text"
-            id="signup-username"
-            name="username"
-            ref={register({
-              required: 'Username is required',
-              minLength: {
-                value: 2,
-                message: 'Min username length is 2 characters',
-              },
-            })}
-          />
           {errors.username && (
             <span
               sx={{
@@ -136,29 +137,30 @@ const SignUpForm = ({ flipCard }) => {
           <label
             htmlFor="email"
             sx={{
+              display: 'grid',
               alignSelf: 'end',
               marginTop: 2,
             }}
           >
             Email
+            <input
+              sx={{
+                color: 'textDark',
+                borderRadius: '5px',
+                fontSize: 1,
+              }}
+              type="text"
+              id="email"
+              name="email"
+              ref={register({
+                required: 'Email is required',
+                pattern: {
+                  value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                  message: 'Invalid email address',
+                },
+              })}
+            />
           </label>
-          <input
-            sx={{
-              color: 'textDark',
-              borderRadius: '5px',
-              fontSize: 1,
-            }}
-            type="text"
-            id="email"
-            name="email"
-            ref={register({
-              required: 'Email is required',
-              pattern: {
-                value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                message: 'Invalid email address',
-              },
-            })}
-          />
           {errors.email && (
             <span
               sx={{
@@ -172,29 +174,30 @@ const SignUpForm = ({ flipCard }) => {
           <label
             htmlFor="signup-password"
             sx={{
+              display: 'grid',
               alignSelf: 'end',
               marginTop: 2,
             }}
           >
             Password
+            <input
+              sx={{
+                color: 'textDark',
+                borderRadius: '5px',
+                fontSize: 1,
+              }}
+              type="password"
+              id="signup-password"
+              name="password"
+              ref={register({
+                required: 'Password is required',
+                minLength: {
+                  value: 8,
+                  message: 'Min password length is 8 characters',
+                },
+              })}
+            />
           </label>
-          <input
-            sx={{
-              color: 'textDark',
-              borderRadius: '5px',
-              fontSize: 1,
-            }}
-            type="password"
-            id="signup-password"
-            name="password"
-            ref={register({
-              required: 'Password is required',
-              minLength: {
-                value: 8,
-                message: 'Min password length is 8 characters',
-              },
-            })}
-          />
           {errors.password && (
             <span
               sx={{
@@ -213,30 +216,31 @@ const SignUpForm = ({ flipCard }) => {
             }}
           >
             Confirm Password
-          </label>
-          <input
-            sx={{
-              color: 'textDark',
-              borderRadius: '5px',
-              fontSize: 1,
-            }}
-            type="password"
-            id="confirm-password"
-            name="passwordConfirm"
-            ref={register({
-              required: 'Password confirmation is required',
-              minLength: {
-                value: 8,
-                message: 'Min password length is 8 characters',
-              },
-              validate: {
-                matchesPreviousPassword: (value) => {
-                  const { password } = getValues()
-                  return password === value || 'Passwords should match!'
+            <input
+              sx={{
+                display: 'grid',
+                color: 'textDark',
+                borderRadius: '5px',
+                fontSize: 1,
+              }}
+              type="password"
+              id="confirm-password"
+              name="passwordConfirm"
+              ref={register({
+                required: 'Password confirmation is required',
+                minLength: {
+                  value: 8,
+                  message: 'Min password length is 8 characters',
                 },
-              },
-            })}
-          />
+                validate: {
+                  matchesPreviousPassword: (value) => {
+                    const { password } = getValues()
+                    return password === value || 'Passwords should match!'
+                  },
+                },
+              })}
+            />
+          </label>
           {errors.passwordConfirm && (
             <span
               sx={{
@@ -307,7 +311,7 @@ const SignUpForm = ({ flipCard }) => {
                 {registerError}
               </div>
             ) : (
-              <div></div>
+              <div />
             )}
           </React.Fragment>
         </form>

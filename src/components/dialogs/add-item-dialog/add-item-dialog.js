@@ -82,21 +82,32 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
         <label
           htmlFor="title"
           sx={{
+            display: 'grid',
             alignSelf: 'end',
             marginBottom: 2,
           }}
         >
           Title
+          <input
+            data-testid="lethe-input"
+            aria-label="add-item-input"
+            sx={{
+              color: 'textSecondary',
+              borderRadius: '5px',
+              lineHeight: 2,
+              fontSize: 0,
+              '@media (min-width: 430px)': {
+                fontSize: 1,
+                lineHeight: 2,
+              },
+            }}
+            name="title"
+            type="text"
+            id="title"
+            value={title}
+            onChange={(event) => handleChange(event)}
+          />
         </label>
-        <LetheInput
-          label="add-item"
-          name="title"
-          type="text"
-          id="title"
-          value={title}
-          autoFocus
-          onChange={(event) => handleChange(event)}
-        />
         <div
           sx={{
             display: 'grid',

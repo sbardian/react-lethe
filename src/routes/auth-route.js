@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
 import LoginRoute from './login-route'
@@ -10,11 +11,11 @@ const AuthRoute = ({ as: Component, ...rest }) => {
 }
 
 AuthRoute.defaultProps = {
-  Component: null,
+  as: null,
 }
 
 AuthRoute.propTypes = {
-  Component: PropTypes.node,
+  as: PropTypes.node,
 }
 
 export default AuthRoute

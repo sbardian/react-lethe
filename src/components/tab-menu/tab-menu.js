@@ -37,29 +37,41 @@ const TabMenu = ({ listTitle }) => {
           gap: 2,
         }}
       >
-        <li
-          sx={{
-            borderBottom: 'none',
-            padding: 3,
-            color: 'textSecondary',
-            backgroundColor: !activeItemTab ? 'colorTwo' : 'offWhite',
-            cursor: 'pointer',
-          }}
-          onClick={() => setActiveItemTab(false)}
-        >
-          Active
+        <li>
+          <button
+            type="button"
+            tabIndex={0}
+            sx={{
+              all: 'unset',
+              borderBottom: 'none',
+              padding: 3,
+              color: 'textSecondary',
+              backgroundColor: !activeItemTab ? 'colorTwo' : 'offWhite',
+              cursor: 'pointer',
+            }}
+            onClick={() => setActiveItemTab(false)}
+            onKeyPress={() => setActiveItemTab(false)}
+          >
+            Active
+          </button>
         </li>
-        <li
-          sx={{
-            borderBottom: 'none',
-            padding: 3,
-            color: 'textSecondary',
-            backgroundColor: activeItemTab ? 'colorTwo' : 'offWhite',
-            cursor: 'pointer',
-          }}
-          onClick={() => setActiveItemTab(true)}
-        >
-          Complete
+        <li>
+          <button
+            type="button"
+            tabIndex={0}
+            sx={{
+              all: 'unset',
+              borderBottom: 'none',
+              padding: 3,
+              color: 'textSecondary',
+              backgroundColor: activeItemTab ? 'colorTwo' : 'offWhite',
+              cursor: 'pointer',
+            }}
+            onClick={() => setActiveItemTab(true)}
+            onKeyPress={() => setActiveItemTab(false)}
+          >
+            Complete
+          </button>
         </li>
       </ol>
     </nav>

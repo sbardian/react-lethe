@@ -120,6 +120,7 @@ const Header = () => {
           >
             <ColorModeToggleButton />
             <button
+              type="button"
               sx={{
                 cursor: 'pointer',
                 padding: 2,
@@ -129,6 +130,7 @@ const Header = () => {
                 border: 'none',
                 color: 'text',
               }}
+              onKeyPress={() => logout()}
               onClick={() => logout()}
             >
               Logout

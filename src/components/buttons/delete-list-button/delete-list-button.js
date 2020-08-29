@@ -7,12 +7,13 @@ import { FiDelete } from 'react-icons/fi'
 
 const DeleteListButton = ({ onDeleteList, listId }) => {
   return (
-    <div
+    <button
       data-testid="delete-list-button"
       aria-label="delete list"
       type="button"
       onClick={() => onDeleteList(listId)}
       sx={{
+        all: 'unset',
         display: 'grid',
         color: 'inherit',
         cursor: 'pointer',
@@ -21,7 +22,7 @@ const DeleteListButton = ({ onDeleteList, listId }) => {
       }}
     >
       <FiDelete size="30" />
-    </div>
+    </button>
   )
 }
 

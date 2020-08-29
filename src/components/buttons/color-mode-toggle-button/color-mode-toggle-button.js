@@ -9,6 +9,7 @@ const ColorModeToggleButton = () => {
 
   return (
     <button
+      type="button"
       sx={{
         cursor: 'pointer',
         padding: 2,

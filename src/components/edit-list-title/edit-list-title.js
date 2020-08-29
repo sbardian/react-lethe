@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { AlertWrapper } from 'react-alerts-plus'
 import UpdateListTitleButton from '../buttons/update-list-title-button/update-list-title-button'
-import LetheInput from '../lethe-input/lethe-input'
 
 const EditListTitle = ({ listId, orgTitle }) => {
   const [newTitle, setNewTitle] = React.useState('')
@@ -50,20 +49,35 @@ const EditListTitle = ({ listId, orgTitle }) => {
           gridTemplateColumns: '1fr',
         }}
       >
-        <label htmlFor="edit-list-title" sx={{ marginBottom: 2 }}>
+        <label
+          htmlFor="edit-list-title"
+          sx={{ display: 'grid', marginBottom: 2 }}
+        >
           Title
+          <input
+            data-testid="lethe-input"
+            aria-label="edit-list-title-input"
+            value={newTitle}
+            id="edit-list-title"
+            onChange={(event) => handleTitleChange(event)}
+            sx={{
+              color: 'textSecondary',
+              borderRadius: '5px',
+              lineHeight: 2,
+              fontSize: 0,
+              '@media (min-width: 430px)': {
+                fontSize: 1,
+                lineHeight: 2,
+              },
+            }}
+          />
         </label>
-        <LetheInput
-          value={newTitle}
-          id="edit-list-title"
-          onChange={(event) => handleTitleChange(event)}
-        />
       </div>
     </div>
   )
 }
 
-EditListTitle.propTypoes = {
+EditListTitle.propTypes = {
   listId: PropTypes.string.isRequired,
   orgTitle: PropTypes.string.isRequired,
 }

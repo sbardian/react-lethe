@@ -2,7 +2,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import MockApolloProvider from '../../../utils/mock-apollo-client/mock-apollo-client'
 import UpdateListTitleButton from './update-list-title-button'
-import { mockData } from './mocks'
+import mockData from './mocks'
 
 export default {
   component: UpdateListTitleButton,

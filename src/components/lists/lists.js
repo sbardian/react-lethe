@@ -77,8 +77,12 @@ const Lists = ({ lists, onDeleteList }) => {
   )
 }
 
+Lists.defaultProps = {
+  lists: [],
+}
+
 Lists.propTypes = {
-  list: PropTypes.arrayOf(
+  lists: PropTypes.arrayOf(
     PropTypes.shape({
       __typename: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,

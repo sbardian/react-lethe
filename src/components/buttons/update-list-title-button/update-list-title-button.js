@@ -36,8 +36,8 @@ const UpdateListTitleButton = ({
   setTitleNotUpdated,
   show,
 }) => {
-  const [updateList, { loading, error, data }] = useMutation(UPDATE_LIST, {
-    onCompleted: (data) => {
+  const [updateList, { loading }] = useMutation(UPDATE_LIST, {
+    onCompleted: () => {
       setTitleNotUpdated(true)
       show({
         ...alertsConfig,
@@ -64,6 +64,7 @@ const UpdateListTitleButton = ({
 
   return (
     <button
+      type="button"
       aria-label="update-title-button"
       data-testid="update-title-button"
       disabled={titleNotUpdated}

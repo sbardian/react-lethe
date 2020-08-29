@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
@@ -17,9 +16,9 @@ const SideBar = () => {
     setActiveSideBarLink,
   } = React.useContext(MenuContext)
 
-  const isActive = (props) => {
-    if (props.isPartiallyCurrent) {
-      setActiveSideBarLink(props.type)
+  const isActive = ({ isPartiallyCurrent, type }) => {
+    if (isPartiallyCurrent) {
+      setActiveSideBarLink(type)
     }
   }
 
@@ -154,7 +153,7 @@ const SideBar = () => {
       </ul>
     </div>
   ) : (
-    <div></div>
+    <div />
   )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { render } from '@testing-library/react'
 import { ThemeProvider } from 'theme-ui'
 import { AlertProvider } from 'react-alerts-plus'
@@ -13,6 +14,10 @@ const AllTheProviders = ({ children }) => {
       </MenuProvider>
     </ThemeProvider>
   )
+}
+
+AllTheProviders.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 const customRender = (ui, options) =>

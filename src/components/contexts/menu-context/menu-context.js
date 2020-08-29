@@ -30,5 +30,5 @@ export const MenuProvider = ({ children }) => {
 }
 
 MenuProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 }

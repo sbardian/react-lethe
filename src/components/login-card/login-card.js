@@ -13,7 +13,7 @@ const LoginCard = () => {
   return (
     <ReactCardFlip
       isFlipped={isFlipped}
-      infinite={true}
+      infinite
       containerStyle={{ position: 'initial' }}
     >
       <LoginForm flipCard={flipCard} />

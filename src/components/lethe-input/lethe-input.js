@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 
-const LetheInput = ({ children, label, ...rest }) => {
+const LetheInput = ({ label, ...rest }) => {
   return (
     <input
       data-testid="lethe-input"
@@ -20,14 +20,11 @@ const LetheInput = ({ children, label, ...rest }) => {
         },
       }}
       {...rest}
-    >
-      {children}
-    </input>
+    />
   )
 }
 
 LetheInput.propTypes = {
-  children: PropTypes.node,
   label: PropTypes.string.isRequired,
 }
 

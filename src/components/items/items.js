@@ -107,13 +107,13 @@ const ListItems = ({ listId, setListTitle, show }) => {
   })
 
   const [updateItem] = useMutation(UPDATE_ITEM_STATUS, {
-    onError: (error) => {
-      show({ ...alertConfig, message: error })
+    onError: (updateItemError) => {
+      show({ ...alertConfig, message: updateItemError })
     },
   })
   const [deleteItem] = useMutation(DELETE_ITEM, {
-    onError: (error) => {
-      show({ ...alertConfig, message: error })
+    onError: (deleteItemError) => {
+      show({ ...alertConfig, message: deleteItemError })
     },
   })
 
@@ -121,14 +121,10 @@ const ListItems = ({ listId, setListTitle, show }) => {
     if (data?.getLists[0]?.items) {
       const displayItems = data.getLists[0].items.filter((item) => {
         let result
-        if (!activeItemTab) {
-          if (!item.status) {
-            result = true
-          }
-        } else {
-          if (item.status) {
-            result = true
-          }
+        if (!activeItemTab && !item.status) {
+          result = true
+        } else if (activeItemTab && item.status) {
+          result = true
         }
         return result
       })
@@ -277,8 +273,27 @@ const ListItems = ({ listId, setListTitle, show }) => {
                   }}
                 >
                   <div
+                    role="button"
+                    tabIndex={0}
                     sx={{
                       alignSelf: 'end',
+                    }}
+                    onKeyPress={() => {
+                      updateItem({
+                        refetchQueries: [
+                          {
+                            query: GET_LIST_ITEMS,
+                            variables: {
+                              id_is: listId,
+                            },
+                          },
+                        ],
+                        variables: {
+                          itemId: item.id,
+                          title: item.title,
+                          status: !item.status,
+                        },
+                      })
                     }}
                     onClick={() => {
                       updateItem({
@@ -321,12 +336,17 @@ const ListItems = ({ listId, setListTitle, show }) => {
                     )}
                   </div>
                   <div
+                    role="button"
+                    tabIndex={0}
                     sx={{
                       alignSelf: 'end',
                       cursor: 'pointer',
                       '&:hover': {
                         color: 'coral',
                       },
+                    }}
+                    onKeyPress={() => {
+                      editItem(item)
                     }}
                     onClick={() => {
                       editItem(item)
@@ -335,12 +355,27 @@ const ListItems = ({ listId, setListTitle, show }) => {
                     <AiOutlineEdit size="30" />
                   </div>
                   <div
+                    role="button"
+                    tabIndex={0}
                     sx={{
                       alignSelf: 'end',
                       cursor: 'pointer',
                       '&:hover': {
                         color: 'crimson',
                       },
+                    }}
+                    onKeyPress={() => {
+                      deleteItem({
+                        refetchQueries: [
+                          {
+                            query: GET_LIST_ITEMS,
+                            variables: {
+                              id_is: listId,
+                            },
+                          },
+                        ],
+                        variables: { itemId: item.id },
+                      })
                     }}
                     onClick={() => {
                       deleteItem({
@@ -364,9 +399,9 @@ const ListItems = ({ listId, setListTitle, show }) => {
           ))}
       </ul>
       <Dialog setShowDialog={setShowDialog} showDialog={showDialog}>
-        {({ setShowDialog }) => (
+        {() => (
           <AlertWrapper>
-            {({ show }) => (
+            {() => (
               <EditItemDialog
                 setShowDialog={setShowDialog}
                 item={currentItem}

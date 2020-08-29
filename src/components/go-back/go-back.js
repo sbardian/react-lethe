@@ -14,6 +14,8 @@ const GoBack = ({ children }) => {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       sx={{
         fontSize: 3,
         cursor: 'pointer',
@@ -22,6 +24,7 @@ const GoBack = ({ children }) => {
           color: 'colorThree',
         },
       }}
+      onKeyPress={goBack}
       onClick={goBack}
     >
       {children}

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -96,24 +95,25 @@ const LoginForm = ({ flipCard }) => {
           <label
             htmlFor="username"
             sx={{
+              display: 'grid',
               color: 'textSecondary',
               alignSelf: 'end',
               marginTop: 2,
             }}
           >
             Username
+            <input
+              sx={{
+                color: 'textSecondary',
+                borderRadius: '5px',
+                fontSize: 1,
+              }}
+              name="username"
+              type="text"
+              id="username"
+              ref={register({ required: true })}
+            />
           </label>
-          <input
-            sx={{
-              color: 'textSecondary',
-              borderRadius: '5px',
-              fontSize: 1,
-            }}
-            name="username"
-            type="text"
-            id="username"
-            ref={register({ required: true })}
-          />
           {errors.username && (
             <span
               sx={{
@@ -127,24 +127,25 @@ const LoginForm = ({ flipCard }) => {
           <label
             htmlFor="password"
             sx={{
+              display: 'grid',
               color: 'textSecondary',
               alignSelf: 'end',
               marginTop: 2,
             }}
           >
             Password
+            <input
+              sx={{
+                color: 'textSecondary',
+                borderRadius: '5px',
+                fontSize: 1,
+              }}
+              name="password"
+              type="password"
+              id="password"
+              ref={register({ required: true })}
+            />
           </label>
-          <input
-            sx={{
-              color: 'textSecondary',
-              borderRadius: '5px',
-              fontSize: 1,
-            }}
-            name="password"
-            type="password"
-            id="password"
-            ref={register({ required: true })}
-          />
           {errors.password && (
             <span
               sx={{
@@ -215,7 +216,7 @@ const LoginForm = ({ flipCard }) => {
                 {loginError}
               </div>
             ) : (
-              <div></div>
+              <div />
             )}
           </React.Fragment>
         </form>

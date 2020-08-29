@@ -3,7 +3,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import MockApolloProvider from '../../../utils/mock-apollo-client/mock-apollo-client'
 import AddItemDialog from './add-item-dialog'
-import { mockData } from './mocks'
+import mockData from './mocks'
 
 export default {
   component: AddItemDialog,
