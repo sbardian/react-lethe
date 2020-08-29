@@ -12,8 +12,6 @@ import Dialog from '../components/dialogs/dialog'
 const ListsRoute = () => {
   const [showDialog, setShowDialog] = React.useState(false)
 
-  console.log('in lists route')
-
   return (
     <PageLayout>
       <AlertWrapper>
