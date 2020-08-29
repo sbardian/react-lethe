@@ -3,12 +3,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
+import { useParams } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons/md'
 import PageLayout from '../components/page-layout/page-layout'
 import ListSettings from '../components/list-settings/list-settings'
 import GoBack from '../components/go-back/go-back'
 
-const ListSettingsRoute = ({ listId }) => {
+const ListSettingsRoute = () => {
+  const { listId } = useParams()
   return (
     <PageLayout>
       <div
@@ -26,10 +28,6 @@ const ListSettingsRoute = ({ listId }) => {
       </div>
     </PageLayout>
   )
-}
-
-ListSettingsRoute.propTypes = {
-  listId: PropTypes.string.isRequired,
 }
 
 export default ListSettingsRoute

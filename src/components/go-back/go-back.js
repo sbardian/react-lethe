@@ -3,13 +3,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
-import { useNavigate } from '@reach/router'
+import { useHistory } from 'react-router-dom'
 
 const GoBack = ({ children }) => {
-  const navigate = useNavigate()
+  const history = useHistory()
 
   const goBack = () => {
-    navigate(-1)
+    history.goBack()
   }
 
   return (

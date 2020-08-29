@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { Link, useMatch } from '@reach/router'
+import { Link, useRouteMatch } from 'react-router-dom'
 import {
   AiOutlineUnorderedList,
   AiOutlineProfile,
@@ -22,16 +22,16 @@ const SideBar = () => {
     }
   }
 
-  const isLists = useMatch('list')
-  const isProfile = useMatch('profile')
-  const isSettings = useMatch('settings')
+  const isLists = useRouteMatch('/lists')
+  const isProfile = useRouteMatch('/profile')
+  const isSettings = useRouteMatch('/settings')
 
   React.useEffect(() => {
-    if (isLists) {
+    if (isLists?.isExact) {
       setActiveSideBarLink({ type: 'lists' })
-    } else if (isProfile) {
+    } else if (isProfile?.isExact) {
       setActiveSideBarLink({ type: 'profile' })
-    } else if (isSettings) {
+    } else if (isSettings?.isExact) {
       setActiveSideBarLink({ type: 'settings' })
     }
   }, [])
@@ -60,9 +60,10 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: activeSideBarLink === 'lists' ? 'text' : 'textSecondary',
+            color:
+              activeSideBarLink.type === 'lists' ? 'text' : 'textSecondary',
             backgroundColor:
-              activeSideBarLink === 'lists' ? 'colorThree' : 'transparent',
+              activeSideBarLink.type === 'lists' ? 'colorThree' : 'transparent',
             padding: 2,
             '&:hover': {
               color: 'text',
@@ -91,9 +92,12 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: activeSideBarLink === 'profile' ? 'text' : 'textSecondary',
+            color:
+              activeSideBarLink.type === 'profile' ? 'text' : 'textSecondary',
             backgroundColor:
-              activeSideBarLink === 'profile' ? 'colorThree' : 'transparent',
+              activeSideBarLink.type === 'profile'
+                ? 'colorThree'
+                : 'transparent',
             padding: 2,
             '&:hover': {
               color: 'text',
@@ -122,9 +126,12 @@ const SideBar = () => {
         <Link
           sx={{
             textDecoration: 'none',
-            color: activeSideBarLink === 'settings' ? 'text' : 'textSecondary',
+            color:
+              activeSideBarLink.type === 'settings' ? 'text' : 'textSecondary',
             backgroundColor:
-              activeSideBarLink === 'settings' ? 'colorThree' : 'transparent',
+              activeSideBarLink.type === 'settings'
+                ? 'colorThree'
+                : 'transparent',
             padding: 2,
             '&:hover': {
               color: 'text',

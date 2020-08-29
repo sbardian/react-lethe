@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
-import { Link } from '@reach/router'
+import { Link } from 'react-router-dom'
 import { GiSettingsKnobs } from 'react-icons/gi'
 
 const ListSettingsButton = ({ listId, hoverColor }) => {

@@ -3,6 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
+import { useParams } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
 import { AlertWrapper } from 'react-alerts-plus'
 import PageLayout from '../components/page-layout/page-layout'
@@ -13,7 +14,8 @@ import Dialog from '../components/dialogs/dialog'
 import AddItemDialog from '../components/dialogs/add-item-dialog/add-item-dialog'
 import ListSettingsButton from '../components/buttons/list-settings-button/list-settings-button'
 
-const ListItemsRoute = ({ listId }) => {
+const ListItemsRoute = () => {
+  const { listId } = useParams()
   const [showDialog, setShowDialog] = React.useState(false)
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
@@ -91,10 +93,6 @@ const ListItemsRoute = ({ listId }) => {
       </AlertWrapper>
     </PageLayout>
   )
-}
-
-ListItemsRoute.propTypes = {
-  listId: PropTypes.string.isRequired,
 }
 
 export default ListItemsRoute

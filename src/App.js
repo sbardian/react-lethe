@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router } from '@reach/router'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import {
   ApolloClient,
   InMemoryCache,
@@ -78,12 +78,30 @@ const App = () => {
         <AlertProvider>
           <ApolloProvider client={client}>
             <Router>
-              <LoginRoute path="/" />
+              <Switch>
+                <AuthRoute path="/lists" component={ListsRoute} />
+
+                <AuthRoute path="/profile" component={ProfileRoute} />
+
+                <AuthRoute path="/settings" component={SettingsRoute} />
+
+                <AuthRoute
+                  path="/list/settings/:listId"
+                  component={ListSettingsRoute}
+                />
+
+                <AuthRoute path="/list/:listId" component={ItemsRoute} />
+
+                <Route path="/">
+                  <LoginRoute />
+                </Route>
+              </Switch>
+              {/* <LoginRoute path="/" />
               <AuthRoute as={ListsRoute} path="lists" />
               <AuthRoute as={ProfileRoute} path="profile" />
               <AuthRoute as={SettingsRoute} path="settings" />
               <AuthRoute as={ItemsRoute} path="list/:listId" />
-              <AuthRoute as={ListSettingsRoute} path="list/settings/:listId" />
+              <AuthRoute as={ListSettingsRoute} path="list/settings/:listId" /> */}
             </Router>
           </ApolloProvider>
         </AlertProvider>
