@@ -22,7 +22,9 @@ const PageLayout = ({ children }) => {
         },
       }}
     >
-      <Header />
+      <header>
+        <Header />
+      </header>
       <div
         sx={{
           display: 'grid',
@@ -33,8 +35,10 @@ const PageLayout = ({ children }) => {
           },
         }}
       >
-        <SideBar />
-        {children}
+        <aside>
+          <SideBar />
+        </aside>
+        <main sx={{ height: '100%', width: '100%' }}>{children}</main>
       </div>
     </div>
   )

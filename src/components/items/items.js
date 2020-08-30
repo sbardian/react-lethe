@@ -12,6 +12,7 @@ import { RiCheckboxBlankLine } from 'react-icons/ri'
 import Dialog from '../dialogs/dialog'
 import EditItemDialog from '../dialogs/edit-item-dialog/edit-item-dialog'
 import { MenuContext } from '../contexts/menu-context/menu-context'
+import handleKeyPress from '../../utils/on-key-press'
 import alertConfig from '../../utils/alerts-config'
 
 const ListItems = ({ listId, setListTitle, show }) => {
@@ -220,6 +221,38 @@ const ListItems = ({ listId, setListTitle, show }) => {
     },
   })
 
+  const handleUpdateItem = (item) => {
+    updateItem({
+      refetchQueries: [
+        {
+          query: GET_LIST_ITEMS,
+          variables: {
+            id_is: listId,
+          },
+        },
+      ],
+      variables: {
+        itemId: item.id,
+        title: item.title,
+        status: !item.status,
+      },
+    })
+  }
+
+  const handleDeleteItem = (item) => {
+    deleteItem({
+      refetchQueries: [
+        {
+          query: GET_LIST_ITEMS,
+          variables: {
+            id_is: listId,
+          },
+        },
+      ],
+      variables: { itemId: item.id },
+    })
+  }
+
   return (
     <div
       sx={{
@@ -278,39 +311,11 @@ const ListItems = ({ listId, setListTitle, show }) => {
                     sx={{
                       alignSelf: 'end',
                     }}
-                    onKeyPress={() => {
-                      updateItem({
-                        refetchQueries: [
-                          {
-                            query: GET_LIST_ITEMS,
-                            variables: {
-                              id_is: listId,
-                            },
-                          },
-                        ],
-                        variables: {
-                          itemId: item.id,
-                          title: item.title,
-                          status: !item.status,
-                        },
-                      })
+                    onKeyPress={(event) => {
+                      handleKeyPress(event, () => handleUpdateItem(item))
                     }}
                     onClick={() => {
-                      updateItem({
-                        refetchQueries: [
-                          {
-                            query: GET_LIST_ITEMS,
-                            variables: {
-                              id_is: listId,
-                            },
-                          },
-                        ],
-                        variables: {
-                          itemId: item.id,
-                          title: item.title,
-                          status: !item.status,
-                        },
-                      })
+                      handleUpdateItem(item)
                     }}
                   >
                     {item.status ? (
@@ -345,8 +350,8 @@ const ListItems = ({ listId, setListTitle, show }) => {
                         color: 'coral',
                       },
                     }}
-                    onKeyPress={() => {
-                      editItem(item)
+                    onKeyPress={(event) => {
+                      handleKeyPress(event, () => editItem(item))
                     }}
                     onClick={() => {
                       editItem(item)
@@ -364,31 +369,11 @@ const ListItems = ({ listId, setListTitle, show }) => {
                         color: 'crimson',
                       },
                     }}
-                    onKeyPress={() => {
-                      deleteItem({
-                        refetchQueries: [
-                          {
-                            query: GET_LIST_ITEMS,
-                            variables: {
-                              id_is: listId,
-                            },
-                          },
-                        ],
-                        variables: { itemId: item.id },
-                      })
+                    onKeyPress={(event) => {
+                      handleKeyPress(event, () => handleDeleteItem(item))
                     }}
                     onClick={() => {
-                      deleteItem({
-                        refetchQueries: [
-                          {
-                            query: GET_LIST_ITEMS,
-                            variables: {
-                              id_is: listId,
-                            },
-                          },
-                        ],
-                        variables: { itemId: item.id },
-                      })
+                      handleDeleteItem(item)
                     }}
                   >
                     <TiDeleteOutline size="30" />

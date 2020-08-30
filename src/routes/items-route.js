@@ -41,6 +41,7 @@ const ListItemsRoute = () => {
                 display: 'grid',
                 gridTemplateRows: '85px 1fr',
                 color: 'textSecondary',
+                height: '100%',
                 padding: 3,
               }}
             >
@@ -66,6 +67,8 @@ const ListItemsRoute = () => {
                   <ListSettingsButton listId={listId} hoverColor="colorThree" />
                   <MdAddCircle
                     size="30"
+                    role="button"
+                    tabIndex={0}
                     onClick={() => setShowDialog(!showDialog)}
                     sx={{
                       cursor: 'pointer',

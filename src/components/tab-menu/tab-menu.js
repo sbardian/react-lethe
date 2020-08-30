@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { MenuContext } from '../contexts/menu-context/menu-context'
+import handleKeyPress from '../../utils/on-key-press'
 
 const TabMenu = ({ listTitle }) => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
@@ -40,17 +41,20 @@ const TabMenu = ({ listTitle }) => {
         <li>
           <button
             type="button"
-            tabIndex={0}
+            aria-label="Active Items Tab"
+            tabIndex="0"
             sx={{
-              all: 'unset',
-              borderBottom: 'none',
+              border: 'none',
+              fontSize: 0,
               padding: 3,
               color: 'textSecondary',
               backgroundColor: !activeItemTab ? 'colorTwo' : 'offWhite',
               cursor: 'pointer',
             }}
             onClick={() => setActiveItemTab(false)}
-            onKeyPress={() => setActiveItemTab(false)}
+            onKeyPress={(event) =>
+              handleKeyPress(event, () => setActiveItemTab(false))
+            }
           >
             Active
           </button>
@@ -58,17 +62,20 @@ const TabMenu = ({ listTitle }) => {
         <li>
           <button
             type="button"
-            tabIndex={0}
+            aria-label="Completed Items Tab"
+            tabIndex="0"
             sx={{
-              all: 'unset',
-              borderBottom: 'none',
+              border: 'none',
+              fontSize: 0,
               padding: 3,
               color: 'textSecondary',
               backgroundColor: activeItemTab ? 'colorTwo' : 'offWhite',
               cursor: 'pointer',
             }}
             onClick={() => setActiveItemTab(true)}
-            onKeyPress={() => setActiveItemTab(false)}
+            onKeyPress={(event) =>
+              handleKeyPress(event, () => setActiveItemTab(false))
+            }
           >
             Complete
           </button>

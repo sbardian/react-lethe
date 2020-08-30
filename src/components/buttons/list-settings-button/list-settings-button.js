@@ -10,6 +10,7 @@ const ListSettingsButton = ({ listId, hoverColor }) => {
   return (
     <Link
       data-testid="list-settings-button"
+      tabIndex="0"
       aria-label="list settings link"
       to={`/list/settings/${listId}`}
       sx={{

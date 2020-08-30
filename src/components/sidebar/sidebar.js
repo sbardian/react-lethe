@@ -50,9 +50,8 @@ const SideBar = () => {
           },
         }}
       >
-        <Link
+        <li
           sx={{
-            textDecoration: 'none',
             color:
               activeSideBarLink.type === 'lists' ? 'text' : 'textSecondary',
             backgroundColor:
@@ -63,27 +62,27 @@ const SideBar = () => {
               backgroundColor: 'colorThree',
             },
           }}
-          to="/lists"
         >
-          <li
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: '40px 1fr',
-              alignItems: 'center',
-            }}
-          >
-            <AiOutlineUnorderedList
+          <Link sx={{ color: 'inherit', textDecoration: 'none' }} to="/lists">
+            <div
               sx={{
-                paddingRight: 2,
+                display: 'grid',
+                gridTemplateColumns: '40px 1fr',
+                alignItems: 'center',
               }}
-              size="34"
-            />
-            Lists
-          </li>
-        </Link>
-        <Link
+            >
+              <AiOutlineUnorderedList
+                sx={{
+                  paddingRight: 2,
+                }}
+                size="34"
+              />
+              Lists
+            </div>
+          </Link>
+        </li>
+        <li
           sx={{
-            textDecoration: 'none',
             color:
               activeSideBarLink.type === 'profile' ? 'text' : 'textSecondary',
             backgroundColor:
@@ -96,27 +95,27 @@ const SideBar = () => {
               backgroundColor: 'colorThree',
             },
           }}
-          to="/profile"
         >
-          <li
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: '40px 1fr',
-              alignItems: 'center',
-            }}
-          >
-            <AiOutlineProfile
+          <Link sx={{ color: 'inherit', textDecoration: 'none' }} to="/profile">
+            <div
               sx={{
-                paddingRight: 2,
+                display: 'grid',
+                gridTemplateColumns: '40px 1fr',
+                alignItems: 'center',
               }}
-              size="34"
-            />
-            Profile
-          </li>
-        </Link>
-        <Link
+            >
+              <AiOutlineProfile
+                sx={{
+                  paddingRight: 2,
+                }}
+                size="34"
+              />
+              Profile
+            </div>
+          </Link>
+        </li>
+        <li
           sx={{
-            textDecoration: 'none',
             color:
               activeSideBarLink.type === 'settings' ? 'text' : 'textSecondary',
             backgroundColor:
@@ -129,24 +128,28 @@ const SideBar = () => {
               backgroundColor: 'colorThree',
             },
           }}
-          to="/settings"
         >
-          <li
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: '40px 1fr',
-              alignItems: 'center',
-            }}
+          <Link
+            sx={{ color: 'inherit', textDecoration: 'none' }}
+            to="/settings"
           >
-            <AiOutlineSetting
+            <div
               sx={{
-                paddingRight: 2,
+                display: 'grid',
+                gridTemplateColumns: '40px 1fr',
+                alignItems: 'center',
               }}
-              size="34"
-            />
-            Settings
-          </li>
-        </Link>
+            >
+              <AiOutlineSetting
+                sx={{
+                  paddingRight: 2,
+                }}
+                size="34"
+              />
+              Settings
+            </div>
+          </Link>
+        </li>
       </ul>
     </div>
   ) : (

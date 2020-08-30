@@ -91,6 +91,7 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
           <input
             data-testid="lethe-input"
             aria-label="add-item-input"
+            aria-required="true"
             sx={{
               color: 'textSecondary',
               borderRadius: '5px',
@@ -126,7 +127,7 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
             aria-label="submit"
             type="submit"
             sx={{
-              all: 'unset',
+              border: 'none',
               padding: 2,
               borderRadius: '10px',
               fontSize: 3,
@@ -160,12 +161,12 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
             aria-label="cancel"
             type="submit"
             sx={{
-              all: 'unset',
+              border: 'none',
               padding: 2,
               borderRadius: '10px',
               fontSize: 3,
               boxShadow: 'none',
-              backgroundColor: 'none',
+              backgroundColor: 'transparent',
               color: 'textSecondary',
               display: 'flex',
               justifyContent: 'center',

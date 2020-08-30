@@ -69,7 +69,8 @@ const UpdateListTitleButton = ({
       data-testid="update-title-button"
       disabled={titleNotUpdated}
       sx={{
-        all: 'unset',
+        border: 'none',
+        backgroundColor: 'transparent',
         cursor: 'pointer',
         justifySelf: 'start',
         alignSelf: 'start',

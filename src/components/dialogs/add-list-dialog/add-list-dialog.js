@@ -87,6 +87,7 @@ const AddListDialog = ({ setShowDialog, show }) => {
           <input
             data-testid="lethe-input"
             aria-label="add-list-input"
+            aria-required="true"
             sx={{
               color: 'textSecondary',
               borderRadius: '5px',
@@ -120,7 +121,7 @@ const AddListDialog = ({ setShowDialog, show }) => {
           <button
             type="submit"
             sx={{
-              all: 'unset',
+              border: 'none',
               padding: 2,
               borderRadius: '10px',
               fontSize: 3,
@@ -145,12 +146,12 @@ const AddListDialog = ({ setShowDialog, show }) => {
           <button
             type="submit"
             sx={{
-              all: 'unset',
+              border: 'none',
               padding: 2,
               borderRadius: '10px',
               fontSize: 3,
               boxShadow: 'none',
-              backgroundColor: 'none',
+              backgroundColor: 'transparent',
               color: 'textSecondary',
               display: 'flex',
               justifyContent: 'center',

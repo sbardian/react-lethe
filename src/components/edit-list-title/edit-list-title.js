@@ -57,6 +57,7 @@ const EditListTitle = ({ listId, orgTitle }) => {
           <input
             data-testid="lethe-input"
             aria-label="edit-list-title-input"
+            aria-required="true"
             value={newTitle}
             id="edit-list-title"
             onChange={(event) => handleTitleChange(event)}

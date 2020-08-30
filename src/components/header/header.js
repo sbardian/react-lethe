@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { TokenContext } from '../contexts/token-context/token-context'
 import MenuButton from '../buttons/menu-button/menu-button'
 import ColorModeToggleButton from '../buttons/color-mode-toggle-button/color-mode-toggle-button'
+import handleKeyPress from '../../utils/on-key-press'
 import logo from '../../brain.png'
 
 const Header = () => {
@@ -74,7 +75,6 @@ const Header = () => {
           alt="logo"
           sx={{
             alignSelf: 'center',
-            height: '75px',
             width: '125px',
             paddingTop: 1,
           }}
@@ -130,7 +130,7 @@ const Header = () => {
                 border: 'none',
                 color: 'text',
               }}
-              onKeyPress={() => logout()}
+              onKeyPress={(event) => () => handleKeyPress(event, logout)}
               onClick={() => logout()}
             >
               Logout

@@ -169,7 +169,8 @@ const LoginForm = ({ flipCard }) => {
             <button
               type="submit"
               sx={{
-                all: 'unset',
+                // all: 'unset',
+                border: 'none',
                 padding: 2,
                 borderRadius: '10px',
                 fontSize: 3,
@@ -179,7 +180,7 @@ const LoginForm = ({ flipCard }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                '&:hover': {
+                '&:hover, &:focus': {
                   backgroundColor: 'colorThree',
                   color: 'text',
                 },
@@ -190,12 +191,12 @@ const LoginForm = ({ flipCard }) => {
             <button
               type="button"
               sx={{
-                all: 'unset',
+                border: 'none',
                 padding: 2,
                 borderRadius: '10px',
                 fontSize: 3,
                 boxShadow: 'none',
-                backgroundColor: 'none',
+                backgroundColor: 'transparent',
                 color: 'textSecondary',
                 display: 'flex',
                 justifyContent: 'center',

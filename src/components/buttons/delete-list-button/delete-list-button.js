@@ -10,10 +10,12 @@ const DeleteListButton = ({ onDeleteList, listId }) => {
     <button
       data-testid="delete-list-button"
       aria-label="delete list"
+      tabIndex={0}
       type="button"
       onClick={() => onDeleteList(listId)}
       sx={{
-        all: 'unset',
+        border: 'none',
+        backgroundColor: 'transparent',
         display: 'grid',
         color: 'inherit',
         cursor: 'pointer',

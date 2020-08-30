@@ -10,6 +10,7 @@ const ColorModeToggleButton = () => {
   return (
     <button
       type="button"
+      aria-label="change color mode"
       sx={{
         cursor: 'pointer',
         padding: 2,

@@ -211,6 +211,7 @@ const SignUpForm = ({ flipCard }) => {
           <label
             htmlFor="confirm-password"
             sx={{
+              display: 'grid',
               alignSelf: 'end',
               marginTop: 2,
             }}
@@ -262,35 +263,14 @@ const SignUpForm = ({ flipCard }) => {
             }}
           >
             <button
-              type="submit"
+              type="button"
               sx={{
-                all: 'unset',
+                border: 'none',
                 borderRadius: '10px',
                 fontSize: 3,
                 padding: 2,
                 boxShadow: 'none',
                 backgroundColor: 'transparent',
-                color: 'textSecondary',
-                display: 'flex',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                '&:hover': {
-                  backgroundColor: 'colorThree',
-                  color: 'text',
-                },
-              }}
-            >
-              Register
-            </button>
-            <button
-              type="button"
-              sx={{
-                all: 'unset',
-                borderRadius: '10px',
-                fontSize: 3,
-                padding: 2,
-                boxShadow: 'none',
-                backgroundColor: 'none',
                 color: 'textSecondary',
                 display: 'flex',
                 justifyContent: 'center',
@@ -303,6 +283,27 @@ const SignUpForm = ({ flipCard }) => {
               }}
             >
               Login
+            </button>
+            <button
+              type="submit"
+              sx={{
+                border: 'none',
+                borderRadius: '10px',
+                fontSize: 3,
+                padding: 2,
+                boxShadow: 'none',
+                backgroundColor: 'transparent',
+                color: 'textSecondary',
+                display: 'flex',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                '&:hover, &:focus': {
+                  backgroundColor: 'colorThree',
+                  color: 'text',
+                },
+              }}
+            >
+              Register
             </button>
           </div>
           <React.Fragment>
