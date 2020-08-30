@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { render } from '@testing-library/react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from 'theme-ui'
 import { AlertProvider } from 'react-alerts-plus'
 import { MenuProvider } from '../../components/contexts/menu-context/menu-context'
@@ -10,7 +11,9 @@ const AllTheProviders = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <MenuProvider>
-        <AlertProvider>{children}</AlertProvider>
+        <Router>
+          <AlertProvider>{children}</AlertProvider>
+        </Router>
       </MenuProvider>
     </ThemeProvider>
   )
