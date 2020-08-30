@@ -15,13 +15,6 @@ const SideBar = () => {
     activeSideBarLink,
     setActiveSideBarLink,
   } = React.useContext(MenuContext)
-
-  const isActive = ({ isPartiallyCurrent, type }) => {
-    if (isPartiallyCurrent) {
-      setActiveSideBarLink(type)
-    }
-  }
-
   const isLists = useRouteMatch('/lists')
   const isProfile = useRouteMatch('/profile')
   const isSettings = useRouteMatch('/settings')
@@ -71,7 +64,6 @@ const SideBar = () => {
             },
           }}
           to="/lists"
-          getProps={(props) => isActive({ ...props, type: 'lists' })}
         >
           <li
             sx={{
@@ -105,7 +97,6 @@ const SideBar = () => {
             },
           }}
           to="/profile"
-          getProps={(props) => isActive({ ...props, type: 'profile' })}
         >
           <li
             sx={{
@@ -139,7 +130,6 @@ const SideBar = () => {
             },
           }}
           to="/settings"
-          getProps={(props) => isActive({ ...props, type: 'settings' })}
         >
           <li
             sx={{

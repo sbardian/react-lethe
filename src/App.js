@@ -79,7 +79,7 @@ const App = () => {
           <ApolloProvider client={client}>
             <Router>
               <Switch>
-                <AuthRoute path="/lists" component={ListsRoute} />
+                <AuthRoute path="/lists" component={() => <ListsRoute />} />
 
                 <AuthRoute path="/profile" component={ProfileRoute} />
 
@@ -96,12 +96,6 @@ const App = () => {
                   <LoginRoute />
                 </Route>
               </Switch>
-              {/* <LoginRoute path="/" />
-              <AuthRoute as={ListsRoute} path="lists" />
-              <AuthRoute as={ProfileRoute} path="profile" />
-              <AuthRoute as={SettingsRoute} path="settings" />
-              <AuthRoute as={ItemsRoute} path="list/:listId" />
-              <AuthRoute as={ListSettingsRoute} path="list/settings/:listId" /> */}
             </Router>
           </ApolloProvider>
         </AlertProvider>
