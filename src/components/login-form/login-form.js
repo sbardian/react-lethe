@@ -31,7 +31,7 @@ const LoginForm = ({ flipCard }) => {
     if (loginData?.login?.token) {
       setToken(loginData.login.token)
     }
-  }, [loginData])
+  }, [loginData, setToken])
 
   const login = (data) => {
     if (data) {
