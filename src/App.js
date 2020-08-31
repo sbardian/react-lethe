@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
   ApolloClient,
   InMemoryCache,
@@ -78,24 +78,30 @@ const App = () => {
         <AlertProvider>
           <ApolloProvider client={client}>
             <Router>
-              <Switch>
+              <Routes>
                 <AuthRoute path="/lists" component={() => <ListsRoute />} />
 
-                <AuthRoute path="/profile" component={ProfileRoute} />
+                <AuthRoute path="/profile" component={() => <ProfileRoute />} />
 
-                <AuthRoute path="/settings" component={SettingsRoute} />
+                <AuthRoute
+                  path="/settings"
+                  component={() => <SettingsRoute />}
+                />
 
                 <AuthRoute
                   path="/list/settings/:listId"
-                  component={ListSettingsRoute}
+                  component={() => <ListSettingsRoute />}
                 />
 
-                <AuthRoute path="/list/:listId" component={ItemsRoute} />
+                <AuthRoute
+                  path="/list/:listId"
+                  component={() => <ItemsRoute />}
+                />
 
                 <Route path="/">
                   <LoginRoute />
                 </Route>
-              </Switch>
+              </Routes>
             </Router>
           </ApolloProvider>
         </AlertProvider>

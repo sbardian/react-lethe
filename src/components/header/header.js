@@ -3,7 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { TokenContext } from '../contexts/token-context/token-context'
 import MenuButton from '../buttons/menu-button/menu-button'
 import ColorModeToggleButton from '../buttons/color-mode-toggle-button/color-mode-toggle-button'
@@ -12,11 +12,11 @@ import logo from '../../brain.png'
 
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const logout = () => {
     removeToken()
-    history.push('/')
+    navigate('/')
   }
 
   const GET_MY_LISTS = gql`

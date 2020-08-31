@@ -3,14 +3,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import handleKeyPress from '../../utils/on-key-press'
 
 const GoBack = ({ children }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
-  const goBack = () => {
-    history.goBack()
+  const handleGoBack = () => {
+    navigate(-1)
   }
 
   return (
@@ -28,8 +28,8 @@ const GoBack = ({ children }) => {
           color: 'colorThree',
         },
       }}
-      onKeyPress={(event) => () => handleKeyPress(event, goBack)}
-      onClick={goBack}
+      onKeyPress={(event) => () => handleKeyPress(event, handleGoBack)}
+      onClick={handleGoBack}
     >
       {children}
     </button>

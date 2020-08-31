@@ -1,19 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading, no-undef */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Redirect } from 'react-router-dom'
-import { TokenContext } from '../components/contexts/token-context/token-context'
+import { Route, Navigate } from 'react-router-dom'
 
 const AuthRoute = ({ component: Component, ...rest }) => {
-  const { token } = React.useContext(TokenContext)
+  const token = sessionStorage.getItem('lethe-token')
 
   return (
-    <Route
-      {...rest}
-      render={(props) =>
-        token ? <Component {...props} /> : <Redirect to="/" />
-      }
-    />
+    <Route {...rest} element={token ? <Component /> : <Navigate to="/" />} />
   )
 }
 

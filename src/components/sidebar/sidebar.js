@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link, useMatch } from 'react-router-dom'
 import {
   AiOutlineUnorderedList,
   AiOutlineProfile,
@@ -16,9 +16,9 @@ const SideBar = () => {
     activeSideBarLink,
     setActiveSideBarLink,
   } = React.useContext(MenuContext)
-  const isLists = useRouteMatch('/lists')
-  const isProfile = useRouteMatch('/profile')
-  const isSettings = useRouteMatch('/settings')
+  const isLists = useMatch('/lists')
+  const isProfile = useMatch('/profile')
+  const isSettings = useMatch('/settings')
 
   React.useEffect(() => {
     if (isLists?.isExact) {
@@ -64,22 +64,24 @@ const SideBar = () => {
             },
           }}
         >
-          <Link sx={{ color: 'inherit', textDecoration: 'none' }} to="/lists">
-            <div
+          <Link
+            sx={{
+              color: 'inherit',
+              textDecoration: 'none',
+              display: 'grid',
+              gridTemplateColumns: '40px 1fr',
+              alignItems: 'center',
+            }}
+            tabIndex={0}
+            to="/lists"
+          >
+            <AiOutlineUnorderedList
               sx={{
-                display: 'grid',
-                gridTemplateColumns: '40px 1fr',
-                alignItems: 'center',
+                paddingRight: 2,
               }}
-            >
-              <AiOutlineUnorderedList
-                sx={{
-                  paddingRight: 2,
-                }}
-                size="34"
-              />
-              Lists
-            </div>
+              size="34"
+            />
+            Lists
           </Link>
         </li>
         <li
@@ -97,22 +99,24 @@ const SideBar = () => {
             },
           }}
         >
-          <Link sx={{ color: 'inherit', textDecoration: 'none' }} to="/profile">
-            <div
+          <Link
+            sx={{
+              color: 'inherit',
+              textDecoration: 'none',
+              display: 'grid',
+              gridTemplateColumns: '40px 1fr',
+              alignItems: 'center',
+            }}
+            tabIndex={0}
+            to="/profile"
+          >
+            <AiOutlineProfile
               sx={{
-                display: 'grid',
-                gridTemplateColumns: '40px 1fr',
-                alignItems: 'center',
+                paddingRight: 2,
               }}
-            >
-              <AiOutlineProfile
-                sx={{
-                  paddingRight: 2,
-                }}
-                size="34"
-              />
-              Profile
-            </div>
+              size="34"
+            />
+            Profile
           </Link>
         </li>
         <li
@@ -131,24 +135,23 @@ const SideBar = () => {
           }}
         >
           <Link
-            sx={{ color: 'inherit', textDecoration: 'none' }}
+            sx={{
+              color: 'inherit',
+              textDecoration: 'none',
+              display: 'grid',
+              gridTemplateColumns: '40px 1fr',
+              alignItems: 'center',
+            }}
+            tabIndex={0}
             to="/settings"
           >
-            <div
+            <AiOutlineSetting
               sx={{
-                display: 'grid',
-                gridTemplateColumns: '40px 1fr',
-                alignItems: 'center',
+                paddingRight: 2,
               }}
-            >
-              <AiOutlineSetting
-                sx={{
-                  paddingRight: 2,
-                }}
-                size="34"
-              />
-              Settings
-            </div>
+              size="34"
+            />
+            Settings
           </Link>
         </li>
       </ul>
