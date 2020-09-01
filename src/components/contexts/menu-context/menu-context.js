@@ -5,9 +5,6 @@ export const MenuContext = React.createContext()
 
 export const MenuProvider = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = React.useState(true)
-  const [activeSideBarLink, setActiveSideBarLink] = React.useState({
-    type: null,
-  })
   const [showListItemTabs, setShowListItemTabs] = React.useState(false)
 
   // activeItemTab: false = active / true = complete
@@ -18,8 +15,6 @@ export const MenuProvider = ({ children }) => {
       value={{
         isSideBarOpen,
         setIsSideBarOpen,
-        activeSideBarLink,
-        setActiveSideBarLink,
         showListItemTabs,
         setShowListItemTabs,
         activeItemTab,

@@ -1,39 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { Link, useMatch } from 'react-router-dom'
 import {
   AiOutlineUnorderedList,
   AiOutlineProfile,
   AiOutlineSetting,
 } from 'react-icons/ai'
 import { MenuContext } from '../contexts/menu-context/menu-context'
+import SideBarLink from './sidebar-link'
 
 const SideBar = () => {
-  const {
-    isSideBarOpen,
-    activeSideBarLink,
-    setActiveSideBarLink,
-  } = React.useContext(MenuContext)
-  const isLists = useMatch('/lists')
-  console.log('SideBar -> isLists', isLists)
-  const isProfile = useMatch('/profile')
-  console.log('SideBar -> isProfile', isProfile)
-  const isSettings = useMatch('/settings')
-  console.log('SideBar -> isSettings', isSettings)
+  const { isSideBarOpen } = React.useContext(MenuContext)
 
-  React.useEffect(() => {
-    if (isLists) {
-      setActiveSideBarLink({ type: 'lists' })
-    } else if (isProfile) {
-      setActiveSideBarLink({ type: 'profile' })
-    } else if (isSettings) {
-      setActiveSideBarLink({ type: 'settings' })
-    }
-  }, [])
-
-  // TODO: extract Link's to SideBarLink with children for icon
   return isSideBarOpen ? (
     <nav
       sx={{
@@ -55,109 +33,16 @@ const SideBar = () => {
           },
         }}
       >
-        <li
-          sx={{
-            color:
-              activeSideBarLink.type === 'lists' ? 'text' : 'textSecondary',
-            backgroundColor:
-              activeSideBarLink.type === 'lists' ? 'colorThree' : 'transparent',
-            padding: 2,
-            '&:hover': {
-              color: 'text',
-              backgroundColor: 'colorThree',
-            },
-          }}
-        >
-          <Link
-            sx={{
-              color: 'inherit',
-              textDecoration: 'none',
-              display: 'grid',
-              gridTemplateColumns: '40px 1fr',
-              alignItems: 'center',
-            }}
-            tabIndex={0}
-            to="/lists"
-          >
-            <AiOutlineUnorderedList
-              sx={{
-                paddingRight: 2,
-              }}
-              size="34"
-            />
-            Lists
-          </Link>
-        </li>
-        <li
-          sx={{
-            color:
-              activeSideBarLink.type === 'profile' ? 'text' : 'textSecondary',
-            backgroundColor:
-              activeSideBarLink.type === 'profile'
-                ? 'colorThree'
-                : 'transparent',
-            padding: 2,
-            '&:hover': {
-              color: 'text',
-              backgroundColor: 'colorThree',
-            },
-          }}
-        >
-          <Link
-            sx={{
-              color: 'inherit',
-              textDecoration: 'none',
-              display: 'grid',
-              gridTemplateColumns: '40px 1fr',
-              alignItems: 'center',
-            }}
-            tabIndex={0}
-            to="/profile"
-          >
-            <AiOutlineProfile
-              sx={{
-                paddingRight: 2,
-              }}
-              size="34"
-            />
-            Profile
-          </Link>
-        </li>
-        <li
-          sx={{
-            color:
-              activeSideBarLink.type === 'settings' ? 'text' : 'textSecondary',
-            backgroundColor:
-              activeSideBarLink.type === 'settings'
-                ? 'colorThree'
-                : 'transparent',
-            padding: 2,
-            '&:hover': {
-              color: 'text',
-              backgroundColor: 'colorThree',
-            },
-          }}
-        >
-          <Link
-            sx={{
-              color: 'inherit',
-              textDecoration: 'none',
-              display: 'grid',
-              gridTemplateColumns: '40px 1fr',
-              alignItems: 'center',
-            }}
-            tabIndex={0}
-            to="/settings"
-          >
-            <AiOutlineSetting
-              sx={{
-                paddingRight: 2,
-              }}
-              size="34"
-            />
-            Settings
-          </Link>
-        </li>
+        <SideBarLink to="/lists/" title="Lists">
+          <AiOutlineUnorderedList size="34" />
+        </SideBarLink>
+
+        <SideBarLink to="/profile" title="Profile">
+          <AiOutlineProfile size="34" />
+        </SideBarLink>
+        <SideBarLink to="/settings" title="Settings">
+          <AiOutlineSetting size="34" />
+        </SideBarLink>
       </ul>
     </nav>
   ) : (
