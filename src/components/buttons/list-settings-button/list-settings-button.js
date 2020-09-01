@@ -12,7 +12,7 @@ const ListSettingsButton = ({ listId, hoverColor }) => {
       data-testid="list-settings-button"
       tabIndex="0"
       aria-label="list settings link"
-      to={`/list/settings/${listId}`}
+      to={`/lists/settings/${listId}`}
       sx={{
         display: 'grid',
         cursor: 'pointer',

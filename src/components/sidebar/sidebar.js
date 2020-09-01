@@ -33,7 +33,7 @@ const SideBar = () => {
           },
         }}
       >
-        <SideBarLink to="/lists/" title="Lists">
+        <SideBarLink to="/lists" title="Lists">
           <AiOutlineUnorderedList size="34" />
         </SideBarLink>
 

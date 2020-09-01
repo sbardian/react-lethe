@@ -89,12 +89,12 @@ const App = () => {
                 />
 
                 <AuthRoute
-                  path="/list/settings/:listId"
+                  path="/lists/settings/:listId"
                   component={() => <ListSettingsRoute />}
                 />
 
                 <AuthRoute
-                  path="/list/:listId"
+                  path="/lists/:listId"
                   component={() => <ItemsRoute />}
                 />
 

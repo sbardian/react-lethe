@@ -47,7 +47,7 @@ const Lists = ({ lists, onDeleteList }) => {
         >
           <Link
             aria-label="link to list"
-            to={`/list/${list.id}`}
+            to={`/lists/${list.id}`}
             sx={{
               textDecoration: 'none',
               height: '100%',
