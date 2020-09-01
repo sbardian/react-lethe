@@ -6,7 +6,7 @@ import { jsx } from 'theme-ui'
 import { Link, useMatch } from 'react-router-dom'
 
 const SideBarLink = ({ children, title, to }) => {
-  const isActive = useMatch(to)
+  const isActive = useMatch({ path: to, caseSensitive: true, end: false })
 
   return (
     <li
