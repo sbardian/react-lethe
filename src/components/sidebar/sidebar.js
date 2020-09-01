@@ -17,21 +17,25 @@ const SideBar = () => {
     setActiveSideBarLink,
   } = React.useContext(MenuContext)
   const isLists = useMatch('/lists')
+  console.log('SideBar -> isLists', isLists)
   const isProfile = useMatch('/profile')
+  console.log('SideBar -> isProfile', isProfile)
   const isSettings = useMatch('/settings')
+  console.log('SideBar -> isSettings', isSettings)
 
   React.useEffect(() => {
-    if (isLists?.isExact) {
+    if (isLists) {
       setActiveSideBarLink({ type: 'lists' })
-    } else if (isProfile?.isExact) {
+    } else if (isProfile) {
       setActiveSideBarLink({ type: 'profile' })
-    } else if (isSettings?.isExact) {
+    } else if (isSettings) {
       setActiveSideBarLink({ type: 'settings' })
     }
   }, [])
 
+  // TODO: extract Link's to SideBarLink with children for icon
   return isSideBarOpen ? (
-    <div
+    <nav
       sx={{
         padding: 3,
       }}
@@ -155,7 +159,7 @@ const SideBar = () => {
           </Link>
         </li>
       </ul>
-    </div>
+    </nav>
   ) : (
     <div />
   )
