@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from 'theme-ui'
-import { gql, useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { TokenContext } from '../contexts/token-context/token-context'
+import { StoreContext } from '../contexts/store-context/store-context'
 import MenuButton from '../buttons/menu-button/menu-button'
 import ColorModeToggleButton from '../buttons/color-mode-toggle-button/color-mode-toggle-button'
 import handleKeyPress from '../../utils/on-key-press'
@@ -12,6 +12,7 @@ import logo from '../../brain.png'
 
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)
+  const [state] = React.useContext(StoreContext)
   const navigate = useNavigate()
 
   const logout = () => {
@@ -19,35 +20,13 @@ const Header = () => {
     navigate('/')
   }
 
-  const GET_MY_LISTS = gql`
-    {
-      getMyInfo {
-        id
-        username
-      }
-    }
-  `
-
-  const { data, loading, error } = useQuery(GET_MY_LISTS)
-
-  if (loading) {
-    return (
-      <p
-        sx={{
-          color: 'textLight',
-          fontSize: 2,
-        }}
-      >
-        Loading...
-      </p>
-    )
+  const { username } = state
+  let letter
+  let restOfName
+  if (username) {
+    letter = username[0].toUpperCase()
+    restOfName = username.slice(1)
   }
-  if (error) return <p>{`${error}`}</p>
-  if (!data) return <p>You currently have no lists. Create some!</p>
-
-  const { username } = data.getMyInfo
-  const letter = username[0].toUpperCase()
-  const restOfName = username.slice(1)
 
   return (
     <div

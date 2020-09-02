@@ -4,13 +4,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
+import { StoreContext } from '../contexts/store-context/store-context'
 import Lists from '../lists/lists'
+import { UPDATE_USERNAME } from '../contexts/store-context/actions'
 import alertConfig from '../../utils/alerts-config'
 
 export const GET_MY_LISTS = gql`
   {
     getMyInfo {
       id
+      username
       lists {
         id
         title
@@ -41,8 +44,18 @@ export const LIST_DELETED = gql`
 `
 
 const ListsContainer = ({ show }) => {
+  const [, dispatch] = React.useContext(StoreContext)
+
   const { subscribeToMore, data: getListsData, loading, error } = useQuery(
     GET_MY_LISTS,
+    {
+      onCompleted: (data) => {
+        dispatch({
+          type: UPDATE_USERNAME,
+          payload: data.getMyInfo.username,
+        })
+      },
+    },
   )
 
   const [deleteList] = useMutation(DELETE_LIST, {
@@ -57,11 +70,6 @@ const ListsContainer = ({ show }) => {
     onError: (e) => {
       show({ ...alertConfig, message: e })
     },
-    refetchQueries: [
-      {
-        query: GET_MY_LISTS,
-      },
-    ],
   })
 
   const handleDeleteList = (listId) => {

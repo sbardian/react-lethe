@@ -21,6 +21,7 @@ import SettingsRoute from './routes/settings-route'
 import AuthRoute from './routes/auth-route'
 import { MenuProvider } from './components/contexts/menu-context/menu-context'
 import { TokenContext } from './components/contexts/token-context/token-context'
+import { StoreProvider } from './components/contexts/store-context/store-context'
 import './App.css'
 
 const App = () => {
@@ -74,38 +75,43 @@ const App = () => {
 
   return (
     <div className="App">
-      <MenuProvider>
-        <AlertProvider>
-          <ApolloProvider client={client}>
-            <Router>
-              <Routes>
-                <AuthRoute path="/lists" component={() => <ListsRoute />} />
+      <StoreProvider>
+        <MenuProvider>
+          <AlertProvider>
+            <ApolloProvider client={client}>
+              <Router>
+                <Routes>
+                  <AuthRoute path="/lists" component={() => <ListsRoute />} />
 
-                <AuthRoute path="/profile" component={() => <ProfileRoute />} />
+                  <AuthRoute
+                    path="/profile"
+                    component={() => <ProfileRoute />}
+                  />
 
-                <AuthRoute
-                  path="/settings"
-                  component={() => <SettingsRoute />}
-                />
+                  <AuthRoute
+                    path="/settings"
+                    component={() => <SettingsRoute />}
+                  />
 
-                <AuthRoute
-                  path="/lists/settings/:listId"
-                  component={() => <ListSettingsRoute />}
-                />
+                  <AuthRoute
+                    path="/lists/settings/:listId"
+                    component={() => <ListSettingsRoute />}
+                  />
 
-                <AuthRoute
-                  path="/lists/:listId"
-                  component={() => <ItemsRoute />}
-                />
+                  <AuthRoute
+                    path="/lists/:listId"
+                    component={() => <ItemsRoute />}
+                  />
 
-                <Route path="/">
-                  <LoginRoute />
-                </Route>
-              </Routes>
-            </Router>
-          </ApolloProvider>
-        </AlertProvider>
-      </MenuProvider>
+                  <Route path="/">
+                    <LoginRoute />
+                  </Route>
+                </Routes>
+              </Router>
+            </ApolloProvider>
+          </AlertProvider>
+        </MenuProvider>
+      </StoreProvider>
     </div>
   )
 }
