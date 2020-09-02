@@ -12,12 +12,15 @@ import { RiCheckboxBlankLine } from 'react-icons/ri'
 import Dialog from '../dialogs/dialog'
 import EditItemDialog from '../dialogs/edit-item-dialog/edit-item-dialog'
 import { MenuContext } from '../contexts/menu-context/menu-context'
+import { StoreContext } from '../contexts/store-context/store-context'
 import handleKeyPress from '../../utils/on-key-press'
+import { UPDATE_CURRENT_LIST_TITLE } from '../contexts/store-context/actions'
 import alertConfig from '../../utils/alerts-config'
 
-const ListItems = ({ listId, setListTitle, show }) => {
+const ListItems = ({ listId, show }) => {
   const [showDialog, setShowDialog] = React.useState(false)
   const { activeItemTab } = React.useContext(MenuContext)
+  const [, dispatch] = React.useContext(StoreContext)
   const [displayedItems, setDisplayedItems] = React.useState()
   const [currentItem, setCurrentItem] = React.useState(null)
 
@@ -105,6 +108,13 @@ const ListItems = ({ listId, setListTitle, show }) => {
     variables: {
       id_is: listId,
     },
+    onCompleted: (successData) => {
+      const [list] = successData.getLists
+      dispatch({
+        type: UPDATE_CURRENT_LIST_TITLE,
+        payload: list.title,
+      })
+    },
   })
 
   const [updateItem] = useMutation(UPDATE_ITEM_STATUS, {
@@ -145,9 +155,6 @@ const ListItems = ({ listId, setListTitle, show }) => {
     )
   if (error) return <p>{`${error}`}</p>
   if (!data) return <p>You currently have no lists. Create some!</p>
-
-  const [{ title }] = data?.getLists
-  setListTitle(title)
 
   subscribeToMore({
     document: ITEM_ADDED,
@@ -401,7 +408,6 @@ const ListItems = ({ listId, setListTitle, show }) => {
 
 ListItems.propTypes = {
   listId: PropTypes.string.isRequired,
-  setListTitle: PropTypes.func.isRequired,
   show: PropTypes.func.isRequired,
 }
 

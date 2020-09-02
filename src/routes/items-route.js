@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { useParams } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
@@ -20,9 +19,6 @@ const ListItemsRoute = () => {
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
   )
-
-  // TODO: fix this later...:)
-  const [listTitle, setListTitle] = React.useState('')
 
   React.useEffect(() => {
     setShowListItemTabs(true)
@@ -52,7 +48,7 @@ const ListItemsRoute = () => {
                   gridTemplateColumns: '1fr 40px',
                 }}
               >
-                {showListItemTabs && <TabMenu listTitle={listTitle} />}
+                {showListItemTabs && <TabMenu />}
                 <div
                   sx={{
                     display: 'grid',
@@ -82,7 +78,7 @@ const ListItemsRoute = () => {
                   />
                 </div>
               </div>
-              <Items listId={listId} setListTitle={setListTitle} show={show} />
+              <Items listId={listId} show={show} />
             </div>
             <Dialog showDialog={showDialog}>
               <AddItemDialog

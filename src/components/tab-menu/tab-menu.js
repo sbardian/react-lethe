@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { MenuContext } from '../contexts/menu-context/menu-context'
+import { StoreContext } from '../contexts/store-context/store-context'
 import handleKeyPress from '../../utils/on-key-press'
 
-const TabMenu = ({ listTitle }) => {
+const TabMenu = () => {
   const { activeItemTab, setActiveItemTab } = React.useContext(MenuContext)
+  const [{ currentListTitle }] = React.useContext(StoreContext)
 
   return (
     <nav
@@ -26,7 +27,7 @@ const TabMenu = ({ listTitle }) => {
           marginBottom: '5px',
         }}
       >
-        {listTitle}
+        {currentListTitle}
       </span>
       <ol
         sx={{
@@ -83,10 +84,6 @@ const TabMenu = ({ listTitle }) => {
       </ol>
     </nav>
   )
-}
-
-TabMenu.propTypes = {
-  listTitle: PropTypes.string.isRequired,
 }
 
 export default TabMenu

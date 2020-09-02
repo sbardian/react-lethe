@@ -128,7 +128,7 @@ const Header = () => {
             },
           }}
         >
-          {`Welcome ${letter}${restOfName}!`}
+          {username ? `Welcome ${letter}${restOfName}!` : ''}
         </div>
       </div>
     </div>

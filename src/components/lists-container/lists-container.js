@@ -49,10 +49,10 @@ const ListsContainer = ({ show }) => {
   const { subscribeToMore, data: getListsData, loading, error } = useQuery(
     GET_MY_LISTS,
     {
-      onCompleted: (data) => {
+      onCompleted: (successData) => {
         dispatch({
           type: UPDATE_USERNAME,
-          payload: data.getMyInfo.username,
+          payload: successData.getMyInfo.username,
         })
       },
     },
