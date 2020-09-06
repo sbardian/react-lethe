@@ -35,6 +35,7 @@ const MenuButton = () => {
       tabIndex={0}
       size="30"
       onKeyPress={(event) => handleKeyPress(event, toggleSidebar)}
+      onClick={() => toggleSidebar()}
       sx={{
         color: 'textSecondary',
         '&:hover': {
