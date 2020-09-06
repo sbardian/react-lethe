@@ -26,7 +26,7 @@ const Lists = ({ lists, onDeleteList }) => {
           sx={{
             display: 'grid',
             gap: 3,
-            gridTemplateColumns: '1fr 30px',
+            gridTemplateColumns: '1fr auto',
             border: (theme) => `1px solid ${theme.colors.textSecondary}`,
             backgroundColor: 'offWhite',
             padding: '5px',
@@ -63,6 +63,7 @@ const Lists = ({ lists, onDeleteList }) => {
             sx={{
               display: 'grid',
               gap: 3,
+              justifyItems: 'center',
               '@media (min-width: 800px)': {
                 gridTemplateColumns: '30px 30px',
               },

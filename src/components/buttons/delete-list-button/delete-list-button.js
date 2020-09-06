@@ -19,7 +19,7 @@ const DeleteListButton = ({ onDeleteList, listId }) => {
         display: 'grid',
         color: 'inherit',
         cursor: 'pointer',
-        justifySelf: 'end',
+        // justifySelf: 'end',
         alignSelf: 'center',
       }}
     >
