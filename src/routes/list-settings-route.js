@@ -19,6 +19,7 @@ const ListSettingsRoute = () => {
           gridTemplateRows: '35px 1fr',
           color: 'textSecondary',
           padding: 3,
+          height: '100%',
         }}
       >
         <GoBack>
