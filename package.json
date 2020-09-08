@@ -40,7 +40,6 @@
     "@testing-library/user-event": "12.1.3",
     "deepmerge": "4.2.2",
     "graphql": "15.3.0",
-    "history": "5.0.0",
     "react": "16.13.1",
     "react-alerts-plus": "1.0.0",
     "react-card-flip": "1.0.11",
