@@ -18,6 +18,7 @@ import ListSettingsRoute from './routes/list-settings-route'
 import ItemsRoute from './routes/items-route'
 import ProfileRoute from './routes/profile-route'
 import SettingsRoute from './routes/settings-route'
+import InvitationsRoute from './routes/invitations-route'
 import AuthRoute from './routes/auth-route'
 import { MenuProvider } from './components/contexts/menu-context/menu-context'
 import { TokenContext } from './components/contexts/token-context/token-context'
@@ -82,6 +83,11 @@ const App = () => {
               <Router>
                 <Routes>
                   <AuthRoute path="/lists" component={() => <ListsRoute />} />
+
+                  <AuthRoute
+                    path="/invitations"
+                    component={() => <InvitationsRoute />}
+                  />
 
                   <AuthRoute
                     path="/profile"

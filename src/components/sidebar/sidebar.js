@@ -6,6 +6,7 @@ import {
   AiOutlineProfile,
   AiOutlineSetting,
 } from 'react-icons/ai'
+import { MdInsertInvitation } from 'react-icons/md'
 import { MenuContext } from '../contexts/menu-context/menu-context'
 import SideBarLink from './sidebar-link'
 
@@ -36,7 +37,9 @@ const SideBar = () => {
         <SideBarLink to="/lists" title="Lists">
           <AiOutlineUnorderedList size="34" />
         </SideBarLink>
-
+        <SideBarLink to="/invitations" title="Invitations">
+          <MdInsertInvitation size="34" />
+        </SideBarLink>
         <SideBarLink to="/profile" title="Profile">
           <AiOutlineProfile size="34" />
         </SideBarLink>
