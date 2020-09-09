@@ -265,7 +265,6 @@ const ListItems = ({ listId, show }) => {
       sx={{
         backgroundColor: 'colorTwo',
         margin: 0,
-        height: '100%',
       }}
     >
       <ul
