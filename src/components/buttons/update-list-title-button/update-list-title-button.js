@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
-import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import { BiSave } from 'react-icons/bi'
-import alertsConfig from '../../../utils/alerts-config'
+import { toast } from 'react-toastify'
+import toastsConfig from '../../../utils/toasts-config'
 
 export const GET_MY_LISTS = gql`
   {
@@ -29,6 +29,9 @@ export const UPDATE_LIST = gql`
   }
 `
 
+const updateSuccess = () => toast.success('Update successful', toastsConfig)
+const updateFailure = () => toast.error('Error updating title', toastsConfig)
+
 const UpdateListTitleButton = ({
   listId,
   newTitle,
@@ -39,15 +42,10 @@ const UpdateListTitleButton = ({
   const [updateList, { loading }] = useMutation(UPDATE_LIST, {
     onCompleted: () => {
       setTitleNotUpdated(true)
-      show({
-        ...alertsConfig,
-        message: `Update successful.`,
-        style: { backgroundColor: '#666', color: 'white' },
-        progressBarColor: 'chartreuse',
-      })
+      updateSuccess()
     },
     onError: (error) => {
-      show({ ...alertsConfig, message: `${error}` })
+      updateFailure()
       setTitleNotUpdated(true)
     },
   })

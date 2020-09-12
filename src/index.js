@@ -2,16 +2,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from 'theme-ui'
+import { ToastContainer } from 'react-toastify'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { TokenProvider } from './components/contexts/token-context/token-context'
 import theme from './theme'
+import 'react-toastify/dist/ReactToastify.css'
 
 ReactDOM.render(
   <React.StrictMode>
     <TokenProvider>
       <ThemeProvider theme={theme}>
         <App />
+        <ToastContainer />
       </ThemeProvider>
     </TokenProvider>
   </React.StrictMode>,
