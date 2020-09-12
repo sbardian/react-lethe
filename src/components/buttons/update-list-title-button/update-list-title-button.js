@@ -37,7 +37,6 @@ const UpdateListTitleButton = ({
   newTitle,
   titleNotUpdated,
   setTitleNotUpdated,
-  show,
 }) => {
   const [updateList, { loading }] = useMutation(UPDATE_LIST, {
     onCompleted: () => {
@@ -45,8 +44,8 @@ const UpdateListTitleButton = ({
       updateSuccess()
     },
     onError: (error) => {
-      updateFailure()
       setTitleNotUpdated(true)
+      updateFailure()
     },
   })
 
@@ -112,7 +111,6 @@ UpdateListTitleButton.propTypes = {
   newTitle: PropTypes.string,
   titleNotUpdated: PropTypes.bool.isRequired,
   setTitleNotUpdated: PropTypes.func.isRequired,
-  show: PropTypes.func.isRequired,
 }
 
 export default UpdateListTitleButton
