@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
+import { toast } from 'react-toastify'
 import { StoreContext } from '../contexts/store-context/store-context'
 import Lists from '../lists/lists'
 import { UPDATE_USERNAME } from '../contexts/store-context/actions'
-import alertConfig from '../../utils/alerts-config'
+import toastsConfig from '../../utils/toasts-config'
 
 export const GET_MY_LISTS = gql`
   {
@@ -43,7 +43,11 @@ export const LIST_DELETED = gql`
   }
 `
 
-const ListsContainer = ({ show }) => {
+const deleteListSuccess = () =>
+  toast.success('List deleted successfully', toastsConfig)
+const deleteListFailure = (e) => toast.error(e.message, toastsConfig)
+
+const ListsContainer = () => {
   const [, dispatch] = React.useContext(StoreContext)
 
   const { subscribeToMore, data: getListsData, loading, error } = useQuery(
@@ -60,15 +64,10 @@ const ListsContainer = ({ show }) => {
 
   const [deleteList] = useMutation(DELETE_LIST, {
     onCompleted: () => {
-      show({
-        ...alertConfig,
-        message: `List deleted successfully`,
-        style: { backgroundColor: '#666', color: 'white' },
-        progressBarColor: 'chartreuse',
-      })
+      deleteListSuccess()
     },
     onError: (e) => {
-      show({ ...alertConfig, message: e })
+      deleteListFailure(e)
     },
   })
 
@@ -122,10 +121,6 @@ const ListsContainer = ({ show }) => {
       <Lists lists={lists} onDeleteList={handleDeleteList} />
     </div>
   )
-}
-
-ListsContainer.propTypes = {
-  show: PropTypes.func.isRequired,
 }
 
 export default ListsContainer
