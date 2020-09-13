@@ -4,6 +4,8 @@ import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
 import { TiDelete } from 'react-icons/ti'
 import { VscLoading } from 'react-icons/vsc'
+import { toast } from 'react-toastify'
+import toastsConfig from '../../../utils/toasts-config'
 
 const DECLINE_INVITATION = gql`
   mutation declineInvitation($invitationId: String!) {
@@ -21,10 +23,18 @@ const DECLINE_INVITATION = gql`
   }
 `
 
+const declineInvitationSuccess = () =>
+  toast.success('Invitation accepted successfully', toastsConfig)
+const declineInvitationFailure = (e) => toast.error(e.message, toastsConfig)
+
 const DeclineInvitationButton = ({ invitationId }) => {
   const [declineInvitation, { loading }] = useMutation(DECLINE_INVITATION, {
-    onCompleted: () => {},
-    onError: () => {},
+    onCompleted: () => {
+      declineInvitationSuccess()
+    },
+    onError: (declineInvitationError) => {
+      declineInvitationFailure(declineInvitationError)
+    },
     variables: { invitationId },
   })
 
