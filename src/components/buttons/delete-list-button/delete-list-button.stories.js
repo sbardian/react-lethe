@@ -22,7 +22,6 @@ const deleteListActionData = {
 export const Default = (args) => (
   <div
     sx={{
-      backgroundColor: 'offWhite',
       color: 'textSecondary',
       width: '30px',
       justifySelf: 'center',
