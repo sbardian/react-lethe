@@ -27,6 +27,4 @@ const listsData = {
   onDeleteList: action('delete list'),
 }
 
-export const Default = (args) => <Lists {...listsData} {...args} />
-
-Default.args = {}
+export const Default = () => <Lists {...listsData} />
