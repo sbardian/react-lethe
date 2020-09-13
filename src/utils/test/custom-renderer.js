@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { render } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from 'theme-ui'
-import { AlertProvider } from 'react-alerts-plus'
 import { ToastContainer } from 'react-toastify'
 import { MenuProvider } from '../../components/contexts/menu-context/menu-context'
 import theme from '../../theme'
@@ -13,10 +12,8 @@ const AllTheProviders = ({ children }) => {
     <ThemeProvider theme={theme}>
       <MenuProvider>
         <Router>
-          <AlertProvider>
-            {children}
-            <ToastContainer />
-          </AlertProvider>
+          {children}
+          <ToastContainer />
         </Router>
       </MenuProvider>
     </ThemeProvider>

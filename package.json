@@ -39,7 +39,6 @@
     "graphql": "15.3.0",
     "history": "5.0.0",
     "react": "16.13.1",
-    "react-alerts-plus": "1.0.0",
     "react-card-flip": "1.0.11",
     "react-dom": "16.13.1",
     "react-hook-form": "6.8.2",

@@ -11,7 +11,6 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
-import { AlertProvider } from 'react-alerts-plus'
 import LoginRoute from './routes/login-route'
 import ListsRoute from './routes/lists-route'
 import ListSettingsRoute from './routes/list-settings-route'
@@ -78,44 +77,39 @@ const App = () => {
     <div className="App">
       <StoreProvider>
         <MenuProvider>
-          <AlertProvider>
-            <ApolloProvider client={client}>
-              <Router>
-                <Routes>
-                  <AuthRoute path="/lists" component={() => <ListsRoute />} />
+          <ApolloProvider client={client}>
+            <Router>
+              <Routes>
+                <AuthRoute path="/lists" component={() => <ListsRoute />} />
 
-                  <AuthRoute
-                    path="/invitations"
-                    component={() => <InvitationsRoute />}
-                  />
+                <AuthRoute
+                  path="/invitations"
+                  component={() => <InvitationsRoute />}
+                />
 
-                  <AuthRoute
-                    path="/profile"
-                    component={() => <ProfileRoute />}
-                  />
+                <AuthRoute path="/profile" component={() => <ProfileRoute />} />
 
-                  <AuthRoute
-                    path="/settings"
-                    component={() => <SettingsRoute />}
-                  />
+                <AuthRoute
+                  path="/settings"
+                  component={() => <SettingsRoute />}
+                />
 
-                  <AuthRoute
-                    path="/lists/settings/:listId"
-                    component={() => <ListSettingsRoute />}
-                  />
+                <AuthRoute
+                  path="/lists/settings/:listId"
+                  component={() => <ListSettingsRoute />}
+                />
 
-                  <AuthRoute
-                    path="/lists/:listId"
-                    component={() => <ItemsRoute />}
-                  />
+                <AuthRoute
+                  path="/lists/:listId"
+                  component={() => <ItemsRoute />}
+                />
 
-                  <Route path="/">
-                    <LoginRoute />
-                  </Route>
-                </Routes>
-              </Router>
-            </ApolloProvider>
-          </AlertProvider>
+                <Route path="/">
+                  <LoginRoute />
+                </Route>
+              </Routes>
+            </Router>
+          </ApolloProvider>
         </MenuProvider>
       </StoreProvider>
     </div>
