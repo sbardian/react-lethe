@@ -3,11 +3,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
+import { toast } from 'react-toastify'
 import { gql, useMutation } from '@apollo/client'
-import LetheInput from '../../lethe-input/lethe-input'
-import alertsConfig from '../../../utils/alerts-config'
+import toastsConfig from '../../../utils/toasts-config'
 
-const AddListDialog = ({ setShowDialog, show }) => {
+const ADD_LIST = gql`
+  mutation createNewList($title: String!) {
+    createNewList(ListInfo: { title: $title }) {
+      id
+      title
+      owner
+    }
+  }
+`
+
+const GET_MY_LISTS = gql`
+  {
+    getMyInfo {
+      id
+      lists {
+        id
+        title
+        owner
+      }
+    }
+  }
+`
+
+const createNewListSuccess = () =>
+  toast.success('New list created successfully', toastsConfig)
+const createNewListFailure = (e) => toast.error(e.message, toastsConfig)
+
+const AddListDialog = ({ setShowDialog }) => {
   const [title, setTitle] = React.useState('')
   const [createListError, setCreateListError] = React.useState()
 
@@ -16,33 +43,13 @@ const AddListDialog = ({ setShowDialog, show }) => {
     setTitle(event.target.value)
   }
 
-  const ADD_LIST = gql`
-    mutation createNewList($title: String!) {
-      createNewList(ListInfo: { title: $title }) {
-        id
-        title
-        owner
-      }
-    }
-  `
-
-  const GET_MY_LISTS = gql`
-    {
-      getMyInfo {
-        id
-        lists {
-          id
-          title
-          owner
-        }
-      }
-    }
-  `
-
   const [createNewList, { error }] = useMutation(ADD_LIST, {
-    onCompleted: () => setShowDialog(false),
+    onCompleted: () => {
+      createNewListSuccess()
+      setShowDialog(false)
+    },
     onError: (createNewListError) => {
-      show({ ...alertsConfig, message: createNewListError })
+      createNewListFailure(createNewListError)
     },
   })
 
@@ -174,7 +181,6 @@ const AddListDialog = ({ setShowDialog, show }) => {
 
 AddListDialog.propTypes = {
   setShowDialog: PropTypes.func.isRequired,
-  show: PropTypes.func.isRequired,
 }
 
 export default AddListDialog
