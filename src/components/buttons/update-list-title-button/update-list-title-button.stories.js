@@ -24,7 +24,6 @@ const buttonData = {
 
 const actionData = {
   setTitleNotUpdated: action('update title'),
-  show: action('show alert'),
 }
 
 export const Default = () => <UpdateListTitleButton {...buttonData} />
