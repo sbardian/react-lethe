@@ -3,7 +3,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
-import { AlertWrapper } from 'react-alerts-plus'
 import UpdateListTitleButton from '../buttons/update-list-title-button/update-list-title-button'
 
 const EditListTitle = ({ listId, orgTitle }) => {
@@ -32,17 +31,12 @@ const EditListTitle = ({ listId, orgTitle }) => {
         },
       }}
     >
-      <AlertWrapper>
-        {({ show }) => (
-          <UpdateListTitleButton
-            listId={listId}
-            newTitle={newTitle}
-            titleNotUpdated={titleNotUpdated}
-            setTitleNotUpdated={setTitleNotUpdated}
-            show={show}
-          />
-        )}
-      </AlertWrapper>
+      <UpdateListTitleButton
+        listId={listId}
+        newTitle={newTitle}
+        titleNotUpdated={titleNotUpdated}
+        setTitleNotUpdated={setTitleNotUpdated}
+      />
       <div
         sx={{
           display: 'grid',
