@@ -2,8 +2,10 @@
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
+import { toast } from 'react-toastify'
 import { MdAddCircle } from 'react-icons/md'
 import { VscLoading } from 'react-icons/vsc'
+import toastsConfig from '../../../utils/toasts-config'
 
 const ACCEPT_INVITATION = gql`
   mutation acceptInvitation($invitationId: String!) {
@@ -24,10 +26,18 @@ const ACCEPT_INVITATION = gql`
   }
 `
 
+const acceptInvitationSuccess = () =>
+  toast.success('Invitation accepted successfully', toastsConfig)
+const acceptInvitationFailure = (e) => toast.error(e.message, toastsConfig)
+
 const AcceptInvitationButton = ({ invitationId }) => {
   const [acceptInvitation, { loading }] = useMutation(ACCEPT_INVITATION, {
-    onCompleted: () => {},
-    onError: () => {},
+    onCompleted: () => {
+      acceptInvitationSuccess()
+    },
+    onError: (acceptInvitationError) => {
+      acceptInvitationFailure(acceptInvitationError)
+    },
     variables: { invitationId },
   })
 
