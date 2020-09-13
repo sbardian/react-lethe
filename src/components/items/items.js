@@ -4,20 +4,98 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { AlertWrapper } from 'react-alerts-plus'
 import { BsCheckBox } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { RiCheckboxBlankLine } from 'react-icons/ri'
+import { toast } from 'react-toastify'
 import Dialog from '../dialogs/dialog'
 import EditItemDialog from '../dialogs/edit-item-dialog/edit-item-dialog'
 import { MenuContext } from '../contexts/menu-context/menu-context'
 import { StoreContext } from '../contexts/store-context/store-context'
 import handleKeyPress from '../../utils/on-key-press'
 import { UPDATE_CURRENT_LIST_TITLE } from '../contexts/store-context/actions'
-import alertConfig from '../../utils/alerts-config'
+import toastsConfig from '../../utils/toasts-config'
 
-const ListItems = ({ listId, show }) => {
+const GET_LIST_ITEMS = gql`
+  query getLists($id_is: String!) {
+    getLists(id_is: $id_is) {
+      title
+      items {
+        id
+        title
+        creator
+        list
+        status
+      }
+    }
+  }
+`
+
+const UPDATE_ITEM_STATUS = gql`
+  mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
+    updateItem(itemId: $itemId, title: $title, status: $status) {
+      id
+      title
+      creator
+      list
+      status
+    }
+  }
+`
+
+const DELETE_ITEM = gql`
+  mutation deleteItem($itemId: String!) {
+    deleteItem(itemId: $itemId) {
+      id
+      title
+      creator
+      list
+      status
+    }
+  }
+`
+
+const ITEM_ADDED = gql`
+  subscription onItemAdded($listId: String!) {
+    itemAdded(listId: $listId) {
+      id
+      title
+      creator
+      list
+      status
+    }
+  }
+`
+
+const ITEM_DELETED = gql`
+  subscription onItemDeleted($listId: String!) {
+    itemDeleted(listId: $listId) {
+      id
+      title
+      creator
+      list
+      status
+    }
+  }
+`
+
+const ITEM_EDITED = gql`
+  subscription onItemEdited($listId: String!) {
+    itemEdited(listId: $listId) {
+      id
+      title
+      creator
+      list
+      status
+    }
+  }
+`
+
+const updateItemStatusFailure = (e) => toast.error(e.message, toastsConfig)
+const deleteItemFailure = (e) => toast.error(e.message, toastsConfig)
+
+const ListItems = ({ listId }) => {
   const [showDialog, setShowDialog] = React.useState(false)
   const { activeItemTab } = React.useContext(MenuContext)
   const [, dispatch] = React.useContext(StoreContext)
@@ -28,81 +106,6 @@ const ListItems = ({ listId, show }) => {
     setCurrentItem(item)
     setShowDialog(!showDialog)
   }
-
-  const GET_LIST_ITEMS = gql`
-    query getLists($id_is: String!) {
-      getLists(id_is: $id_is) {
-        title
-        items {
-          id
-          title
-          creator
-          list
-          status
-        }
-      }
-    }
-  `
-
-  const UPDATE_ITEM_STATUS = gql`
-    mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
-      updateItem(itemId: $itemId, title: $title, status: $status) {
-        id
-        title
-        creator
-        list
-        status
-      }
-    }
-  `
-
-  const DELETE_ITEM = gql`
-    mutation deleteItem($itemId: String!) {
-      deleteItem(itemId: $itemId) {
-        id
-        title
-        creator
-        list
-        status
-      }
-    }
-  `
-
-  const ITEM_ADDED = gql`
-    subscription onItemAdded($listId: String!) {
-      itemAdded(listId: $listId) {
-        id
-        title
-        creator
-        list
-        status
-      }
-    }
-  `
-
-  const ITEM_DELETED = gql`
-    subscription onItemDeleted($listId: String!) {
-      itemDeleted(listId: $listId) {
-        id
-        title
-        creator
-        list
-        status
-      }
-    }
-  `
-
-  const ITEM_EDITED = gql`
-    subscription onItemEdited($listId: String!) {
-      itemEdited(listId: $listId) {
-        id
-        title
-        creator
-        list
-        status
-      }
-    }
-  `
 
   const { subscribeToMore, loading, error, data } = useQuery(GET_LIST_ITEMS, {
     variables: {
@@ -119,12 +122,12 @@ const ListItems = ({ listId, show }) => {
 
   const [updateItem] = useMutation(UPDATE_ITEM_STATUS, {
     onError: (updateItemError) => {
-      show({ ...alertConfig, message: updateItemError })
+      updateItemStatusFailure(updateItemError)
     },
   })
   const [deleteItem] = useMutation(DELETE_ITEM, {
     onError: (deleteItemError) => {
-      show({ ...alertConfig, message: deleteItemError })
+      deleteItemFailure(deleteItemError)
     },
   })
 
@@ -390,16 +393,11 @@ const ListItems = ({ listId, show }) => {
           ))}
       </ul>
       <Dialog showDialog={showDialog}>
-        <AlertWrapper>
-          {() => (
-            <EditItemDialog
-              setShowDialog={setShowDialog}
-              item={currentItem}
-              listId={listId}
-              show={show}
-            />
-          )}
-        </AlertWrapper>
+        <EditItemDialog
+          setShowDialog={setShowDialog}
+          item={currentItem}
+          listId={listId}
+        />
       </Dialog>
     </div>
   )
@@ -407,7 +405,6 @@ const ListItems = ({ listId, show }) => {
 
 ListItems.propTypes = {
   listId: PropTypes.string.isRequired,
-  show: PropTypes.func.isRequired,
 }
 
 export default ListItems

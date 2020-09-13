@@ -4,15 +4,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
-import alertsConfig from '../../../utils/alerts-config'
+import { toast } from 'react-toastify'
+import toastsConfig from '../../../utils/toasts-config'
 
-const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
-  const [title, setTitle] = React.useState(item.title)
-  const [createItemError, setEditItemError] = React.useState()
+const UPDATE_ITEM = gql`
+  mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
+    updateItem(itemId: $itemId, title: $title, status: $status) {
+      id
+      title
+      list
+      creator
+      status
+    }
+  }
+`
 
-  const UPDATE_ITEM = gql`
-    mutation updateItem($itemId: String!, $title: String!, $status: Boolean!) {
-      updateItem(itemId: $itemId, title: $title, status: $status) {
+const GET_LIST_ITEMS = gql`
+  query getLists($id_is: String!) {
+    getLists(id_is: $id_is) {
+      id
+      title
+      items {
         id
         title
         list
@@ -20,23 +32,14 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
         status
       }
     }
-  `
+  }
+`
 
-  const GET_LIST_ITEMS = gql`
-    query getLists($id_is: String!) {
-      getLists(id_is: $id_is) {
-        id
-        title
-        items {
-          id
-          title
-          list
-          creator
-          status
-        }
-      }
-    }
-  `
+const updateItemFailure = (e) => toast.error(e.message, toastsConfig)
+
+const EditItemDialog = ({ item, listId, setShowDialog }) => {
+  const [title, setTitle] = React.useState(item.title)
+  const [createItemError, setEditItemError] = React.useState()
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -60,7 +63,7 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
     },
     awaitRefetchQueries: true,
     onError: (updateItemError) => {
-      show({ ...alertsConfig, message: updateItemError })
+      updateItemFailure(updateItemError)
     },
   })
 
@@ -188,6 +191,10 @@ const EditItemDialog = ({ item, listId, setShowDialog, show }) => {
   )
 }
 
+EditItemDialog.defaultProps = {
+  item: null,
+}
+
 EditItemDialog.propTypes = {
   item: PropTypes.shape({
     __typename: PropTypes.string,
@@ -196,10 +203,9 @@ EditItemDialog.propTypes = {
     list: PropTypes.string,
     status: PropTypes.bool,
     title: PropTypes.string,
-  }).isRequired,
+  }),
   listId: PropTypes.string.isRequired,
   setShowDialog: PropTypes.func.isRequired,
-  show: PropTypes.func.isRequired,
 }
 
 export default EditItemDialog
