@@ -23,13 +23,11 @@ export default {
 const addItemDialogData = {
   listId: '1',
   setShowDialog: action('setShowDialog'),
-  show: action('show alert'),
 }
 
 const errorAddItemDialogData = {
   listId: '2',
   setShowDialog: action('setShowDialog'),
-  show: action('show alert'),
 }
 
 export const Default = (args) => (

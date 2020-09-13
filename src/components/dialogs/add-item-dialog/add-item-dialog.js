@@ -4,8 +4,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
-import LetheInput from '../../lethe-input/lethe-input'
-import alertsConfig from '../../../utils/alerts-config'
+import { toast } from 'react-toastify'
+import toastsConfig from '../../../utils/toasts-config'
 
 export const ADD_ITEM = gql`
   mutation createNewItem($listId: String!, $title: String!) {
@@ -35,7 +35,11 @@ export const GET_LIST_ITEMS = gql`
   }
 `
 
-const AddItemDialog = ({ setShowDialog, listId, show }) => {
+const createNewItemSuccess = () =>
+  toast.success('New item created successfully', toastsConfig)
+const createNewItemFailure = (e) => toast.error(e.message, toastsConfig)
+
+const AddItemDialog = ({ setShowDialog, listId }) => {
   const [title, setTitle] = React.useState('')
   const [createItemError, setCreateItemError] = React.useState()
 
@@ -46,10 +50,11 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
 
   const [createNewItem] = useMutation(ADD_ITEM, {
     onCompleted: () => {
+      createNewItemSuccess()
       setShowDialog(false)
     },
     onError: (error) => {
-      show({ ...alertsConfig, message: `${error}` })
+      createNewItemFailure(error)
       setCreateItemError(error.message)
     },
   })
@@ -190,7 +195,6 @@ const AddItemDialog = ({ setShowDialog, listId, show }) => {
 AddItemDialog.propTypes = {
   setShowDialog: PropTypes.func.isRequired,
   listId: PropTypes.string.isRequired,
-  show: PropTypes.func.isRequired,
 }
 
 export default AddItemDialog
