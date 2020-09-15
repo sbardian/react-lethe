@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery } from '@apollo/client'
 import EditListTitle from '../edit-list-title/edit-list-title'
+import ListMembers from '../list-members/list-members'
 
 const ListSettings = ({ listId }) => {
   const GET_LIST = gql`
@@ -57,14 +58,7 @@ const ListSettings = ({ listId }) => {
         {orgTitle} Settings
       </span>
       <EditListTitle listId={listId} orgTitle={orgTitle} />
-      <div
-        sx={{
-          display: 'grid',
-          gap: 3,
-          gridTemplateColumns: '60px 1fr',
-          gridTemplateRows: 'auto auto',
-        }}
-      />
+      <ListMembers listId={listId} />
     </div>
   )
 }
