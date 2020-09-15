@@ -11,6 +11,7 @@ import TabMenu from '../components/tab-menu/tab-menu'
 import Dialog from '../components/dialogs/dialog'
 import AddItemDialog from '../components/dialogs/add-item-dialog/add-item-dialog'
 import ListSettingsButton from '../components/buttons/list-settings-button/list-settings-button'
+import InviteMemberButton from '../components/buttons/invite-member-button/invite-member-button'
 
 const ListItemsRoute = () => {
   const { listId } = useParams()
@@ -51,11 +52,12 @@ const ListItemsRoute = () => {
               justifySelf: 'end',
               alignContent: 'end',
               gap: 3,
-              gridTemplateColumns: '30px 30px',
+              gridTemplateColumns: 'repeat(3, 30px)',
               color: 'textSecondary',
               paddingBottom: 2,
             }}
           >
+            <InviteMemberButton size="30" />
             <ListSettingsButton listId={listId} hoverColor="colorThree" />
             <MdAddCircle
               size="30"
