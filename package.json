@@ -51,7 +51,7 @@
     "theme-ui": "0.3.1"
   },
   "devDependencies": {
-    "@babel/core": "7.12.0",
+    "@babel/core": "7.12.1",
     "@commitlint/cli": "9.1.2",
     "@commitlint/config-conventional": "9.1.2",
     "@storybook/addon-a11y": "6.0.26",
