@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12.19
+      - image: circleci/node:12.20
     branches:
       ignore:
         - typescript
