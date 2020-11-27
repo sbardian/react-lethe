@@ -1,18 +1,22 @@
 /** @jsx jsx */
-import React from 'react'
+import * as React from 'react'
 import { jsx } from 'theme-ui'
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 import { MenuContext } from '../../contexts/menu-context/menu-context'
 import handleKeyPress from '../../../utils/on-key-press'
 
 const MenuButton = () => {
-  const { isSideBarOpen, setIsSideBarOpen } = React.useContext(MenuContext)
+  // const { isSideBarOpen, setIsSideBarOpen } = React.useContext(MenuContext)
+
+  const menuContext = React.useContext(MenuContext)
 
   const toggleSidebar = () => {
-    setIsSideBarOpen(!isSideBarOpen)
+    if (menuContext) {
+      menuContext.setIsSideBarOpen(!menuContext.isSideBarOpen)
+    }
   }
 
-  return isSideBarOpen ? (
+  return menuContext?.isSideBarOpen ? (
     <AiOutlineMenuFold
       data-testid="hide-menu-button"
       aria-label="Hide Menu"
