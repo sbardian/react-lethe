@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import React from 'react'
 import PropTypes from 'prop-types'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { jsx } from 'theme-ui'
@@ -6,6 +7,8 @@ import { toast } from 'react-toastify'
 import { VscLoading } from 'react-icons/vsc'
 import { FiDelete } from 'react-icons/fi'
 import InviteMemberButton from '../buttons/invite-member-button/invite-member-button'
+import Dialog from '../dialogs/dialog'
+import AddListMemberDialog from '../dialogs/add-list-member-dialog/add-list-member-dialog'
 import toastsConfig from '../../utils/toasts-config'
 
 const GET_LIST_USERS = gql`
@@ -38,6 +41,8 @@ const removeMemberFromListSuccess = () =>
 const removeMemberFromListFailure = (e) => toast.error(e.message, toastsConfig)
 
 const ListMembers = ({ listId }) => {
+  const [showDialog, setShowDialog] = React.useState(false)
+
   const [removeFromList] = useMutation(REMOVE_FROM_LIST, {
     onComplete: () => {
       removeMemberFromListSuccess()
@@ -83,7 +88,7 @@ const ListMembers = ({ listId }) => {
         }}
       >
         <span>Members</span>
-        <InviteMemberButton />
+        <InviteMemberButton setShowDialog={setShowDialog} />
       </div>
       <div
         sx={{
@@ -172,6 +177,9 @@ const ListMembers = ({ listId }) => {
             )
           })}
       </div>
+      <Dialog showDialog={showDialog}>
+        <AddListMemberDialog setShowDialog={setShowDialog} listId={listId} />
+      </Dialog>
     </div>
   )
 }

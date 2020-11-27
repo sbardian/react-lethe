@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { RiUserAddLine } from 'react-icons/ri'
 
-const InviteMemberButton = ({ size }) => {
+const InviteMemberButton = ({ size, setShowDialog }) => {
   return (
     <div
       sx={{
@@ -19,7 +19,7 @@ const InviteMemberButton = ({ size }) => {
       <button
         type="button"
         sx={{ all: 'unset', cursor: 'pointer' }}
-        onClick={() => console.log('send new invite dialog')}
+        onClick={() => setShowDialog(true)}
       >
         <RiUserAddLine size={size} />
       </button>
@@ -33,6 +33,7 @@ InviteMemberButton.defaultProps = {
 
 InviteMemberButton.propTypes = {
   size: PropTypes.string,
+  setShowDialog: PropTypes.func.isRequired,
 }
 
 export default InviteMemberButton

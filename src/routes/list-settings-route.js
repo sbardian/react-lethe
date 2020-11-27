@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { useParams } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons/md'
@@ -11,6 +10,7 @@ import GoBack from '../components/go-back/go-back'
 
 const ListSettingsRoute = () => {
   const { listId } = useParams()
+
   return (
     <PageLayout>
       <div
