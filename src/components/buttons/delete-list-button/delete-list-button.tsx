@@ -5,7 +5,15 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { FiDelete } from 'react-icons/fi'
 
-const DeleteListButton = ({ onDeleteList, listId }) => {
+interface DeleteListButtonProps {
+  onDeleteList: (listId: string) => null
+  listId: string
+}
+
+const DeleteListButton: React.FC<DeleteListButtonProps> = ({
+  onDeleteList,
+  listId,
+}) => {
   return (
     <button
       data-testid="delete-list-button"

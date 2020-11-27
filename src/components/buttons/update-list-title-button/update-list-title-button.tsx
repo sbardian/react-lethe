@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useMutation } from '@apollo/client'
@@ -32,7 +33,14 @@ export const UPDATE_LIST = gql`
 const updateSuccess = () => toast.success('Update successful', toastsConfig)
 const updateFailure = () => toast.error('Error updating title', toastsConfig)
 
-const UpdateListTitleButton = ({
+interface UpdateListTitleButtonProps {
+  listId: string
+  newTitle?: string
+  titleNotUpdated: boolean
+  setTitleNotUpdated: React.Dispatch<boolean>
+}
+
+const UpdateListTitleButton: React.FC<UpdateListTitleButtonProps> = ({
   listId,
   newTitle,
   titleNotUpdated,

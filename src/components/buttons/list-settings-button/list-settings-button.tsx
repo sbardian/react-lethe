@@ -6,11 +6,19 @@ import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
 import { GiSettingsKnobs } from 'react-icons/gi'
 
-const ListSettingsButton = ({ listId, hoverColor }) => {
+interface ListSettingsButtonProps {
+  listId: string
+  hoverColor?: string
+}
+
+const ListSettingsButton: React.FC<ListSettingsButtonProps> = ({
+  listId,
+  hoverColor,
+}) => {
   return (
     <Link
       data-testid="list-settings-button"
-      tabIndex="0"
+      tabIndex={0}
       aria-label="list settings link"
       to={`/lists/settings/${listId}`}
       sx={{

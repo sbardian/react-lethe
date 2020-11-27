@@ -1,9 +1,18 @@
 /** @jsx jsx */
+import * as React from 'react'
 import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { RiUserAddLine } from 'react-icons/ri'
 
-const InviteMemberButton = ({ size, setShowDialog }) => {
+interface InvitationMemberButtonProps {
+  size?: string
+  setShowDialog: React.Dispatch<boolean>
+}
+
+const InviteMemberButton: React.FC<InvitationMemberButtonProps> = ({
+  size,
+  setShowDialog,
+}) => {
   return (
     <div
       sx={{
