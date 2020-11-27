@@ -3,6 +3,7 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { useNavigate } from 'react-router-dom'
+import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../contexts/token-context/token-context'
 import { StoreContext } from '../contexts/store-context/store-context'
 import MenuButton from '../buttons/menu-button/menu-button'
@@ -10,12 +11,22 @@ import ColorModeToggleButton from '../buttons/color-mode-toggle-button/color-mod
 import handleKeyPress from '../../utils/on-key-press'
 import logo from '../../brain.png'
 
+const LOGOUT = gql`
+  mutation logout {
+    logout {
+      token
+    }
+  }
+`
+
 const Header = () => {
   const { removeToken } = React.useContext(TokenContext)
   const [state] = React.useContext(StoreContext)
   const navigate = useNavigate()
+  const [blacklistToken] = useMutation(LOGOUT)
 
   const logout = () => {
+    blacklistToken()
     removeToken()
     navigate('/')
   }
