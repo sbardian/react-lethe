@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /** @jsx jsx */
-import React from 'react'
 import { jsx, useColorMode } from 'theme-ui'
 import { FiSunrise, FiSunset } from 'react-icons/fi'
 

@@ -5,8 +5,15 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { FiDelete } from 'react-icons/fi'
 
-const DeleteListButton = ({ onDeleteList, listId }) => {
-  return (
+interface DeleteListButtonProps {
+  onDeleteList: (listId: string) => null
+  listId: string
+}
+
+const DeleteListButton: React.FC<DeleteListButtonProps> = ({
+  onDeleteList,
+  listId,
+}) => (
     <button
       data-testid="delete-list-button"
       aria-label="delete list"
@@ -26,7 +33,6 @@ const DeleteListButton = ({ onDeleteList, listId }) => {
       <FiDelete size="30" />
     </button>
   )
-}
 
 DeleteListButton.propTypes = {
   onDeleteList: PropTypes.func.isRequired,

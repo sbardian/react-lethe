@@ -3,22 +3,20 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 
-const Settings = () => {
-  return (
+const Settings = () => (
+  <div
+    sx={{
+      backgroundColor: 'colorTwo',
+    }}
+  >
     <div
       sx={{
-        backgroundColor: 'colorTwo',
+        padding: 3,
       }}
     >
-      <div
-        sx={{
-          padding: 3,
-        }}
-      >
-        Settings
-      </div>
+      Settings
     </div>
-  )
-}
+  </div>
+)
 
 export default Settings

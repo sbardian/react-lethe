@@ -165,64 +165,62 @@ const Invitations = () => {
               You have no invitations. <GiSadCrab size="30" />
             </div>
           ) : (
-            invitations.map((invite) => {
-              return (
-                <li
+            invitations.map((invite) => (
+              <li
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr',
+                  gap: 3,
+                  padding: 3,
+                  borderRadius: '10px',
+                  webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                  mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                  boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
+                  fontSize: 2,
+                  backgroundColor: 'background',
+                  '@media (min-width: 800px)': {
+                    gridTemplateColumns: '200px 1fr 60px',
+                  },
+                }}
+              >
+                <img
                   sx={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr',
-                    gap: 3,
-                    padding: 3,
-                    borderRadius: '10px',
+                    alignSelf: 'center',
+                    height: '150px',
+                    width: '150px',
+                    borderRadius: '100%',
                     webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                     mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                     boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                    fontSize: 2,
-                    backgroundColor: 'background',
+                  }}
+                  src={`https://${invite.inviter.profileImageUrl}/profileImage.jpg`}
+                  alt="inviter profile"
+                />
+                <div>
+                  <div>
+                    You have been invited to join a list by{' '}
+                    {invite.inviter.username}!
+                  </div>
+                  <div>Message: {invite.title}</div>
+                </div>
+                <div
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: 3,
+                    alignItems: 'center',
+                    justifyItems: 'center',
                     '@media (min-width: 800px)': {
-                      gridTemplateColumns: '200px 1fr 60px',
+                      gridTemplateColumns: '1fr',
+                      gridTemplateRows: '1fr 1fr',
                     },
                   }}
                 >
-                  <img
-                    sx={{
-                      alignSelf: 'center',
-                      height: '150px',
-                      width: '150px',
-                      borderRadius: '100%',
-                      webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                      mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                      boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                    }}
-                    src={`https://${invite.inviter.profileImageUrl}/profileImage.jpg`}
-                    alt="inviter profile"
-                  />
-                  <div>
-                    <div>
-                      You have been invited to join a list by{' '}
-                      {invite.inviter.username}!
-                    </div>
-                    <div>Message: {invite.title}</div>
-                  </div>
-                  <div
-                    sx={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 1fr',
-                      gap: 3,
-                      alignItems: 'center',
-                      justifyItems: 'center',
-                      '@media (min-width: 800px)': {
-                        gridTemplateColumns: '1fr',
-                        gridTemplateRows: '1fr 1fr',
-                      },
-                    }}
-                  >
-                    <AcceptInvitationButton invitationId={invite.id} />
-                    <DeclineInvitationButton invitationId={invite.id} />
-                  </div>
-                </li>
-              )
-            })
+                  <AcceptInvitationButton invitationId={invite.id} />
+                  <DeclineInvitationButton invitationId={invite.id} />
+                </div>
+              </li>
+            ))
           )}
         </ul>
       </div>

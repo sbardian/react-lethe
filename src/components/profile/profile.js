@@ -3,22 +3,20 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 
-const Profile = () => {
-  return (
+const Profile = () => (
+  <div
+    sx={{
+      backgroundColor: 'colorTwo',
+    }}
+  >
     <div
       sx={{
-        backgroundColor: 'colorTwo',
+        padding: 3,
       }}
     >
-      <div
-        sx={{
-          padding: 3,
-        }}
-      >
-        Profile
-      </div>
+      Profile
     </div>
-  )
-}
+  </div>
+)
 
 export default Profile

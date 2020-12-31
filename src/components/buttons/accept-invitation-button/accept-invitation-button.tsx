@@ -26,11 +26,16 @@ const ACCEPT_INVITATION = gql`
   }
 `
 
+interface InvitationError {
+  message: string
+}
+
 const acceptInvitationSuccess = () =>
   toast.success('Invitation accepted successfully', toastsConfig)
-const acceptInvitationFailure = (e) => toast.error(e.message, toastsConfig)
+const acceptInvitationFailure = (e: InvitationError) =>
+  toast.error(e.message, toastsConfig)
 
-const AcceptInvitationButton = ({ invitationId }) => {
+const AcceptInvitationButton = ({ invitationId }: { invitationId: string }) => {
   const [acceptInvitation, { loading }] = useMutation(ACCEPT_INVITATION, {
     onCompleted: () => {
       acceptInvitationSuccess()
