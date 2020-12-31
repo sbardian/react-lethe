@@ -193,7 +193,7 @@ const AddListMemberDialog = ({ setShowDialog, listId }) => {
             }}
             onClick={() => {
               if (invitee) {
-                console.log('calling mutation')
+                // console.log('calling mutation')
                 createInvitation()
               }
             }}

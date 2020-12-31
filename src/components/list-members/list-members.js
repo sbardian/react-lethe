@@ -101,81 +101,79 @@ const ListMembers = ({ listId }) => {
         }}
       >
         {users &&
-          users.map((user) => {
-            return (
+          users.map((user) => (
+            <div
+              key={user.id}
+              sx={{
+                display: 'grid',
+                gap: 3,
+                gridTemplateColumns: '1fr',
+                justifyItems: 'center',
+                alignItems: 'center',
+                backgroundColor: 'offWhite',
+                color: 'textSecondary',
+                borderRadius: '5px',
+                padding: 3,
+                '@media (min-width: 430px)': {
+                  gridTemplateColumns: '140px 1fr 40px',
+                },
+              }}
+            >
+              <img
+                src={`https://${user.profileImageUrl}/profileImage.jpg`}
+                alt={user.username}
+                width="100"
+                height="100"
+                sx={{
+                  borderRadius: '100%',
+                }}
+              />
               <div
-                key={user.id}
                 sx={{
                   display: 'grid',
                   gap: 3,
-                  gridTemplateColumns: '1fr',
-                  justifyItems: 'center',
-                  alignItems: 'center',
-                  backgroundColor: 'offWhite',
-                  color: 'textSecondary',
-                  borderRadius: '5px',
-                  padding: 3,
-                  '@media (min-width: 430px)': {
-                    gridTemplateColumns: '140px 1fr 40px',
-                  },
+                  gridTemplateRows: 'auto auto',
                 }}
               >
-                <img
-                  src={`https://${user.profileImageUrl}/profileImage.jpg`}
-                  alt={user.username}
-                  width="100"
-                  height="100"
-                  sx={{
-                    borderRadius: '100%',
-                  }}
-                />
-                <div
-                  sx={{
-                    display: 'grid',
-                    gap: 3,
-                    gridTemplateRows: 'auto auto',
-                  }}
-                >
-                  <span>User: {user.username}</span>
-                  <span>Email: {user.email}</span>
-                </div>
-                <div
-                  sx={{
-                    display: 'grid',
-                    gap: 3,
-                    gridTemplateRows: 'auto',
-                    justifySelf: 'end',
-                  }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => {
-                      removeFromList({
-                        variables: {
-                          listId,
-                          userId: user.id,
-                        },
-                        refetchQueries: [
-                          {
-                            query: GET_LIST_USERS,
-                            variables: {
-                              id_is: listId,
-                            },
-                          },
-                        ],
-                      })
-                    }}
-                    sx={{
-                      all: 'unset',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <FiDelete size="30" />
-                  </button>
-                </div>
+                <span>User: {user.username}</span>
+                <span>Email: {user.email}</span>
               </div>
-            )
-          })}
+              <div
+                sx={{
+                  display: 'grid',
+                  gap: 3,
+                  gridTemplateRows: 'auto',
+                  justifySelf: 'end',
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    removeFromList({
+                      variables: {
+                        listId,
+                        userId: user.id,
+                      },
+                      refetchQueries: [
+                        {
+                          query: GET_LIST_USERS,
+                          variables: {
+                            id_is: listId,
+                          },
+                        },
+                      ],
+                    })
+                  }}
+                  sx={{
+                    all: 'unset',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <FiDelete size="30" />
+                </button>
+              </div>
+            </div>
+          ))}
       </div>
       <Dialog showDialog={showDialog}>
         <AddListMemberDialog setShowDialog={setShowDialog} listId={listId} />

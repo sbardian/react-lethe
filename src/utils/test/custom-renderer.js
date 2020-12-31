@@ -7,18 +7,16 @@ import { ToastContainer } from 'react-toastify'
 import { MenuProvider } from '../../components/contexts/menu-context/menu-context'
 import theme from '../../theme'
 
-const AllTheProviders = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <MenuProvider>
-        <Router>
-          {children}
-          <ToastContainer />
-        </Router>
-      </MenuProvider>
-    </ThemeProvider>
-  )
-}
+const AllTheProviders = ({ children }) => (
+  <ThemeProvider theme={theme}>
+    <MenuProvider>
+      <Router>
+        {children}
+        <ToastContainer />
+      </Router>
+    </MenuProvider>
+  </ThemeProvider>
+)
 
 AllTheProviders.propTypes = {
   children: PropTypes.node.isRequired,
