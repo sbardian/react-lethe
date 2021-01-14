@@ -85,7 +85,6 @@ Lists.propTypes = {
     PropTypes.shape({
       __typename: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
-      owner: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
     }),
   ),

@@ -17,7 +17,6 @@ export const GET_MY_LISTS = gql`
       lists {
         id
         title
-        owner
       }
     }
   }
@@ -28,7 +27,6 @@ export const DELETE_LIST = gql`
     deleteList(listId: $listId) {
       id
       title
-      owner
     }
   }
 `
@@ -38,7 +36,6 @@ export const LIST_DELETED = gql`
     listDeleted {
       id
       title
-      owner
     }
   }
 `

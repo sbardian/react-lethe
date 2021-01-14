@@ -12,7 +12,6 @@ const ADD_LIST = gql`
     createNewList(ListInfo: { title: $title }) {
       id
       title
-      owner
     }
   }
 `
@@ -24,7 +23,6 @@ const GET_MY_LISTS = gql`
       lists {
         id
         title
-        owner
       }
     }
   }
