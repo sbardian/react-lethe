@@ -12,7 +12,9 @@ export const ADD_ITEM = gql`
     createNewItem(ItemInfo: { list: $listId, title: $title }) {
       id
       title
-      creator
+      creator {
+        id
+      }
       list
       status
     }
@@ -27,7 +29,9 @@ export const GET_LIST_ITEMS = gql`
       items {
         id
         title
-        creator
+        creator {
+          id
+        }
         list
         status
       }

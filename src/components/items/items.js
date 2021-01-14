@@ -24,8 +24,9 @@ const GET_LIST_ITEMS = gql`
       items {
         id
         title
-        creator
-        list
+        creator {
+          id
+        }
         status
       }
     }
@@ -37,7 +38,9 @@ const UPDATE_ITEM_STATUS = gql`
     updateItem(itemId: $itemId, title: $title, status: $status) {
       id
       title
-      creator
+      creator {
+        id
+      }
       list
       status
     }
@@ -49,7 +52,9 @@ const DELETE_ITEM = gql`
     deleteItem(itemId: $itemId) {
       id
       title
-      creator
+      creator {
+        id
+      }
       list
       status
     }
@@ -61,7 +66,9 @@ const ITEM_ADDED = gql`
     itemAdded(listId: $listId) {
       id
       title
-      creator
+      creator {
+        id
+      }
       list
       status
     }
@@ -73,7 +80,9 @@ const ITEM_DELETED = gql`
     itemDeleted(listId: $listId) {
       id
       title
-      creator
+      creator {
+        id
+      }
       list
       status
     }
@@ -85,7 +94,9 @@ const ITEM_EDITED = gql`
     itemEdited(listId: $listId) {
       id
       title
-      creator
+      creator {
+        id
+      }
       list
       status
     }
