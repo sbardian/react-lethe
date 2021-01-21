@@ -149,6 +149,8 @@ const Invitations = () => {
         <ul
           sx={{
             all: 'unset',
+            display: 'grid',
+            gap: 3,
           }}
         >
           {invitations.length === 0 ? (
