@@ -15,7 +15,9 @@ const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
     getLists(id_is: $id_is) {
       id
-      owner
+      owner {
+        id
+      }
       users {
         id
         email
