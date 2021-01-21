@@ -26,7 +26,9 @@ const SEND_INVITATION = gql`
         profileImageUrl
         email
       }
-      list
+      list {
+        id
+      }
       title
     }
   }
