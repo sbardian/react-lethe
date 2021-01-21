@@ -13,7 +13,9 @@ const UPDATE_ITEM = gql`
       id
       title
       list
-      creator
+      creator {
+        id
+      }
       status
     }
   }
@@ -28,7 +30,9 @@ const GET_LIST_ITEMS = gql`
         id
         title
         list
-        creator
+        creator {
+          id
+        }
         status
       }
     }
