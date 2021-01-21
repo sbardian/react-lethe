@@ -12,10 +12,12 @@ import Dialog from '../components/dialogs/dialog'
 import AddItemDialog from '../components/dialogs/add-item-dialog/add-item-dialog'
 import ListSettingsButton from '../components/buttons/list-settings-button/list-settings-button'
 import InviteMemberButton from '../components/buttons/invite-member-button/invite-member-button'
+import AddListMemberDialog from '../components/dialogs/add-list-member-dialog/add-list-member-dialog'
 
 const ListItemsRoute = () => {
   const { listId } = useParams()
-  const [showDialog, setShowDialog] = React.useState(false)
+  const [showAddMemberDialog, setShowAddMemberDialog] = React.useState(false)
+  const [showAddItemDialog, setShowAddItemDialog] = React.useState(false)
   const { showListItemTabs, setShowListItemTabs } = React.useContext(
     MenuContext,
   )
@@ -57,13 +59,16 @@ const ListItemsRoute = () => {
               paddingBottom: 2,
             }}
           >
-            <InviteMemberButton size="30" />
+            <InviteMemberButton
+              size="30"
+              setShowDialog={setShowAddMemberDialog}
+            />
             <ListSettingsButton listId={listId} hoverColor="colorThree" />
             <MdAddCircle
               size="30"
               role="button"
               tabIndex={0}
-              onClick={() => setShowDialog(!showDialog)}
+              onClick={() => setShowAddItemDialog(!showAddItemDialog)}
               sx={{
                 cursor: 'pointer',
                 justifySelf: 'end',
@@ -78,8 +83,14 @@ const ListItemsRoute = () => {
         </div>
         <Items listId={listId} />
       </div>
-      <Dialog showDialog={showDialog}>
-        <AddItemDialog setShowDialog={setShowDialog} listId={listId} />
+      <Dialog showDialog={showAddItemDialog}>
+        <AddItemDialog setShowDialog={setShowAddItemDialog} listId={listId} />
+      </Dialog>
+      <Dialog showDialog={showAddMemberDialog}>
+        <AddListMemberDialog
+          setShowDialog={setShowAddMemberDialog}
+          listId={listId}
+        />
       </Dialog>
     </PageLayout>
   )
