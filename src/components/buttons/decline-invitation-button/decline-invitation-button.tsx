@@ -56,7 +56,7 @@ const DeclineInvitationButton = ({
       size="36"
       sx={{
         '&:hover': {
-          color: 'chartreuse',
+          color: 'red',
           cursor: 'pointer',
         },
       }}
