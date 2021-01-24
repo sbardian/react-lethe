@@ -4,10 +4,11 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  // createHttpLink,
   split,
   from,
 } from '@apollo/client'
+import { createUploadLink } from 'apollo-upload-client'
 import { setContext } from '@apollo/client/link/context'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
@@ -22,12 +23,17 @@ import AuthRoute from './routes/auth-route'
 import { MenuProvider } from './components/contexts/menu-context/menu-context'
 import { TokenContext } from './components/contexts/token-context/token-context'
 import { StoreProvider } from './components/contexts/store-context/store-context'
+import { StorageProvider } from './components/contexts/storage-context/storage-context'
 import './App.css'
 
 const App = () => {
   const { token } = React.useContext(TokenContext)
 
-  const httpLink = createHttpLink({
+  // const httpLink = createHttpLink({
+  //   uri: process.env.REACT_APP_LETHE_API_URL,
+  // })
+
+  const httpLink = createUploadLink({
     uri: process.env.REACT_APP_LETHE_API_URL,
   })
 
@@ -76,41 +82,46 @@ const App = () => {
   return (
     <div className="App">
       <StoreProvider>
-        <MenuProvider>
-          <ApolloProvider client={client}>
-            <Router>
-              <Routes>
-                <AuthRoute path="/lists" component={() => <ListsRoute />} />
+        <StorageProvider>
+          <MenuProvider>
+            <ApolloProvider client={client}>
+              <Router>
+                <Routes>
+                  <AuthRoute path="/lists" component={() => <ListsRoute />} />
 
-                <AuthRoute
-                  path="/invitations"
-                  component={() => <InvitationsRoute />}
-                />
+                  <AuthRoute
+                    path="/invitations"
+                    component={() => <InvitationsRoute />}
+                  />
 
-                <AuthRoute path="/profile" component={() => <ProfileRoute />} />
+                  <AuthRoute
+                    path="/profile"
+                    component={() => <ProfileRoute />}
+                  />
 
-                <AuthRoute
-                  path="/settings"
-                  component={() => <SettingsRoute />}
-                />
+                  <AuthRoute
+                    path="/settings"
+                    component={() => <SettingsRoute />}
+                  />
 
-                <AuthRoute
-                  path="/lists/settings/:listId"
-                  component={() => <ListSettingsRoute />}
-                />
+                  <AuthRoute
+                    path="/lists/settings/:listId"
+                    component={() => <ListSettingsRoute />}
+                  />
 
-                <AuthRoute
-                  path="/lists/:listId"
-                  component={() => <ItemsRoute />}
-                />
+                  <AuthRoute
+                    path="/lists/:listId"
+                    component={() => <ItemsRoute />}
+                  />
 
-                <Route path="/">
-                  <LoginRoute />
-                </Route>
-              </Routes>
-            </Router>
-          </ApolloProvider>
-        </MenuProvider>
+                  <Route path="/">
+                    <LoginRoute />
+                  </Route>
+                </Routes>
+              </Router>
+            </ApolloProvider>
+          </MenuProvider>
+        </StorageProvider>
       </StoreProvider>
     </div>
   )
