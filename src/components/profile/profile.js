@@ -51,6 +51,12 @@ const Profile = () => {
     onCompleted: () => {
       setFile(null)
     },
+    refetchQueries: [
+      {
+        query: GET_MY_INFO,
+      },
+    ],
+
     // optimisticResponse: {
     //   __typename: 'Mutation',
     //   profileImageUpload: {
