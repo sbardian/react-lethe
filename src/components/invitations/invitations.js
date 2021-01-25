@@ -201,10 +201,27 @@ const Invitations = () => {
                   height="150"
                   width="150"
                 />
-                <div>
-                  <div>
-                    You have been invited to join a list by{' '}
-                    {invite.inviter.username}!
+                <div
+                  sx={{
+                    display: 'grid',
+                    gridTemplateRows: '1fr 1fr',
+                    gap: 2,
+                  }}
+                >
+                  <div
+                    sx={{
+                      display: 'grid',
+                      gridTemplateColumns: '50px 1fr',
+                      justifyContent: 'center',
+                      alignContent: 'center',
+                    }}
+                  >
+                    <ProfileImage
+                      profileImageUrl={invite.inviter.profileImageUrl}
+                      height="40"
+                      width="40"
+                    />
+                    {invite.inviter.username} has invited you to join a list!
                   </div>
                   <div>Message: {invite.title}</div>
                 </div>
