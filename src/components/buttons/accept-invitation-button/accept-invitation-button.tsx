@@ -7,6 +7,30 @@ import { MdAddCircle } from 'react-icons/md'
 import { VscLoading } from 'react-icons/vsc'
 import toastsConfig from '../../../utils/toasts-config'
 
+const GET_MY_INVITATIONS = gql`
+  {
+    getMyInfo {
+      id
+      invitations {
+        id
+        inviter {
+          id
+          username
+          email
+          profileImageUrl
+        }
+        invitee {
+          id
+          username
+          email
+          profileImageUrl
+        }
+        title
+      }
+    }
+  }
+`
+
 const ACCEPT_INVITATION = gql`
   mutation acceptInvitation($invitationId: String!) {
     acceptInvitation(invitationId: $invitationId) {
@@ -20,7 +44,9 @@ const ACCEPT_INVITATION = gql`
         profileImageUrl
         email
       }
-      list
+      list {
+        id
+      }
       title
     }
   }
@@ -44,6 +70,11 @@ const AcceptInvitationButton = ({ invitationId }: { invitationId: string }) => {
       acceptInvitationFailure(acceptInvitationError)
     },
     variables: { invitationId },
+    refetchQueries: [
+      {
+        query: GET_MY_INVITATIONS,
+      },
+    ],
   })
 
   if (loading) {
