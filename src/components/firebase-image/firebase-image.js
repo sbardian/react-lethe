@@ -12,6 +12,8 @@ const FirebaseImage = ({ profileImageUrl, height, width, type }) => {
     getImageUrl(profileImageUrl).then((url) => setImageUrl(url))
   }, [profileImageUrl])
 
+  // TODO: grab more metadata about the image while fetching the download URL, so we can size it correctly
+
   return (
     <img
       sx={{
