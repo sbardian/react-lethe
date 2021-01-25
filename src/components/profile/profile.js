@@ -85,8 +85,8 @@ const Profile = () => {
       {profileImageUrl && (
         <ProfileImage
           profileImageUrl={profileImageUrl}
-          height="150"
-          width="150"
+          size="large"
+          type="square"
         />
       )}
       <div

@@ -4,6 +4,7 @@ import { gql, useQuery } from '@apollo/client'
 import { GiSadCrab } from 'react-icons/gi'
 import AcceptInvitationButton from '../buttons/accept-invitation-button/accept-invitation-button'
 import DeclineInvitationButton from '../buttons/decline-invitation-button/decline-invitation-button'
+import FirebaseImage from '../firebase-image/firebase-image'
 import ProfileImage from '../profile-image/profile-image'
 
 const GET_MY_INVITATIONS = gql`
@@ -186,7 +187,7 @@ const Invitations = () => {
                   },
                 }}
               >
-                <ProfileImage
+                <FirebaseImage
                   sx={{
                     alignSelf: 'center',
                     height: '150px',
@@ -218,8 +219,8 @@ const Invitations = () => {
                   >
                     <ProfileImage
                       profileImageUrl={invite.inviter.profileImageUrl}
-                      height="40"
-                      width="40"
+                      size="small"
+                      type="circle"
                     />
                     {invite.inviter.username} has invited you to join a list!
                   </div>

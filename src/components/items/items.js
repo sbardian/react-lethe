@@ -323,8 +323,8 @@ const ListItems = ({ listId }) => {
                 >
                   <ProfileImage
                     profileImageUrl={item.creator.profileImageUrl}
-                    height="50"
-                    width="50"
+                    size="small"
+                    type="circle"
                   />
                   <span sx={{ fontWeight: 'heavy' }}>{item.title}</span>
                 </div>

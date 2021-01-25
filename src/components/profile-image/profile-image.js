@@ -1,35 +1,60 @@
-/* eslint-disable no-unused-vars */
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
-import { StorageContext } from '../contexts/storage-context/storage-context'
+import FirebaseImage from '../firebase-image/firebase-image'
 
-const ProfileImage = ({ profileImageUrl, height, width }) => {
-  const { getImageUrl } = React.useContext(StorageContext)
-  const [imageUrl, setImageUrl] = React.useState()
+const ProfileImage = ({ profileImageUrl, size, type }) => {
+  const [imageSize, setImageSize] = React.useState()
 
   React.useEffect(() => {
-    getImageUrl(profileImageUrl).then((url) => setImageUrl(url))
-  }, [profileImageUrl])
+    switch (size) {
+      case 'small':
+        setImageSize({
+          height: '40',
+          width: '40',
+        })
+        break
+      case 'medium':
+        setImageSize({
+          height: '120',
+          width: '120',
+        })
+        break
+      case 'large':
+        setImageSize({
+          height: '300',
+          width: '300',
+        })
+        break
+      default:
+        break
+    }
+  }, [size])
 
   return (
-    <img
-      sx={{
-        borderRadius: '100%',
-      }}
-      src={imageUrl}
-      height={height}
-      width={width}
-      alt="creator"
-    />
+    <React.Fragment>
+      {imageSize?.height && imageSize?.width && (
+        <FirebaseImage
+          type={type}
+          profileImageUrl={profileImageUrl}
+          height={imageSize.height}
+          width={imageSize.width}
+        />
+      )}
+    </React.Fragment>
   )
+}
+
+ProfileImage.defaultProps = {
+  size: 'small',
+  type: 'circle',
 }
 
 ProfileImage.propTypes = {
   profileImageUrl: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  type: PropTypes.string,
 }
 
 export default ProfileImage
