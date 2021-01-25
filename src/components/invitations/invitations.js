@@ -4,6 +4,7 @@ import { gql, useQuery } from '@apollo/client'
 import { GiSadCrab } from 'react-icons/gi'
 import AcceptInvitationButton from '../buttons/accept-invitation-button/accept-invitation-button'
 import DeclineInvitationButton from '../buttons/decline-invitation-button/decline-invitation-button'
+import ProfileImage from '../profile-image/profile-image'
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -185,7 +186,7 @@ const Invitations = () => {
                   },
                 }}
               >
-                <img
+                <ProfileImage
                   sx={{
                     alignSelf: 'center',
                     height: '150px',
@@ -195,8 +196,10 @@ const Invitations = () => {
                     mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                     boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                   }}
-                  src={`https://${invite.inviter.profileImageUrl}/profileImage.jpg`}
-                  alt="inviter profile"
+                  profileImageUrl={invite.inviter.profileImageUrl}
+                  alt={invite.inviter.username}
+                  height="150"
+                  width="150"
                 />
                 <div>
                   <div>
