@@ -303,13 +303,6 @@ const ListItems = ({ listId }) => {
                 border: ({ colors }) => `1px solid ${colors.textSecondary}`,
                 backgroundColor: 'offWhite',
                 padding: 2,
-                '&:hover': {
-                  webkitBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                  mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                  boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
-                  backgroundColor: 'colorThree',
-                  color: 'text',
-                },
               }}
             >
               <div
