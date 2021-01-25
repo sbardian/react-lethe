@@ -8,7 +8,6 @@ export const StorageContext = React.createContext()
 
 export const StorageProvider = ({ children }) => {
   const [storageRef, setStorageRef] = React.useState(null)
-  // const [image, setImage] = React.useState()
 
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -29,21 +28,16 @@ export const StorageProvider = ({ children }) => {
     const imageRef = storageRef.child(img)
     try {
       if (imageRef.getDownloadURL) {
-        // setImage(await imageRef.getDownloadURL())
         image = await imageRef.getDownloadURL()
       }
     } catch (error) {
-      // setProfileImage('https://via.placeholder.com/150.png')
       image = 'https://via.placeholder.com/150.png'
     }
     return image
   }
 
   const getImageUrl = (img) =>
-    Promise.all([fetchDownloadUrl(img)]).then((url) => {
-      console.log('url in getImageUrl contect: ', url[0])
-      return url[0]
-    })
+    Promise.all([fetchDownloadUrl(img)]).then((url) => url[0])
 
   return (
     <StorageContext.Provider value={{ storageRef, getImageUrl }}>
