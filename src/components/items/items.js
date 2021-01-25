@@ -13,9 +13,11 @@ import Dialog from '../dialogs/dialog'
 import EditItemDialog from '../dialogs/edit-item-dialog/edit-item-dialog'
 import { MenuContext } from '../contexts/menu-context/menu-context'
 import { StoreContext } from '../contexts/store-context/store-context'
+import { StorageContext } from '../contexts/storage-context/storage-context'
 import handleKeyPress from '../../utils/on-key-press'
 import { UPDATE_CURRENT_LIST_TITLE } from '../contexts/store-context/actions'
 import toastsConfig from '../../utils/toasts-config'
+import ProfileImage from '../profile-image/profile-image'
 
 const GET_LIST_ITEMS = gql`
   query getLists($id_is: String!) {
@@ -26,6 +28,8 @@ const GET_LIST_ITEMS = gql`
         title
         creator {
           id
+          username
+          profileImageUrl
         }
         status
       }
@@ -109,6 +113,7 @@ const deleteItemFailure = (e) => toast.error(e.message, toastsConfig)
 const ListItems = ({ listId }) => {
   const [showDialog, setShowDialog] = React.useState(false)
   const { activeItemTab } = React.useContext(MenuContext)
+  const { getImageUrl } = React.useContext(StorageContext)
   const [, dispatch] = React.useContext(StoreContext)
   const [displayedItems, setDisplayedItems] = React.useState()
   const [currentItem, setCurrentItem] = React.useState(null)
@@ -316,7 +321,20 @@ const ListItems = ({ listId }) => {
                   width: '100%',
                 }}
               >
-                <span sx={{ fontWeight: 'heavy' }}>{item.title}</span>
+                <div
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '75px 1fr',
+                    gap: 2,
+                  }}
+                >
+                  <ProfileImage
+                    profileImageUrl={item.creator.profileImageUrl}
+                    height="50"
+                    width="50"
+                  />
+                  <span sx={{ fontWeight: 'heavy' }}>{item.title}</span>
+                </div>
                 <div
                   sx={{
                     display: 'grid',

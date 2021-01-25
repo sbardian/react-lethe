@@ -3,7 +3,7 @@
 import React from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { jsx } from 'theme-ui'
-import { StorageContext } from '../contexts/storage-context/storage-context'
+import ProfileImage from '../profile-image/profile-image'
 
 const UPLOAD_PROFILE_IMAGE = gql`
   mutation profileImageUpload($file: Upload!) {
@@ -37,13 +37,10 @@ const GET_MY_INFO = gql`
 // }
 
 const Profile = () => {
-  const { storageRef, getImageUrl } = React.useContext(StorageContext)
   const [file, setFile] = React.useState('')
-  const [profileImage, setProfileImage] = React.useState(null)
 
   // Handles file upload event and updates state
   function handleUpload(event) {
-    console.log(event.target.files[0])
     setFile(event.target.files[0])
   }
 
@@ -79,26 +76,17 @@ const Profile = () => {
     getMyInfo: { username, profileImageUrl, email },
   } = data
 
-  const getImage = async () => {
-    const url = await getImageUrl(profileImageUrl)
-    setProfileImage(url)
-  }
-
-  getImage()
-
   return (
     <div
       sx={{
         backgroundColor: 'colorTwo',
       }}
     >
-      {profileImage && (
-        <img
-          sx={{ borderRadius: '100%' }}
+      {profileImageUrl && (
+        <ProfileImage
+          profileImageUrl={profileImageUrl}
           height="150"
           width="150"
-          src={profileImage}
-          alt={username}
         />
       )}
       <div
