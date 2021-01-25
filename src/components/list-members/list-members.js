@@ -10,6 +10,7 @@ import InviteMemberButton from '../buttons/invite-member-button/invite-member-bu
 import Dialog from '../dialogs/dialog'
 import AddListMemberDialog from '../dialogs/add-list-member-dialog/add-list-member-dialog'
 import toastsConfig from '../../utils/toasts-config'
+import ProfileImage from '../profile-image/profile-image'
 
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
@@ -78,7 +79,7 @@ const ListMembers = ({ listId }) => {
     return <div>Error loading members: {error.message}</div>
   }
 
-  const [{ users }] = data.getLists
+  const [{ users, owner }] = data.getLists
 
   return (
     <div>
@@ -103,79 +104,95 @@ const ListMembers = ({ listId }) => {
         }}
       >
         {users &&
-          users.map((user) => (
-            <div
-              key={user.id}
-              sx={{
-                display: 'grid',
-                gap: 3,
-                gridTemplateColumns: '1fr',
-                justifyItems: 'center',
-                alignItems: 'center',
-                backgroundColor: 'offWhite',
-                color: 'textSecondary',
-                borderRadius: '5px',
-                padding: 3,
-                '@media (min-width: 430px)': {
-                  gridTemplateColumns: '140px 1fr 40px',
-                },
-              }}
-            >
-              <img
-                src={`https://${user.profileImageUrl}/profileImage.jpg`}
-                alt={user.username}
-                width="100"
-                height="100"
-                sx={{
-                  borderRadius: '100%',
-                }}
-              />
+          users.map((user) => {
+            let ownerOfList = false
+            if (user.id === owner.id) {
+              ownerOfList = true
+            }
+            return (
               <div
+                key={user.id}
                 sx={{
                   display: 'grid',
                   gap: 3,
-                  gridTemplateRows: 'auto auto',
+                  gridTemplateColumns: '1fr',
+                  justifyItems: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'offWhite',
+                  color: 'textSecondary',
+                  borderRadius: '5px',
+                  padding: 3,
+                  '@media (min-width: 430px)': {
+                    gridTemplateColumns: '140px 1fr 40px',
+                  },
                 }}
               >
-                <span>User: {user.username}</span>
-                <span>Email: {user.email}</span>
-              </div>
-              <div
-                sx={{
-                  display: 'grid',
-                  gap: 3,
-                  gridTemplateRows: 'auto',
-                  justifySelf: 'end',
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={() => {
-                    removeFromList({
-                      variables: {
-                        listId,
-                        userId: user.id,
-                      },
-                      refetchQueries: [
-                        {
-                          query: GET_LIST_USERS,
-                          variables: {
-                            id_is: listId,
-                          },
-                        },
-                      ],
-                    })
-                  }}
+                <div
                   sx={{
-                    all: 'unset',
-                    cursor: 'pointer',
+                    display: 'grid',
+                    gridTemplateRows: '1fr 30px',
+                    gap: 2,
+                    alignContent: 'center',
+                    justifyItems: 'center',
                   }}
                 >
-                  <FiDelete size="30" />
-                </button>
+                  <ProfileImage
+                    profileImageUrl={user.profileImageUrl}
+                    size="medium"
+                  />
+                  <div>{ownerOfList && <div>Owner</div>}</div>
+                </div>
+                <div
+                  sx={{
+                    display: 'grid',
+                    gap: 3,
+                    gridTemplateRows: 'auto auto',
+                    justifySelf: 'center',
+                    alignSelf: 'center',
+                  }}
+                >
+                  <span>User: {user.username}</span>
+                  <span>Email: {user.email}</span>
+                </div>
+                <div
+                  sx={{
+                    display: 'grid',
+                    gap: 3,
+                    gridTemplateRows: 'auto',
+                    justifySelf: 'end',
+                  }}
+                >
+                  {!ownerOfList && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        removeFromList({
+                          variables: {
+                            listId,
+                            userId: user.id,
+                          },
+                          refetchQueries: [
+                            {
+                              query: GET_LIST_USERS,
+                              variables: {
+                                id_is: listId,
+                              },
+                            },
+                          ],
+                        })
+                      }}
+                      sx={{
+                        all: 'unset',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <FiDelete size="30" />
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
       </div>
       <Dialog showDialog={showDialog}>
         <AddListMemberDialog setShowDialog={setShowDialog} listId={listId} />
