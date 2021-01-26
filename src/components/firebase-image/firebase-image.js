@@ -4,25 +4,26 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { StorageContext } from '../contexts/storage-context/storage-context'
 
-const FirebaseImage = ({ profileImageUrl, height, width, type }) => {
+const FirebaseImage = ({ imageUrl, height, width, type }) => {
   const { getImageUrl } = React.useContext(StorageContext)
-  const [imageUrl, setImageUrl] = React.useState()
+  const [firebaseImageUrl, setFirebaseImageUrl] = React.useState()
 
   React.useEffect(() => {
-    getImageUrl(profileImageUrl).then((url) => setImageUrl(url))
-  }, [profileImageUrl])
+    if (imageUrl) {
+      getImageUrl(imageUrl).then((url) => setFirebaseImageUrl(url))
+    }
+  }, [imageUrl])
 
   // TODO: grab more metadata about the image while fetching the download URL, so we can size it correctly
-
   return (
     <img
       sx={{
         borderRadius: type === 'circle' ? '100%' : '0px',
       }}
-      src={imageUrl}
+      src={firebaseImageUrl}
       height={height}
       width={width}
-      alt="creator"
+      alt={imageUrl || 'failed image'}
     />
   )
 }
@@ -32,7 +33,7 @@ FirebaseImage.defaultProps = {
 }
 
 FirebaseImage.propTypes = {
-  profileImageUrl: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   type: PropTypes.string,

@@ -37,7 +37,7 @@ const ProfileImage = ({ profileImageUrl, size, type }) => {
       {imageSize?.height && imageSize?.width && (
         <FirebaseImage
           type={type}
-          profileImageUrl={profileImageUrl}
+          imageUrl={profileImageUrl}
           height={imageSize.height}
           width={imageSize.width}
         />
