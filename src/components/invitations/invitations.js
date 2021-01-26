@@ -13,6 +13,9 @@ const GET_MY_INVITATIONS = gql`
       id
       invitations {
         id
+        list {
+          listImageUrl
+        }
         inviter {
           id
           username
@@ -36,6 +39,9 @@ const INVITATION_ADDED = gql`
     invitationAdded {
       id
       title
+      list {
+        listImageUrl
+      }
       invitee {
         id
         username
@@ -57,6 +63,9 @@ const INVITATION_DELETED = gql`
     invitationDeleted {
       id
       title
+      list {
+        listImageUrl
+      }
       invitee {
         id
         username
@@ -197,7 +206,7 @@ const Invitations = () => {
                     mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                     boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                   }}
-                  profileImageUrl={invite.inviter.profileImageUrl}
+                  imageUrl={invite.list.listImageUrl}
                   alt={invite.inviter.username}
                   height="150"
                   width="150"
