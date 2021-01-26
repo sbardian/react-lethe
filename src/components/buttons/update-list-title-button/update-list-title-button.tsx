@@ -16,6 +16,7 @@ export const GET_MY_LISTS = gql`
         id
         title
         owner
+        imageUrl
       }
     }
   }
