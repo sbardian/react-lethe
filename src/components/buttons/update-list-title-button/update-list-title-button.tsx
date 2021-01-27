@@ -15,8 +15,10 @@ export const GET_MY_LISTS = gql`
       lists {
         id
         title
-        owner
-        imageUrl
+        owner {
+          id
+        }
+        listImageUrl
       }
     }
   }
