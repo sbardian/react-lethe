@@ -38,15 +38,8 @@ const INVITATION_ADDED = gql`
   subscription onInvitationAdded {
     invitationAdded {
       id
-      title
       list {
         listImageUrl
-      }
-      invitee {
-        id
-        username
-        email
-        profileImageUrl
       }
       inviter {
         id
@@ -54,6 +47,13 @@ const INVITATION_ADDED = gql`
         email
         profileImageUrl
       }
+      invitee {
+        id
+        username
+        email
+        profileImageUrl
+      }
+      title
     }
   }
 `
@@ -62,15 +62,8 @@ const INVITATION_DELETED = gql`
   subscription onInvitationDeleted {
     invitationDeleted {
       id
-      title
       list {
         listImageUrl
-      }
-      invitee {
-        id
-        username
-        email
-        profileImageUrl
       }
       inviter {
         id
@@ -78,6 +71,13 @@ const INVITATION_DELETED = gql`
         email
         profileImageUrl
       }
+      invitee {
+        id
+        username
+        email
+        profileImageUrl
+      }
+      title
     }
   }
 `
@@ -180,6 +180,7 @@ const Invitations = () => {
           ) : (
             invitations.map((invite) => (
               <li
+                key={invite.id}
                 sx={{
                   display: 'grid',
                   gridTemplateColumns: '1fr',
