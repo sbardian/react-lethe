@@ -27,15 +27,6 @@ const GET_MY_INFO = gql`
   }
 `
 
-// rules_version = '2';
-// service firebase.storage {
-//   match /b/{bucket}/o {
-//     match /{allPaths=**} {
-//       allow read, write: if request.auth != null;
-//     }
-//   }
-// }
-
 const Profile = () => {
   const [file, setFile] = React.useState('')
 
@@ -86,23 +77,83 @@ const Profile = () => {
     <div
       sx={{
         backgroundColor: 'colorTwo',
+        padding: 3,
       }}
     >
       {profileImageUrl && (
-        <ProfileImage
-          profileImageUrl={profileImageUrl}
-          size="large"
-          type="square"
-        />
+        <ProfileImage profileImageUrl={profileImageUrl} size="large" />
       )}
       <div
         sx={{
           padding: 3,
+          fontSize: 2,
         }}
       >
         Profile
       </div>
-      <div id="upload-box">
+      <div
+        sx={{
+          display: 'grid',
+          gap: 3,
+          gridTemplateColumns: 'minmax(200px, 500px)',
+        }}
+      >
+        <label
+          sx={{
+            display: 'grid',
+            color: 'textSecondary',
+            alignSelf: 'end',
+            marginTop: 2,
+            fontSize: 1,
+          }}
+          htmlFor="username-input"
+        >
+          Username
+          <input
+            sx={{
+              color: 'textSecondary',
+              borderRadius: '5px',
+              fontSize: 1,
+            }}
+            type="text"
+            id="username-input"
+            value={username}
+            onChange={() => console.log('change')}
+          />
+        </label>
+        <label
+          htmlFor="email-input"
+          sx={{
+            display: 'grid',
+            color: 'textSecondary',
+            alignSelf: 'end',
+            marginTop: 2,
+            fontSize: 1,
+          }}
+        >
+          Email
+          <input
+            sx={{
+              color: 'textSecondary',
+              borderRadius: '5px',
+              fontSize: 1,
+            }}
+            type="text"
+            id="email-input"
+            value={email}
+            onChange={() => console.log('change')}
+          />
+        </label>
+      </div>
+      <div
+        sx={{
+          display: 'grid',
+          gap: 3,
+          gridTemplateColumns: '200px',
+          marginTop: 3,
+        }}
+        id="upload-box"
+      >
         <input
           type="file"
           onChange={(event) => {
@@ -113,6 +164,7 @@ const Profile = () => {
           id="confirm-upload"
           type="button"
           onClick={() => profileImageUpload()}
+          value="Submit"
         />
         {file && (
           <div>
