@@ -6,6 +6,7 @@ import { jsx } from 'theme-ui'
 import { toast } from 'react-toastify'
 import { VscLoading } from 'react-icons/vsc'
 import { FiDelete } from 'react-icons/fi'
+import { AiFillCrown } from 'react-icons/ai'
 import InviteMemberButton from '../buttons/invite-member-button/invite-member-button'
 import Dialog from '../dialogs/dialog'
 import AddListMemberDialog from '../dialogs/add-list-member-dialog/add-list-member-dialog'
@@ -97,9 +98,9 @@ const ListMembers = ({ listId }) => {
         sx={{
           display: 'grid',
           gap: 3,
-          gridTemplateColumns: 'repeat(auto-fit, 1fr)',
+          gridTemplateColumns: '1fr',
           '@media (min-width: 800px)': {
-            gridTemplateColumns: 'repeat(auto-fill, 500px)',
+            gridTemplateColumns: '800px',
           },
         }}
       >
@@ -162,6 +163,7 @@ const ListMembers = ({ listId }) => {
                     justifySelf: 'end',
                   }}
                 >
+                  {ownerOfList && <AiFillCrown size="30" />}
                   {!ownerOfList && (
                     <button
                       type="button"
@@ -184,6 +186,9 @@ const ListMembers = ({ listId }) => {
                       sx={{
                         all: 'unset',
                         cursor: 'pointer',
+                        '&:hover': {
+                          color: 'colorThree',
+                        },
                       }}
                     >
                       <FiDelete size="30" />

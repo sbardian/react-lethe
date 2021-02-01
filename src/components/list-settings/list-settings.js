@@ -54,6 +54,9 @@ const ListSettings = ({ listId }) => {
         padding: 3,
         height: '100%',
         fontSize: 1,
+        '@media (min-width: 800px)': {
+          gridTemplateColumns: '800px',
+        },
       }}
     >
       <span

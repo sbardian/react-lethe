@@ -4,15 +4,25 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { StorageContext } from '../contexts/storage-context/storage-context'
 
-const FirebaseImage = ({ imageUrl, height, width, type, alt }) => {
+const FirebaseImage = ({
+  imageUrl,
+  height,
+  width,
+  type,
+  alt,
+  source,
+  ...rest
+}) => {
   const { getImageUrl } = React.useContext(StorageContext)
   const [firebaseImageUrl, setFirebaseImageUrl] = React.useState()
 
   React.useEffect(() => {
     if (imageUrl) {
-      getImageUrl(imageUrl).then((url) => setFirebaseImageUrl(url))
+      getImageUrl(imageUrl, source).then((url) =>
+        setFirebaseImageUrl(url, source),
+      )
     }
-  }, [imageUrl])
+  }, [imageUrl, source])
 
   // TODO: grab more metadata about the image while fetching the download URL, so we can size it correctly
   return (
@@ -24,6 +34,7 @@ const FirebaseImage = ({ imageUrl, height, width, type, alt }) => {
       height={height}
       width={width}
       alt={alt}
+      {...rest}
     />
   )
 }
@@ -31,6 +42,7 @@ const FirebaseImage = ({ imageUrl, height, width, type, alt }) => {
 FirebaseImage.defaultProps = {
   type: 'square',
   alt: 'image',
+  source: 'firebase',
 }
 
 FirebaseImage.propTypes = {
@@ -39,6 +51,7 @@ FirebaseImage.propTypes = {
   width: PropTypes.string.isRequired,
   type: PropTypes.string,
   alt: PropTypes.string,
+  source: PropTypes.string,
 }
 
 export default FirebaseImage

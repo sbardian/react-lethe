@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { jsx, Label } from 'theme-ui'
 import ProfileImage from '../profile-image/profile-image'
-// import UpdateListTitleButton from '../buttons/update-list-title-button/update-list-title-button'
+import defaultSiteImage from '../../assets/images/default-site-image.jpg'
 
 const GET_LIST = gql`
   query getLists($id_is: String!) {
@@ -28,10 +28,12 @@ const UPLOAD_LIST_IMAGE = gql`
 const EditListImage = ({ listId, title, orgImage }) => {
   const [file, setFile] = React.useState()
   const [newFileSelected, setNewFileSelected] = React.useState(false)
+  const [newFileUrl, setNewFileUrl] = React.useState(null)
 
   const handleUpload = (event) => {
     setNewFileSelected(true)
     setFile(event.target.files[0])
+    setNewFileUrl(URL.createObjectURL(event.target.files[0]))
   }
 
   const [imageUpload] = useMutation(UPLOAD_LIST_IMAGE, {
@@ -43,6 +45,7 @@ const EditListImage = ({ listId, title, orgImage }) => {
     onCompleted: () => {
       setFile(null)
       setNewFileSelected(null)
+      setNewFileUrl(null)
     },
     refetchQueries: [
       {
@@ -53,10 +56,6 @@ const EditListImage = ({ listId, title, orgImage }) => {
       },
     ],
   })
-
-  // React.useEffect(() => {
-  //   setFile(orgImage)
-  // }, [orgImage])
 
   return (
     <div
@@ -80,7 +79,7 @@ const EditListImage = ({ listId, title, orgImage }) => {
           alignItems: 'start',
         }}
       >
-        Image
+        List Image
         <label htmlFor="edit-list-image" sx={{ marginBottom: 2 }}>
           <input
             data-testid="lethe-image-input"
@@ -101,8 +100,6 @@ const EditListImage = ({ listId, title, orgImage }) => {
             }}
           />
         </label>
-        {/* {newFileSelected && (
-          <React.Fragment> */}
         <input
           sx={{
             maxWidth: '100px',
@@ -121,10 +118,47 @@ const EditListImage = ({ listId, title, orgImage }) => {
             <p>File size: {file?.size} bytes</p>
           </div>
         )}
-        {/* </React.Fragment>
-        )} */}
       </div>
-      <ProfileImage profileImageUrl={orgImage} size="large" />
+      <div
+        sx={{
+          display: 'grid',
+          alignSelf: 'start',
+          gridTemplateColumns: '1fr 1fr',
+        }}
+      >
+        <div
+          sx={{
+            display: 'grid',
+            gridTemplateRows: '36px 1fr',
+            justifyContent: 'center',
+            alignContent: 'center',
+          }}
+        >
+          <span>New Image</span>
+          <ProfileImage
+            sx={{ justifySelf: 'center' }}
+            profileImageUrl={newFileUrl || defaultSiteImage}
+            size="medium"
+            source="local"
+            alt=""
+          />
+        </div>
+        <div
+          sx={{
+            display: 'grid',
+            gridTemplateRows: '36px 1fr',
+            justifyContent: 'center',
+            alignContent: 'center',
+          }}
+        >
+          <span>Current Image</span>
+          <ProfileImage
+            sx={{ justifySelf: 'center' }}
+            profileImageUrl={orgImage}
+            size="medium"
+          />
+        </div>
+      </div>
     </div>
   )
 }

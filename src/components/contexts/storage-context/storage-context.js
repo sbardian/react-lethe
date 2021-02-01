@@ -36,8 +36,12 @@ export const StorageProvider = ({ children }) => {
     return image
   }
 
-  const getImageUrl = (img) =>
-    Promise.all([fetchDownloadUrl(img)]).then((url) => url[0])
+  const getImageUrl = (img, source = null) => {
+    if (source === 'local') {
+      return new Promise((resolve) => resolve(img))
+    }
+    return Promise.all([fetchDownloadUrl(img)]).then((url) => url[0])
+  }
 
   return (
     <StorageContext.Provider value={{ storageRef, getImageUrl }}>
