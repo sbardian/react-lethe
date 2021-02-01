@@ -325,6 +325,7 @@ const ListItems = ({ listId }) => {
                     profileImageUrl={item.creator.profileImageUrl}
                     size="small"
                     type="circle"
+                    alt="Profile Image"
                   />
                   <span sx={{ fontWeight: 'heavy' }}>{item.title}</span>
                 </div>

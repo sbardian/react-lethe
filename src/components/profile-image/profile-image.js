@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import FirebaseImage from '../firebase-image/firebase-image'
 
-const ProfileImage = ({ profileImageUrl, size, type }) => {
+const ProfileImage = ({ profileImageUrl, size, type, ...rest }) => {
   const [imageSize, setImageSize] = React.useState()
 
   React.useEffect(() => {
@@ -40,6 +40,7 @@ const ProfileImage = ({ profileImageUrl, size, type }) => {
           imageUrl={profileImageUrl}
           height={imageSize.height}
           width={imageSize.width}
+          {...rest}
         />
       )}
     </React.Fragment>

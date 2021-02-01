@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { StorageContext } from '../contexts/storage-context/storage-context'
 
-const FirebaseImage = ({ imageUrl, height, width, type }) => {
+const FirebaseImage = ({ imageUrl, height, width, type, alt }) => {
   const { getImageUrl } = React.useContext(StorageContext)
   const [firebaseImageUrl, setFirebaseImageUrl] = React.useState()
 
@@ -23,13 +23,14 @@ const FirebaseImage = ({ imageUrl, height, width, type }) => {
       src={firebaseImageUrl}
       height={height}
       width={width}
-      alt={imageUrl || 'failed image'}
+      alt={alt}
     />
   )
 }
 
 FirebaseImage.defaultProps = {
   type: 'square',
+  alt: 'image',
 }
 
 FirebaseImage.propTypes = {
@@ -37,6 +38,7 @@ FirebaseImage.propTypes = {
   height: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   type: PropTypes.string,
+  alt: PropTypes.string,
 }
 
 export default FirebaseImage
