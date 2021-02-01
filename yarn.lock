@@ -5196,7 +5196,7 @@ anymatch@^3.0.3, anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-apollo-upload-client@^14.1.3:
+apollo-upload-client@14.1.3:
   version "14.1.3"
   resolved "https://registry.yarnpkg.com/apollo-upload-client/-/apollo-upload-client-14.1.3.tgz#91f39011897bd08e99c0de0164e77ad2f3402247"
   integrity sha512-X2T+7pHk5lcaaWnvP9h2tuAAMCzOW6/9juedQ0ZuGp3Ufl81BpDISlCs0o6u29wBV0RRT/QpMU2gbP+3FCfVpQ==
