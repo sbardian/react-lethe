@@ -154,8 +154,9 @@ const EditListImage = ({ listId, title, orgImage }) => {
           <span>Current Image</span>
           <ProfileImage
             sx={{ justifySelf: 'center' }}
-            profileImageUrl={orgImage}
+            profileImageUrl={orgImage || defaultSiteImage}
             size="medium"
+            source={orgImage ? 'firebase' : 'local'}
           />
         </div>
       </div>
