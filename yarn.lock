@@ -9233,7 +9233,7 @@ findup-sync@^3.0.0:
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
-firebase@^8.2.4:
+firebase@8.2.4:
   version "8.2.4"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-8.2.4.tgz#f30fd723ccc51535a4ec97c671ab84d1919ea0d9"
   integrity sha512-+skMZY0kXKCFVAlbwoKnRDfOhmg9rp2lDZBJk/h4PYxh/joPNTXYCKFYqUkXfwSW4jQBlLP+PtjrZKeedg6mdA==
