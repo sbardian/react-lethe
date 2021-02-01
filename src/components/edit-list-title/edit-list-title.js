@@ -20,34 +20,24 @@ const EditListTitle = ({ listId, orgTitle }) => {
   }, [orgTitle])
 
   return (
-    <div
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        '@media (min-width: 430px)': {
-          gap: 3,
-          gridTemplateColumns: '60px 1fr',
-          gridTemplateRows: 'auto auto',
-        },
-      }}
-    >
-      <UpdateListTitleButton
-        listId={listId}
-        newTitle={newTitle}
-        titleNotUpdated={titleNotUpdated}
-        setTitleNotUpdated={setTitleNotUpdated}
-      />
+    <div>
+      Title
       <div
         sx={{
           display: 'grid',
-          gridTemplateColumns: '1fr',
+          gridTemplateColumns: '1fr 60px',
+
+          '@media (min-width: 430px)': {
+            gridTemplateColumns: '740px 60px',
+          },
         }}
       >
-        <label
-          htmlFor="edit-list-title"
-          sx={{ display: 'grid', marginBottom: 2 }}
+        <div
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+          }}
         >
-          Title
           <input
             data-testid="lethe-input"
             aria-label="edit-list-title-input"
@@ -66,7 +56,13 @@ const EditListTitle = ({ listId, orgTitle }) => {
               },
             }}
           />
-        </label>
+        </div>
+        <UpdateListTitleButton
+          listId={listId}
+          newTitle={newTitle}
+          titleNotUpdated={titleNotUpdated}
+          setTitleNotUpdated={setTitleNotUpdated}
+        />
       </div>
     </div>
   )

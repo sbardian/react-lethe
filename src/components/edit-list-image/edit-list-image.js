@@ -61,103 +61,111 @@ const EditListImage = ({ listId, title, orgImage }) => {
     <div
       sx={{
         display: 'grid',
+        gap: 3,
         gridTemplateColumns: '1fr',
-        backgroundColor: 'offWhite',
-        padding: 2,
-        alignItems: 'start',
-        '@media (min-width: 430px)': {
-          gap: 3,
-          gridTemplateColumns: '1fr 3fr',
-          gridTemplateRows: 'auto auto',
-        },
       }}
     >
+      Image
       <div
         sx={{
           display: 'grid',
           gridTemplateColumns: '1fr',
+          backgroundColor: 'offWhite',
+          padding: 2,
           alignItems: 'start',
-        }}
-      >
-        List Image
-        <label htmlFor="edit-list-image" sx={{ marginBottom: 2 }}>
-          <input
-            data-testid="lethe-image-input"
-            aria-label="edit-list-image-input"
-            aria-required="true"
-            type="file"
-            id="edit-list-image"
-            onChange={(event) => handleUpload(event)}
-            sx={{
-              color: 'textSecondary',
-              borderRadius: '5px',
-              lineHeight: 2,
-              fontSize: 0,
-              '@media (min-width: 430px)': {
-                fontSize: 1,
-                lineHeight: 2,
-              },
-            }}
-          />
-        </label>
-        <input
-          sx={{
-            maxWidth: '100px',
-            height: '30px',
-          }}
-          id="confirm-upload"
-          accept="image/png, image/jpeg"
-          type="button"
-          value="Submit"
-          onClick={() => imageUpload()}
-        />
-        {newFileSelected && (
-          <div>
-            <p>Filename: {file?.name}</p>
-            <p>File type: {file?.type}</p>
-            <p>File size: {file?.size} bytes</p>
-          </div>
-        )}
-      </div>
-      <div
-        sx={{
-          display: 'grid',
-          alignSelf: 'start',
-          gridTemplateColumns: '1fr 1fr',
+          '@media (min-width: 430px)': {
+            gap: 3,
+            gridTemplateColumns: '1fr 3fr',
+            gridTemplateRows: 'auto auto',
+          },
         }}
       >
         <div
           sx={{
             display: 'grid',
-            gridTemplateRows: '36px 1fr',
-            justifyContent: 'center',
-            alignContent: 'center',
+            gridTemplateColumns: '1fr',
+            alignItems: 'start',
           }}
         >
-          <span>New Image</span>
-          <ProfileImage
-            sx={{ justifySelf: 'center' }}
-            profileImageUrl={newFileUrl || defaultSiteImage}
-            size="medium"
-            source="local"
-            alt=""
+          <label htmlFor="edit-list-image" sx={{ marginBottom: 2 }}>
+            <input
+              data-testid="lethe-image-input"
+              aria-label="edit-list-image-input"
+              aria-required="true"
+              type="file"
+              id="edit-list-image"
+              onChange={(event) => handleUpload(event)}
+              sx={{
+                color: 'textSecondary',
+                borderRadius: '5px',
+                lineHeight: 2,
+                fontSize: 0,
+                '@media (min-width: 430px)': {
+                  fontSize: 1,
+                  lineHeight: 2,
+                },
+              }}
+            />
+          </label>
+          <input
+            sx={{
+              maxWidth: '100px',
+              height: '30px',
+            }}
+            id="confirm-upload"
+            accept="image/png, image/jpeg"
+            type="button"
+            value="Submit"
+            onClick={() => imageUpload()}
           />
+          {newFileSelected && (
+            <div>
+              <p>Filename: {file?.name}</p>
+              <p>File type: {file?.type}</p>
+              <p>File size: {file?.size} bytes</p>
+            </div>
+          )}
         </div>
         <div
           sx={{
             display: 'grid',
-            gridTemplateRows: '36px 1fr',
-            justifyContent: 'center',
-            alignContent: 'center',
+            alignSelf: 'start',
+            gridTemplateColumns: '1fr 1fr',
           }}
         >
-          <span>Current Image</span>
-          <ProfileImage
-            sx={{ justifySelf: 'center' }}
-            profileImageUrl={orgImage || defaultSiteImage}
-            size="medium"
-            source={orgImage ? 'firebase' : 'local'}
-          />
+          <div
+            sx={{
+              display: 'grid',
+              gridTemplateRows: '36px 1fr',
+              justifyContent: 'center',
+              alignContent: 'center',
+            }}
+          >
+            <span>New Image</span>
+            <ProfileImage
+              sx={{ justifySelf: 'center' }}
+              profileImageUrl={newFileUrl || defaultSiteImage}
+              size="medium"
+              source="local"
+              alt=""
+            />
+          </div>
+          <div
+            sx={{
+              display: 'grid',
+              gridTemplateRows: '36px 1fr',
+              justifyContent: 'center',
+              alignContent: 'center',
+            }}
+          >
+            <span>Current Image</span>
+            <ProfileImage
+              sx={{ justifySelf: 'center' }}
+              profileImageUrl={orgImage || defaultSiteImage}
+              size="medium"
+              source={orgImage ? 'firebase' : 'local'}
+            />
+          </div>
         </div>
       </div>
     </div>
