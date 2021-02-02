@@ -6,6 +6,7 @@ import AcceptInvitationButton from '../buttons/accept-invitation-button/accept-i
 import DeclineInvitationButton from '../buttons/decline-invitation-button/decline-invitation-button'
 import FirebaseImage from '../firebase-image/firebase-image'
 import ProfileImage from '../profile-image/profile-image'
+import defaultSiteImage from '../../assets/images/default-site-image.jpg'
 
 const GET_MY_INVITATIONS = gql`
   {
@@ -38,22 +39,6 @@ const INVITATION_ADDED = gql`
   subscription onInvitationAdded {
     invitationAdded {
       id
-      list {
-        listImageUrl
-      }
-      inviter {
-        id
-        username
-        email
-        profileImageUrl
-      }
-      invitee {
-        id
-        username
-        email
-        profileImageUrl
-      }
-      title
     }
   }
 `
@@ -62,22 +47,6 @@ const INVITATION_DELETED = gql`
   subscription onInvitationDeleted {
     invitationDeleted {
       id
-      list {
-        listImageUrl
-      }
-      inviter {
-        id
-        username
-        email
-        profileImageUrl
-      }
-      invitee {
-        id
-        username
-        email
-        profileImageUrl
-      }
-      title
     }
   }
 `
@@ -207,7 +176,8 @@ const Invitations = () => {
                     mozBoxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                     boxShadow: '0px 0px 6px -1px rgba(0, 0, 0, 0.66)',
                   }}
-                  imageUrl={invite.list.listImageUrl}
+                  imageUrl={invite.list.listImageUrl || defaultSiteImage}
+                  source={invite.list.listImageUrl ? 'firebase' : 'local'}
                   alt={invite.inviter.username}
                   height="150"
                   width="150"

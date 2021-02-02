@@ -11,14 +11,6 @@ const DECLINE_INVITATION = gql`
   mutation declineInvitation($invitationId: String!) {
     deleteInvitation(invitationId: $invitationId) {
       id
-      inviter {
-        id
-      }
-      invitee {
-        id
-      }
-      list
-      title
     }
   }
 `
@@ -28,7 +20,7 @@ interface InvitationError {
 }
 
 const declineInvitationSuccess = () =>
-  toast.success('Invitation accepted successfully', toastsConfig)
+  toast.success('Invitation declined successfully', toastsConfig)
 const declineInvitationFailure = (e: InvitationError) =>
   toast.error(e.message, toastsConfig)
 

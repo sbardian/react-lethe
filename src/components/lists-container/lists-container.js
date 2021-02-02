@@ -22,6 +22,15 @@ export const GET_MY_LISTS = gql`
   }
 `
 
+export const LIST_ADDED = gql`
+  subscription onListAdded {
+    listAdded {
+      id
+      title
+    }
+  }
+`
+
 export const DELETE_LIST = gql`
   mutation deleteList($listId: String!) {
     deleteList(listId: $listId) {
@@ -84,6 +93,28 @@ const ListsContainer = () => {
     )
   if (error) return <p>{`${error}`}</p>
   if (!getListsData) return <p>You currently have no lists. Create some!</p>
+
+  subscribeToMore({
+    document: LIST_ADDED,
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev
+      const { id } = subscriptionData.data.listAdded
+      if (prev.getMyInfo.lists.some((list) => list.id === id)) {
+        const newLists = {
+          ...prev,
+          getMyInfo: {
+            ...prev.getMyInfo,
+            lists: [
+              { ...subscriptionData.data.listAdded },
+              ...prev.getMyInfo.lists,
+            ],
+          },
+        }
+        return newLists
+      }
+      return prev
+    },
+  })
 
   subscribeToMore({
     document: LIST_DELETED,
