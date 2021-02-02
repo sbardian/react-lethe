@@ -12,6 +12,7 @@ import Dialog from '../dialogs/dialog'
 import AddListMemberDialog from '../dialogs/add-list-member-dialog/add-list-member-dialog'
 import toastsConfig from '../../utils/toasts-config'
 import ProfileImage from '../profile-image/profile-image'
+import defaultProfileImage from '../../assets/images/default-profile-image.jpg'
 
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
@@ -138,8 +139,11 @@ const ListMembers = ({ listId }) => {
                   }}
                 >
                   <ProfileImage
-                    profileImageUrl={user.profileImageUrl}
+                    profileImageUrl={
+                      user.profileImageUrl || defaultProfileImage
+                    }
                     size="medium"
+                    source={user.profileImageUrl ? 'firebase' : 'local'}
                   />
                   <div>{ownerOfList && <div>Owner</div>}</div>
                 </div>

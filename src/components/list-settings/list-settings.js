@@ -18,11 +18,21 @@ const GET_LIST = gql`
   }
 `
 
+const LIST_EDITED = gql`
+  subscription listEdited($listId: String!) {
+    listEdited(listId: $listId) {
+      id
+      title
+      listImageUrl
+    }
+  }
+`
+
 const ListSettings = ({ listId }) => {
   const [orgTitle, setOrgTitle] = React.useState('')
   const [orgImage, setOrgImage] = React.useState('')
 
-  const { loading, error, data } = useQuery(GET_LIST, {
+  const { subscribeToMore, loading, error, data } = useQuery(GET_LIST, {
     variables: { id_is: listId },
   })
 
@@ -41,6 +51,28 @@ const ListSettings = ({ listId }) => {
   if (error) {
     return <div>Error: ${error.message}</div>
   }
+
+  subscribeToMore({
+    document: LIST_EDITED,
+    variables: { listId },
+    updateQuery: (prev, { subscriptionData }) => {
+      if (!subscriptionData.data) return prev
+      const { id } = subscriptionData.data.listEdited
+      const [list] = prev.getLists
+      if (list.id === id) {
+        const newList = {
+          ...prev,
+          getLists: [
+            {
+              ...subscriptionData.data.listEdited,
+            },
+          ],
+        }
+        return newList
+      }
+      return prev
+    },
+  })
 
   return (
     <div

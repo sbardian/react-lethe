@@ -39,6 +39,22 @@ const INVITATION_ADDED = gql`
   subscription onInvitationAdded {
     invitationAdded {
       id
+      list {
+        listImageUrl
+      }
+      inviter {
+        id
+        username
+        email
+        profileImageUrl
+      }
+      invitee {
+        id
+        username
+        email
+        profileImageUrl
+      }
+      title
     }
   }
 `
@@ -47,6 +63,22 @@ const INVITATION_DELETED = gql`
   subscription onInvitationDeleted {
     invitationDeleted {
       id
+      list {
+        listImageUrl
+      }
+      inviter {
+        id
+        username
+        email
+        profileImageUrl
+      }
+      invitee {
+        id
+        username
+        email
+        profileImageUrl
+      }
+      title
     }
   }
 `
