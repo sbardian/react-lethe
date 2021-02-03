@@ -72,8 +72,9 @@ const ITEM_ADDED = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
-      list
       status
     }
   }
@@ -86,8 +87,9 @@ const ITEM_DELETED = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
-      list
       status
     }
   }
@@ -100,8 +102,9 @@ const ITEM_EDITED = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
-      list
       status
     }
   }
@@ -141,6 +144,7 @@ const ListItems = ({ listId }) => {
       updateItemStatusFailure(updateItemError)
     },
   })
+
   const [deleteItem] = useMutation(DELETE_ITEM, {
     onError: (deleteItemError) => {
       deleteItemFailure(deleteItemError)
@@ -197,6 +201,7 @@ const ListItems = ({ listId }) => {
       return prev
     },
   })
+
   subscribeToMore({
     document: ITEM_DELETED,
     variables: { listId },
@@ -220,6 +225,7 @@ const ListItems = ({ listId }) => {
       return prev
     },
   })
+
   subscribeToMore({
     document: ITEM_EDITED,
     variables: { listId },
@@ -249,14 +255,6 @@ const ListItems = ({ listId }) => {
 
   const handleUpdateItem = (item) => {
     updateItem({
-      refetchQueries: [
-        {
-          query: GET_LIST_ITEMS,
-          variables: {
-            id_is: listId,
-          },
-        },
-      ],
       variables: {
         itemId: item.id,
         title: item.title,
@@ -267,14 +265,6 @@ const ListItems = ({ listId }) => {
 
   const handleDeleteItem = (item) => {
     deleteItem({
-      refetchQueries: [
-        {
-          query: GET_LIST_ITEMS,
-          variables: {
-            id_is: listId,
-          },
-        },
-      ],
       variables: { itemId: item.id },
     })
   }
