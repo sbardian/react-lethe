@@ -4,6 +4,7 @@ import React from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { jsx } from 'theme-ui'
 import ProfileImage from '../profile-image/profile-image'
+import defaultProfileImage from '../../assets/images/default-profile-image.jpg'
 
 const UPLOAD_PROFILE_IMAGE = gql`
   mutation profileImageUpload($file: Upload!) {
@@ -73,6 +74,8 @@ const Profile = () => {
     getMyInfo: { username, profileImageUrl, email },
   } = data
 
+  console.log({ profileImageUrl })
+
   return (
     <div
       sx={{
@@ -80,13 +83,14 @@ const Profile = () => {
         padding: 3,
       }}
     >
-      {profileImageUrl && (
-        <ProfileImage profileImageUrl={profileImageUrl} size="large" />
-      )}
+      <ProfileImage
+        profileImageUrl={profileImageUrl || defaultProfileImage}
+        size="large"
+        source={profileImageUrl ? 'firebase' : 'local'}
+      />
       <div
         sx={{
-          padding: 3,
-          fontSize: 2,
+          fontSize: 3,
         }}
       >
         Profile
