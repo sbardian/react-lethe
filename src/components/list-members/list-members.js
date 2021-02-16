@@ -14,6 +14,14 @@ import toastsConfig from '../../utils/toasts-config'
 import ProfileImage from '../profile-image/profile-image'
 import defaultProfileImage from '../../assets/images/default-profile-image.jpg'
 
+const GET_MY_ID = gql`
+  {
+    getMyInfo {
+      id
+    }
+  }
+`
+
 const GET_LIST_USERS = gql`
   query getLists($id_is: String!) {
     getLists(id_is: $id_is) {
@@ -57,13 +65,9 @@ const ListMembers = ({ listId }) => {
     },
   })
 
-  const { loading, error, data } = useQuery(GET_LIST_USERS, {
-    variables: {
-      id_is: listId,
-    },
-  })
+  const { data: myId } = useQuery(GET_MY_ID)
 
-  useQuery(GET_LIST_USERS, {
+  const { loading, error, data } = useQuery(GET_LIST_USERS, {
     variables: {
       id_is: listId,
     },
@@ -106,102 +110,109 @@ const ListMembers = ({ listId }) => {
         }}
       >
         {users &&
-          users.map((user) => {
-            let ownerOfList = false
-            if (user.id === owner.id) {
-              ownerOfList = true
-            }
-            return (
-              <div
-                key={user.id}
-                sx={{
-                  display: 'grid',
-                  gap: 3,
-                  gridTemplateColumns: '1fr',
-                  justifyItems: 'center',
-                  alignItems: 'center',
-                  backgroundColor: 'offWhite',
-                  color: 'textSecondary',
-                  borderRadius: '5px',
-                  padding: 3,
-                  '@media (min-width: 430px)': {
-                    gridTemplateColumns: '140px 1fr 40px',
-                  },
-                }}
-              >
+          users
+            .slice(0)
+            .reverse()
+            .map((user) => {
+              let ownerOfList = false
+              let currentUserIsOwner = false
+              if (user.id === owner.id) {
+                ownerOfList = true
+              }
+              if (myId.getMyInfo.id === owner.id) {
+                currentUserIsOwner = true
+              }
+              return (
                 <div
+                  key={user.id}
                   sx={{
                     display: 'grid',
-                    gridTemplateRows: '1fr 30px',
-                    gap: 2,
-                    alignContent: 'center',
+                    gap: 3,
+                    gridTemplateColumns: '1fr',
                     justifyItems: 'center',
+                    alignItems: 'center',
+                    backgroundColor: 'offWhite',
+                    color: 'textSecondary',
+                    borderRadius: '5px',
+                    padding: 3,
+                    '@media (min-width: 430px)': {
+                      gridTemplateColumns: '140px 1fr 40px',
+                    },
                   }}
                 >
-                  <ProfileImage
-                    profileImageUrl={
-                      user.profileImageUrl || defaultProfileImage
-                    }
-                    size="medium"
-                    source={user.profileImageUrl ? 'firebase' : 'local'}
-                  />
-                  <div>{ownerOfList && <div>Owner</div>}</div>
-                </div>
-                <div
-                  sx={{
-                    display: 'grid',
-                    gap: 3,
-                    gridTemplateRows: 'auto auto',
-                    justifySelf: 'center',
-                    alignSelf: 'center',
-                  }}
-                >
-                  <span>User: {user.username}</span>
-                  <span>Email: {user.email}</span>
-                </div>
-                <div
-                  sx={{
-                    display: 'grid',
-                    gap: 3,
-                    gridTemplateRows: 'auto',
-                    justifySelf: 'end',
-                  }}
-                >
-                  {ownerOfList && <AiFillCrown size="30" />}
-                  {!ownerOfList && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        removeFromList({
-                          variables: {
-                            listId,
-                            userId: user.id,
-                          },
-                          refetchQueries: [
-                            {
-                              query: GET_LIST_USERS,
-                              variables: {
-                                id_is: listId,
-                              },
+                  <div
+                    sx={{
+                      display: 'grid',
+                      gridTemplateRows: '1fr 30px',
+                      gap: 2,
+                      alignContent: 'center',
+                      justifyItems: 'center',
+                    }}
+                  >
+                    <ProfileImage
+                      profileImageUrl={
+                        user.profileImageUrl || defaultProfileImage
+                      }
+                      size="medium"
+                      source={user.profileImageUrl ? 'firebase' : 'local'}
+                    />
+                    <div>{ownerOfList && <div>Owner</div>}</div>
+                  </div>
+                  <div
+                    sx={{
+                      display: 'grid',
+                      gap: 3,
+                      gridTemplateRows: 'auto auto',
+                      justifySelf: 'center',
+                      alignSelf: 'center',
+                    }}
+                  >
+                    <span>User: {user.username}</span>
+                    <span>Email: {user.email}</span>
+                  </div>
+                  <div
+                    sx={{
+                      display: 'grid',
+                      gap: 3,
+                      gridTemplateRows: 'auto',
+                      justifySelf: 'end',
+                    }}
+                  >
+                    {ownerOfList && <AiFillCrown size="30" />}
+                    {currentUserIsOwner && !ownerOfList && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          removeFromList({
+                            variables: {
+                              listId,
+                              userId: user.id,
                             },
-                          ],
-                        })
-                      }}
-                      sx={{
-                        all: 'unset',
-                        cursor: 'pointer',
-                        '&:hover': {
-                          color: 'colorThree',
-                        },
-                      }}
-                    >
-                      <FiDelete size="30" />
-                    </button>
-                  )}
+                            refetchQueries: [
+                              {
+                                query: GET_LIST_USERS,
+                                variables: {
+                                  id_is: listId,
+                                },
+                              },
+                            ],
+                          })
+                        }}
+                        sx={{
+                          all: 'unset',
+                          cursor: 'pointer',
+                          '&:hover': {
+                            color: 'colorThree',
+                          },
+                        }}
+                      >
+                        <FiDelete size="30" />
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
       </div>
       <Dialog showDialog={showDialog}>
         <AddListMemberDialog setShowDialog={setShowDialog} listId={listId} />
