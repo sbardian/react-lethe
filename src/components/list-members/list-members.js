@@ -116,6 +116,7 @@ const ListMembers = ({ listId }) => {
             .map((user) => {
               let ownerOfList = false
               let currentUserIsOwner = false
+              const currentUserId = myId.getMyInfo.id
               if (user.id === owner.id) {
                 ownerOfList = true
               }
@@ -179,36 +180,37 @@ const ListMembers = ({ listId }) => {
                     }}
                   >
                     {ownerOfList && <AiFillCrown size="30" />}
-                    {currentUserIsOwner && !ownerOfList && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          removeFromList({
-                            variables: {
-                              listId,
-                              userId: user.id,
-                            },
-                            refetchQueries: [
-                              {
-                                query: GET_LIST_USERS,
-                                variables: {
-                                  id_is: listId,
-                                },
+                    {(currentUserIsOwner && !ownerOfList) ||
+                      (currentUserId === user.id && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            removeFromList({
+                              variables: {
+                                listId,
+                                userId: user.id,
                               },
-                            ],
-                          })
-                        }}
-                        sx={{
-                          all: 'unset',
-                          cursor: 'pointer',
-                          '&:hover': {
-                            color: 'colorThree',
-                          },
-                        }}
-                      >
-                        <FiDelete size="30" />
-                      </button>
-                    )}
+                              refetchQueries: [
+                                {
+                                  query: GET_LIST_USERS,
+                                  variables: {
+                                    id_is: listId,
+                                  },
+                                },
+                              ],
+                            })
+                          }}
+                          sx={{
+                            all: 'unset',
+                            cursor: 'pointer',
+                            '&:hover': {
+                              color: 'colorThree',
+                            },
+                          }}
+                        >
+                          <FiDelete size="30" />
+                        </button>
+                      ))}
                   </div>
                 </div>
               )
