@@ -73,7 +73,7 @@
     "@types/react": "17.0.4",
     "@types/react-dom": "17.0.3",
     "@types/theme-ui": "0.3.7",
-    "@typescript-eslint/parser": "4.22.0",
+    "@typescript-eslint/parser": "4.22.1",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "commitizen": "4.2.3",
