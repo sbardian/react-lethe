@@ -71,7 +71,7 @@
     "@types/jest": "26.0.23",
     "@types/node": "14.14.44",
     "@types/react": "17.0.5",
-    "@types/react-dom": "17.0.3",
+    "@types/react-dom": "17.0.4",
     "@types/theme-ui": "0.3.7",
     "@typescript-eslint/parser": "4.23.0",
     "babel-eslint": "10.1.0",
