@@ -2605,10 +2605,10 @@
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.6.2.tgz#8578cb1061a83ced4570188be9e225d54e0f27fb"
   integrity sha512-2VXvq/K+n8XMdM4L2xy5bYp2ZXMawJXluUIDzUBvMthVR+lhxK4pfFiqr1mmDbv9ydXvEAuFsD+6DpcZuJcSSw==
 
-"@firebase/app@0.6.25":
-  version "0.6.25"
-  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.6.25.tgz#25f5209dc7c91ab7875c0dd23227681a90a01206"
-  integrity sha512-mSJVWxs2UAcRnypN/+X8RF+3A04rmpEXPYb/POWsvS5rc5YKxBVlc21Mem9IoEJhQkVCAsrbGziES16v7AElqw==
+"@firebase/app@0.6.26":
+  version "0.6.26"
+  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.6.26.tgz#c46ed28f5ed602a7432992d364d2d97944913540"
+  integrity sha512-y4tpb+uiYLQC5+/AHBtIGZMaTjJ2BHQEsXmPqxyhfVFDzWMcXFsc//RVxA/0OejajhJR6GeqDcIS3m47mUD+Aw==
   dependencies:
     "@firebase/app-types" "0.6.2"
     "@firebase/component" "0.5.2"
@@ -2668,10 +2668,10 @@
   resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-2.3.0.tgz#baf5c9470ba8be96bf0d76b83b413f03104cf565"
   integrity sha512-QTW7NP7nDL0pgT/X53lyj+mIMh4nRQBBTBlRNQBt7eSyeqBf3ag3bxdQhCg358+5KbjYTC2/O6QtX9DlJZmh1A==
 
-"@firebase/firestore@2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-2.3.5.tgz#ad9c1bd3326a8ef451468361ba86cdbb7f1ac9d3"
-  integrity sha512-lzIKAea24vPtlVDWg41ArhupE/v8kpumgi+pmMvTkrGt1/B48xRs4pXfyqZvkGUJReAQnbw8LtLfJN9SNPpXDA==
+"@firebase/firestore@2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-2.3.6.tgz#f000f4695102d9a7c6f7d3f62560a6cdbe493f85"
+  integrity sha512-e+W8LyiF9mEEJfYYUETEG6YaMKDeza58YwWCUkXMo1Rpahm9gqRfEDOisH25Wn6CElWOY5xaln40dxzZI+6Xow==
   dependencies:
     "@firebase/component" "0.5.2"
     "@firebase/firestore-types" "2.3.0"
@@ -9522,18 +9522,18 @@ findup-sync@^4.0.0:
     micromatch "^4.0.2"
     resolve-dir "^1.0.1"
 
-firebase@8.6.6:
-  version "8.6.6"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-8.6.6.tgz#2094e3fa250ccb47522e1db3f25845ce8f2b0d33"
-  integrity sha512-ejURPDSmMMoe4WDGWwok1/13DYdLJ9IioJcF5sbymTiRKuVMYKoH05vHYCOzDktIEO+tuqX9kCRFqhXSoJCmTA==
+firebase@8.6.7:
+  version "8.6.7"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-8.6.7.tgz#400acfb8e0e20da4f8c2320ed6d3f4db65cb68c0"
+  integrity sha512-hrprUyHNjmfhQmpWPUYfvsUniVxgNb+GEQpVT/80g+JCDeLIPd/FjNfbcUmGFb/Q0ynhftoN/cZ+vNkv+u8Kpg==
   dependencies:
     "@firebase/analytics" "0.6.12"
-    "@firebase/app" "0.6.25"
+    "@firebase/app" "0.6.26"
     "@firebase/app-check" "0.1.3"
     "@firebase/app-types" "0.6.2"
     "@firebase/auth" "0.16.6"
     "@firebase/database" "0.10.4"
-    "@firebase/firestore" "2.3.5"
+    "@firebase/firestore" "2.3.6"
     "@firebase/functions" "0.6.11"
     "@firebase/installations" "0.4.28"
     "@firebase/messaging" "0.7.12"
