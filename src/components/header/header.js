@@ -3,11 +3,13 @@
 import React from 'react'
 import { jsx } from 'theme-ui'
 import { useNavigate } from 'react-router-dom'
+import { RiArrowDownSFill } from 'react-icons/ri'
 import { gql, useMutation } from '@apollo/client'
 import { TokenContext } from '../contexts/token-context/token-context'
 import { StoreContext } from '../contexts/store-context/store-context'
 import MenuButton from '../buttons/menu-button/menu-button'
 import ColorModeToggleButton from '../buttons/color-mode-toggle-button/color-mode-toggle-button'
+import UserMenuButton from '../buttons/user-menu-button/user-menu-button'
 import handleKeyPress from '../../utils/on-key-press'
 import logo from '../../brain.png'
 
@@ -109,22 +111,7 @@ const Header = () => {
             }}
           >
             <ColorModeToggleButton />
-            <button
-              type="button"
-              sx={{
-                cursor: 'pointer',
-                padding: 2,
-                borderRadius: '5px',
-                backgroundColor: 'colorThree',
-                fontSize: 2,
-                border: 'none',
-                color: 'text',
-              }}
-              onKeyPress={(event) => () => handleKeyPress(event, logout)}
-              onClick={() => logout()}
-            >
-              Logout
-            </button>
+            <UserMenuButton />
           </div>
         </div>
         <div
