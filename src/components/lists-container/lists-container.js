@@ -17,6 +17,9 @@ export const GET_MY_LISTS = gql`
       lists {
         id
         title
+        owner {
+          id
+        }
       }
     }
   }
@@ -138,7 +141,7 @@ const ListsContainer = () => {
     },
   })
 
-  const { lists } = getListsData?.getMyInfo
+  const { lists, id } = getListsData?.getMyInfo
 
   return (
     <div
@@ -146,7 +149,7 @@ const ListsContainer = () => {
         backgroundColor: 'colorTwo',
       }}
     >
-      <Lists lists={lists} onDeleteList={handleDeleteList} />
+      <Lists lists={lists} userId={id} onDeleteList={handleDeleteList} />
     </div>
   )
 }

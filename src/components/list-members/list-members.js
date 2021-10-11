@@ -123,6 +123,9 @@ const ListMembers = ({ listId }) => {
               if (myId.getMyInfo.id === owner.id) {
                 currentUserIsOwner = true
               }
+              console.log('ownerOfList: ', ownerOfList)
+              console.log('currentUserIsOwner: ', currentUserIsOwner)
+              console.log('currentUserId: ', currentUserId)
               return (
                 <div
                   key={user.id}
@@ -180,37 +183,36 @@ const ListMembers = ({ listId }) => {
                     }}
                   >
                     {ownerOfList && <AiFillCrown size="30" />}
-                    {(currentUserIsOwner && !ownerOfList) ||
-                      (currentUserId === user.id && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            removeFromList({
-                              variables: {
-                                listId,
-                                userId: user.id,
-                              },
-                              refetchQueries: [
-                                {
-                                  query: GET_LIST_USERS,
-                                  variables: {
-                                    id_is: listId,
-                                  },
-                                },
-                              ],
-                            })
-                          }}
-                          sx={{
-                            all: 'unset',
-                            cursor: 'pointer',
-                            '&:hover': {
-                              color: 'colorThree',
+                    {currentUserIsOwner && !ownerOfList && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          removeFromList({
+                            variables: {
+                              listId,
+                              userId: user.id,
                             },
-                          }}
-                        >
-                          <FiDelete size="30" />
-                        </button>
-                      ))}
+                            refetchQueries: [
+                              {
+                                query: GET_LIST_USERS,
+                                variables: {
+                                  id_is: listId,
+                                },
+                              },
+                            ],
+                          })
+                        }}
+                        sx={{
+                          all: 'unset',
+                          cursor: 'pointer',
+                          '&:hover': {
+                            color: 'colorThree',
+                          },
+                        }}
+                      >
+                        <FiDelete size="30" />
+                      </button>
+                    )}
                   </div>
                 </div>
               )

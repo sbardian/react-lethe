@@ -6,8 +6,9 @@ import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
 import ListSettingsButton from '../buttons/list-settings-button/list-settings-button'
 import DeleteListButton from '../buttons/delete-list-button/delete-list-button'
+import RemoveUserFromListButton from '../buttons/remove-from-list-button/remove-user-from-list-button'
 
-const Lists = ({ lists, onDeleteList }) => (
+const Lists = ({ userId, lists, onDeleteList }) => (
   <ul
     data-testid="lists-ul"
     sx={{
@@ -69,7 +70,11 @@ const Lists = ({ lists, onDeleteList }) => (
           }}
         >
           <ListSettingsButton listId={list.id} hoverColor="text" />
-          <DeleteListButton listId={list.id} onDeleteList={onDeleteList} />
+          {userId === list.owner.id ? (
+            <DeleteListButton listId={list.id} onDeleteList={onDeleteList} />
+          ) : (
+            <RemoveUserFromListButton listId={list.id} userId={userId} />
+          )}
         </div>
       </li>
     ))}
@@ -89,6 +94,7 @@ Lists.propTypes = {
     }),
   ),
   onDeleteList: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
 }
 
 export default Lists
