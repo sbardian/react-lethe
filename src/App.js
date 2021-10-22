@@ -87,36 +87,19 @@ const App = () => {
             <ApolloProvider client={client}>
               <Router>
                 <Routes>
-                  <AuthRoute path="/lists" component={() => <ListsRoute />} />
-
+                  <AuthRoute path="/lists" element={<ListsRoute />} />
                   <AuthRoute
                     path="/invitations"
-                    component={() => <InvitationsRoute />}
+                    element={<InvitationsRoute />}
                   />
-
-                  <AuthRoute
-                    path="/profile"
-                    component={() => <ProfileRoute />}
-                  />
-
-                  <AuthRoute
-                    path="/settings"
-                    component={() => <SettingsRoute />}
-                  />
-
+                  <AuthRoute path="/profile" element={<ProfileRoute />} />
+                  <AuthRoute path="/settings" element={<SettingsRoute />} />
                   <AuthRoute
                     path="/lists/settings/:listId"
-                    component={() => <ListSettingsRoute />}
+                    element={<ListSettingsRoute />}
                   />
-
-                  <AuthRoute
-                    path="/lists/:listId"
-                    component={() => <ItemsRoute />}
-                  />
-
-                  <Route path="/">
-                    <LoginRoute />
-                  </Route>
+                  <AuthRoute path="/lists/:listId" element={<ItemsRoute />} />
+                  <Route path="/" element={<LoginRoute />} />
                 </Routes>
               </Router>
             </ApolloProvider>
