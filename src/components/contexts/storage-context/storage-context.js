@@ -9,12 +9,12 @@ export const StorageContext = React.createContext()
 export const StorageProvider = ({ children }) => {
   const [storageRef, setStorageRef] = React.useState(null)
 
-  const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    storageBucket: 'letheapi.appspot.com',
-  }
-
   React.useEffect(() => {
+    const firebaseConfig = {
+      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+      storageBucket: 'letheapi.appspot.com',
+    }
+
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }
