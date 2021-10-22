@@ -44,6 +44,8 @@ const UPDATE_ITEM_STATUS = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
       list
       status
@@ -58,6 +60,8 @@ const DELETE_ITEM = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
       list
       status
@@ -72,6 +76,8 @@ const ITEM_ADDED = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
       status
     }
@@ -85,6 +91,8 @@ const ITEM_DELETED = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
       status
     }
@@ -98,6 +106,8 @@ const ITEM_EDITED = gql`
       title
       creator {
         id
+        username
+        profileImageUrl
       }
       status
     }
