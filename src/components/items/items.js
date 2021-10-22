@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { jsx } from 'theme-ui'
 import { gql, useQuery, useMutation } from '@apollo/client'
-import { BsCheckBox } from 'react-icons/bs'
+import { BsCheck2Square } from 'react-icons/bs'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { RiCheckboxBlankLine } from 'react-icons/ri'
@@ -335,7 +335,7 @@ const ListItems = ({ listId }) => {
                     }}
                   >
                     {item.status ? (
-                      <BsCheckBox
+                      <BsCheck2Square
                         size="30"
                         sx={{
                           cursor: 'pointer',
