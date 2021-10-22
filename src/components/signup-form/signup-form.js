@@ -9,7 +9,13 @@ import { TokenContext } from '../contexts/token-context/token-context'
 import logo from '../../brain.png'
 
 const SignUpForm = ({ flipCard }) => {
-  const { register, handleSubmit, getValues, errors, reset } = useForm()
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+    reset,
+  } = useForm()
   const [registerError, setRegisterError] = React.useState('')
 
   const { setToken } = React.useContext(TokenContext)
@@ -114,8 +120,7 @@ const SignUpForm = ({ flipCard }) => {
               }}
               type="text"
               id="signup-username"
-              name="username"
-              ref={register({
+              {...register('signup-username', {
                 required: 'Username is required',
                 minLength: {
                   value: 2,
@@ -151,11 +156,11 @@ const SignUpForm = ({ flipCard }) => {
               }}
               type="text"
               id="email"
-              name="email"
-              ref={register({
+              {...register('email', {
                 required: 'Email is required',
                 pattern: {
-                  value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                  value:
+                    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                   message: 'Invalid email address',
                 },
               })}
@@ -188,8 +193,7 @@ const SignUpForm = ({ flipCard }) => {
               }}
               type="password"
               id="signup-password"
-              name="password"
-              ref={register({
+              {...register('password', {
                 required: 'Password is required',
                 minLength: {
                   value: 8,
@@ -227,7 +231,7 @@ const SignUpForm = ({ flipCard }) => {
               type="password"
               id="confirm-password"
               name="passwordConfirm"
-              ref={register({
+              {...register('passwordConfirm', {
                 required: 'Password confirmation is required',
                 minLength: {
                   value: 8,

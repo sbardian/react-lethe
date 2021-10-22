@@ -8,7 +8,12 @@ import { TokenContext } from '../contexts/token-context/token-context'
 import logo from '../../brain.png'
 
 const LoginForm = ({ flipCard }) => {
-  const { register, handleSubmit, reset, errors } = useForm()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm()
   const [loginError, setLoginError] = React.useState('')
 
   const { setToken } = React.useContext(TokenContext)
@@ -108,10 +113,9 @@ const LoginForm = ({ flipCard }) => {
                 borderRadius: '5px',
                 fontSize: 1,
               }}
-              name="username"
               type="text"
               id="username"
-              ref={register({ required: true })}
+              {...register('username', { required: true })}
             />
           </label>
           {errors.username && (
@@ -140,10 +144,9 @@ const LoginForm = ({ flipCard }) => {
                 borderRadius: '5px',
                 fontSize: 1,
               }}
-              name="password"
               type="password"
               id="password"
-              ref={register({ required: true })}
+              {...register('password', { required: true })}
             />
           </label>
           {errors.password && (
