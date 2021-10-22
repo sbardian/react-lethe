@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Navigate } from 'react-router-dom'
 
-const AuthRoute = ({ component: Component, ...rest }) => {
+const AuthRoute = ({ element: Component, ...rest }) => {
   const token = sessionStorage.getItem('lethe-token')
 
   return (
@@ -12,7 +12,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
 }
 
 AuthRoute.propTypes = {
-  component: PropTypes.func.isRequired,
+  element: PropTypes.node.isRequired,
 }
 
 export default AuthRoute
