@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import PropTypes from 'prop-types'
-import firebase from 'firebase/app'
-import 'firebase/storage'
+import { initializeApp } from 'firebase/app'
+import { getStorage, ref, getDownloadURL } from 'firebase/storage'
 
 export const StorageContext = React.createContext()
 
@@ -14,22 +14,18 @@ export const StorageProvider = ({ children }) => {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
       storageBucket: 'letheapi.appspot.com',
     }
-
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig)
-    }
-    const fbStorage = firebase.storage()
-    const fbStorageRef = fbStorage.ref()
-    setStorageRef(fbStorageRef)
+    const firebase = initializeApp(firebaseConfig)
+    const fbStorage = getStorage(firebase)
+    // const fbStorage = firebase.storage()
+    // const fbStorageRef = fbStorage.ref()
+    setStorageRef(fbStorage)
   }, [])
 
-  const fetchDownloadUrl = async (img) => {
+  const fetchDownloadUrl = (img) => {
     let image = null
-    const imageRef = storageRef.child(img)
+    const imageRef = ref(storageRef, img)
     try {
-      if (imageRef.getDownloadURL) {
-        image = await imageRef.getDownloadURL()
-      }
+      image = getDownloadURL(imageRef)
     } catch (error) {
       image = 'https://via.placeholder.com/150.png'
     }
