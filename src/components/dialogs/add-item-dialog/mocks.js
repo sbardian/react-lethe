@@ -11,6 +11,19 @@ export default [
     result: {
       data: {
         updateList: { id: '1', title: 'List Title', __typename: 'List' },
+        getLists: {
+          id: 1,
+          title: 'List Title',
+          items: {
+            id: 1,
+            title: 'item 1',
+            creator: {
+              id: 1000,
+            },
+            list: 1,
+            status: true,
+          },
+        },
       },
     },
   },
@@ -22,6 +35,17 @@ export default [
     result: {
       data: {
         updateList: { id: '1', title: 'Item', __typename: 'Item' },
+        createNewItem: {
+          id: 1,
+          title: 'Item',
+          creator: {
+            id: '1000',
+          },
+          list: {
+            id: 1,
+          },
+          status: true,
+        },
       },
     },
   },

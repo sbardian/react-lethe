@@ -11,6 +11,17 @@ export default [
     result: {
       data: {
         updateList: { id: '1', title: 'New Title', __typename: 'List' },
+        getMyInfo: {
+          id: '1000',
+          lists: {
+            id: 1,
+            title: 'New Title',
+            owner: {
+              id: '1000',
+            },
+            listImageUrl: '',
+          },
+        },
       },
     },
   },
