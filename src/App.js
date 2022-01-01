@@ -87,18 +87,54 @@ const App = () => {
             <ApolloProvider client={client}>
               <Router>
                 <Routes>
-                  <AuthRoute path="/lists" element={<ListsRoute />} />
-                  <AuthRoute
+                  <Route
+                    path="/lists"
+                    element={
+                      <AuthRoute>
+                        <ListsRoute />
+                      </AuthRoute>
+                    }
+                  />
+                  <Route
                     path="/invitations"
-                    element={<InvitationsRoute />}
+                    element={
+                      <AuthRoute>
+                        <InvitationsRoute />
+                      </AuthRoute>
+                    }
                   />
-                  <AuthRoute path="/profile" element={<ProfileRoute />} />
-                  <AuthRoute path="/settings" element={<SettingsRoute />} />
-                  <AuthRoute
+                  <Route
+                    path="/profile"
+                    element={
+                      <AuthRoute>
+                        <ProfileRoute />
+                      </AuthRoute>
+                    }
+                  />
+                  <Route
+                    path="/settings"
+                    element={
+                      <AuthRoute>
+                        <SettingsRoute />
+                      </AuthRoute>
+                    }
+                  />
+                  <Route
                     path="/lists/settings/:listId"
-                    element={<ListSettingsRoute />}
+                    element={
+                      <AuthRoute>
+                        <ListSettingsRoute />
+                      </AuthRoute>
+                    }
                   />
-                  <AuthRoute path="/lists/:listId" element={<ItemsRoute />} />
+                  <Route
+                    path="/lists/:listId"
+                    element={
+                      <AuthRoute>
+                        <ItemsRoute />
+                      </AuthRoute>
+                    }
+                  />
                   <Route path="/" element={<LoginRoute />} />
                 </Routes>
               </Router>
