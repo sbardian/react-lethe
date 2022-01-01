@@ -7,21 +7,23 @@ const lists = [
   {
     __typename: 'List',
     id: '1',
-    owner: '1000',
+    owner: { id: '1000' },
     title: 'List One',
   },
   {
     __typename: 'List',
     id: '2',
-    owner: '1000',
+    owner: { id: '1000' },
     title: 'List Two',
   },
 ]
 
+const userId = '1000'
+
 describe('Lists tests', () => {
   it('Should render list items successfully', () => {
     const { getByTestId, queryAllByText, getAllByTestId } = render(
-      <Lists onDeleteList={onDeleteList} lists={lists} />,
+      <Lists onDeleteList={onDeleteList} lists={lists} userId={userId} />,
     )
     const listUl = getByTestId('lists-ul')
     expect(listUl).toBeTruthy()
@@ -34,7 +36,7 @@ describe('Lists tests', () => {
   })
   it('Should delete first list successfully', () => {
     const { getByTestId, queryAllByText, getAllByTestId } = render(
-      <Lists onDeleteList={onDeleteList} lists={lists} />,
+      <Lists onDeleteList={onDeleteList} lists={lists} userId={userId} />,
     )
     const listUl = getByTestId('lists-ul')
     expect(listUl).toBeTruthy()
