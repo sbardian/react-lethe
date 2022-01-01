@@ -22,7 +22,7 @@ const FirebaseImage = ({
         setFirebaseImageUrl(url, source),
       )
     }
-  }, [imageUrl, source])
+  }, [imageUrl, source, getImageUrl])
 
   // TODO: grab more metadata about the image while fetching the download URL, so we can size it correctly
   return (
