@@ -264,12 +264,28 @@ const ListItems = ({ listId }) => {
         title: item.title,
         status: !item.status,
       },
+      refetchQueries: [
+        {
+          query: GET_LIST_ITEMS,
+          variables: {
+            id_is: listId,
+          },
+        },
+      ],
     })
   }
 
   const handleDeleteItem = (item) => {
     deleteItem({
       variables: { itemId: item.id },
+      refetchQueries: [
+        {
+          query: GET_LIST_ITEMS,
+          variables: {
+            id_is: listId,
+          },
+        },
+      ],
     })
   }
 
@@ -311,32 +327,38 @@ const ListItems = ({ listId }) => {
                 <div
                   sx={{
                     display: 'grid',
-                    gridTemplateColumns: '75px 1fr',
+                    gridTemplateColumns: 'auto 1fr',
                     gap: 2,
                   }}
                 >
+                  <span sx={{ fontWeight: 'heavy', justifySelf: 'start' }}>
+                    {item.title.slice(0, 9)}
+                    {item.title.length >= 9 ? '...' : null}
+                  </span>
                   <ProfileImage
+                    sx={{ justifySelf: 'end' }}
                     profileImageUrl={item.creator.profileImageUrl}
                     size="small"
                     type="circle"
                     alt="Profile Image"
                   />
-                  <span sx={{ fontWeight: 'heavy' }}>{item.title}</span>
+                  {/* <span sx={{ fontWeight: 'heavy', justifySelf: 'start' }}>
+                    {item.title.slice(0, 9)}
+                    {item.title.length >= 9 ? '...' : null}
+                  </span> */}
                 </div>
                 <div
                   sx={{
                     display: 'grid',
                     gap: 2,
                     gridTemplateColumns: 'repeat(3, 40px)',
-                    justifyContent: 'end',
+                    justifyContent: 'center',
+                    alignContent: 'end',
                   }}
                 >
                   <div
                     role="button"
                     tabIndex={0}
-                    sx={{
-                      alignSelf: 'end',
-                    }}
                     onKeyPress={(event) => {
                       handleKeyPress(event, () => handleUpdateItem(item))
                     }}
@@ -370,7 +392,6 @@ const ListItems = ({ listId }) => {
                     role="button"
                     tabIndex={0}
                     sx={{
-                      alignSelf: 'end',
                       cursor: 'pointer',
                       '&:hover': {
                         color: 'coral',
@@ -389,7 +410,6 @@ const ListItems = ({ listId }) => {
                     role="button"
                     tabIndex={0}
                     sx={{
-                      alignSelf: 'end',
                       cursor: 'pointer',
                       '&:hover': {
                         color: 'crimson',
