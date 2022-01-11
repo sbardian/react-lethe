@@ -10,7 +10,6 @@ interface DeleteListButtonProps {
   listId: string
 }
 
-// TODO: lists not updating after deleting list
 const DeleteListButton: React.FC<DeleteListButtonProps> = ({
   onDeleteList,
   listId,
