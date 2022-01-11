@@ -53,25 +53,23 @@ const AddListMemberDialog = ({ setShowDialog, listId }) => {
     setMessage(event.target.value)
   }
 
-  const [
-    createInvitation,
-    { loading: createInvitationLoading, error },
-  ] = useMutation(SEND_INVITATION, {
-    variables: {
-      listId,
-      title: message,
-      invitee,
-    },
-    onCompleted: () => {
-      createInvitationSuccess()
-      setInvitee('')
-      setMessage('')
-      setShowDialog(false)
-    },
-    onError: (mutationError) => {
-      createInvitationFailure()
-    },
-  })
+  const [createInvitation, { loading: createInvitationLoading, error }] =
+    useMutation(SEND_INVITATION, {
+      variables: {
+        listId,
+        title: message,
+        invitee,
+      },
+      onCompleted: () => {
+        createInvitationSuccess()
+        setInvitee('')
+        setMessage('')
+        setShowDialog(false)
+      },
+      onError: (mutationError) => {
+        createInvitationFailure()
+      },
+    })
 
   if (createInvitationLoading) {
     return <div>Loading . . . </div>
@@ -195,7 +193,6 @@ const AddListMemberDialog = ({ setShowDialog, listId }) => {
             }}
             onClick={() => {
               if (invitee) {
-                // console.log('calling mutation')
                 createInvitation()
               }
             }}
