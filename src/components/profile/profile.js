@@ -58,9 +58,11 @@ const Profile = () => {
     // },
   })
 
-  const { loading: queryLoading, error: queryError, data } = useQuery(
-    GET_MY_INFO,
-  )
+  const {
+    loading: queryLoading,
+    error: queryError,
+    data,
+  } = useQuery(GET_MY_INFO)
 
   if (queryLoading) {
     return <div>Loading . . . </div>
