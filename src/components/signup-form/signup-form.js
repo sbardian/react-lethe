@@ -120,7 +120,7 @@ const SignUpForm = ({ flipCard }) => {
               }}
               type="text"
               id="signup-username"
-              {...register('signup-username', {
+              {...register('username', {
                 required: 'Username is required',
                 minLength: {
                   value: 2,
