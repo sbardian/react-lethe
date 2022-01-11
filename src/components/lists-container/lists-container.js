@@ -59,17 +59,20 @@ const deleteListFailure = (e) => toast.error(e.message, toastsConfig)
 const ListsContainer = () => {
   const [, dispatch] = React.useContext(StoreContext)
 
-  const { subscribeToMore, data: getListsData, loading, error } = useQuery(
-    GET_MY_LISTS,
-    {
-      onCompleted: (successData) => {
-        dispatch({
-          type: UPDATE_USERNAME,
-          payload: successData.getMyInfo.username,
-        })
-      },
+  const {
+    subscribeToMore,
+    data: getListsData,
+    loading,
+    error,
+  } = useQuery(GET_MY_LISTS, {
+    pollInterval: 500,
+    onCompleted: (successData) => {
+      dispatch({
+        type: UPDATE_USERNAME,
+        payload: successData.getMyInfo.username,
+      })
     },
-  )
+  })
 
   const [deleteList] = useMutation(DELETE_LIST, {
     onCompleted: () => {
